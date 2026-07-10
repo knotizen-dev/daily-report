@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODAY BRIEF — 2026.07.10</title>
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --dark:  #141414;
+      --card:  #1c1c1c;
+      --border:#2a2a2a;
+      --text:  #e8e8e8;
+      --muted: #888;
+      --red:   #e74c3c;
+      --blue:  #3498db;
+      --green: #2ecc71;
+      --gold:  #f39c12;
+      --purple:#9b59b6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    header {
+      border-bottom: 3px solid #fff;
+      padding: 24px 40px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .masthead {
+      font-size: 3.2rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .masthead span { color: var(--red); }
+
+    .header-meta {
+      text-align: right;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .header-meta strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: 2px;
+    }
+
+    /* ─── TICKER ─────────────────────────────────────────── */
+    .ticker-wrap {
+      background: var(--red);
+      padding: 6px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 28s linear infinite;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    @keyframes ticker {
+      0%   { transform: translateX(100vw); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 32px 40px; }
+
+    /* Top Hero + Sidebar */
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    /* Middle 3-col */
+    .mid-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    /* Bottom row */
+    .bot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    /* ─── CARD BASE ──────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .cat-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+
+    .cat-politics  { background: var(--red);    color: #fff; }
+    .cat-economy   { background: var(--blue);   color: #fff; }
+    .cat-disaster  { background: var(--gold);   color: #000; }
+    .cat-world     { background: var(--purple); color: #fff; }
+    .cat-military  { background: #34495e;       color: #fff; }
+    .cat-sports    { background: var(--green);  color: #000; }
+    .cat-society   { background: #e67e22;       color: #fff; }
+
+    .card-num {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      user-select: none;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: #bbb;
+      line-height: 1.65;
+    }
+
+    .card .highlight {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      border-left: 3px solid currentColor;
+      padding: 6px 10px;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* ─── HERO CARD ──────────────────────────────────────── */
+    .hero-card {
+      background: linear-gradient(135deg, #1a0a0a, #2c0f0f);
+      border: 1px solid #4a1a1a;
+    }
+
+    .hero-card h2 {
+      font-size: 1.8rem;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .hero-card p { font-size: 0.93rem; }
+
+    /* ─── SIDEBAR ────────────────────────────────────────── */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sidebar .card { padding: 16px 18px; }
+    .sidebar .card h3 { font-size: 0.92rem; }
+    .sidebar .card p  { font-size: 0.82rem; }
+
+    /* ─── MARKET BAR ─────────────────────────────────────── */
+    .market-bar {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 22px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .market-bar .label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .market-bar .val {
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .up   { color: var(--green); }
+    .down { color: var(--red);   }
+
+    /* ─── SECTION DIVIDER ────────────────────────────────── */
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-bottom: 16px;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 16px 40px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      letter-spacing: 1px;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .top-grid { grid-template-columns: 1fr; }
+      .mid-grid { grid-template-columns: 1fr 1fr; }
+      .masthead { font-size: 2rem; }
+      .container { padding: 20px; }
+      header { padding: 16px 20px 12px; }
+    }
+
+    @media (max-width: 600px) {
+      .mid-grid, .bot-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="masthead">TODAY<span>·</span>BRIEF</div>
+  <div class="header-meta">
+    <strong>2026. 07. 10</strong>
+    Thursday Edition<br>
+    오늘의 주요뉴스 10선
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <span class="ticker-inner">
+    &nbsp;&nbsp;⚖️ 윤석열 전 대통령 징역 7년 확정 &nbsp;·&nbsp;
+    💹 SK하이닉스 나스닥 상장, 40조원 역대 최대 조달 &nbsp;·&nbsp;
+    🌧️ 한국 집중호우 600명 이상 대피 &nbsp;·&nbsp;
+    💣 미국-이란 군사충돌 3일째 지속 &nbsp;·&nbsp;
+    ⚽ FIFA 월드컵 2026 준결승 프랑스 vs 모로코 &nbsp;·&nbsp;
+    ☢️ 북한 핵전력 강화 선언 &nbsp;·&nbsp;
+    🚢 트럼프, 한국 조선소 미 군함 건조 검토 &nbsp;·&nbsp;
+    📈 코스피 7,552 사상최고 &nbsp;·&nbsp;
+    🕌 이란 하메네이 전 최고지도자 장례 &nbsp;·&nbsp;
+    🔥 중국 신발공장 화재 28명 사망 &nbsp;&nbsp;
+  </span>
+</div>
+
+<div class="container">
+
+  <!-- MARKET BAR -->
+  <div class="market-bar">
+    <div>
+      <div class="label">KOSPI</div>
+      <div class="val up">7,552.49 ▲ +3.57%</div>
+    </div>
+    <div>
+      <div class="label">KOSDAQ</div>
+      <div class="val up">807.00 ▲ +1.64%</div>
+    </div>
+    <div>
+      <div class="label">WTI 유가</div>
+      <div class="val up">$89.4 ▲</div>
+    </div>
+    <div>
+      <div class="label">원/달러</div>
+      <div class="val">1,348원</div>
+    </div>
+    <div>
+      <div class="label">업데이트</div>
+      <div class="val" style="font-size:0.85rem; color:var(--muted);">07.10 09:00 KST</div>
+    </div>
+  </div>
+
+  <!-- TOP GRID -->
+  <div class="top-grid">
+
+    <!-- HERO: 뉴스 1 -->
+    <div class="card hero-card">
+      <div class="card-num">01</div>
+      <span class="cat-label cat-politics">정치·사법</span>
+      <h2>윤석열 전 대통령<br>징역 7년형 최종 확정</h2>
+      <p>
+        대법원은 10일 2024년 계엄 선포 사건과 관련해 윤석열 전 대통령에게
+        <strong>징역 7년</strong>을 선고한 원심을 확정했다.
+        내각 구성원의 직무 방해, 공식 포고문 위조, 탄핵 이후 체포 저지를 위한
+        보안군 동원 등의 혐의가 유죄로 인정됐다.
+        한편, 내란죄로 별도 기소된 사건에서는 <strong>무기징역</strong> 선고에 대한
+        항소심이 진행 중이다.
+      </p>
+      <span class="highlight" style="color: var(--red);">
+        🔴 대법원 최종 판결 — 항소 불가
+      </span>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <!-- 뉴스 2 -->
+      <div class="card">
+        <div class="card-num">02</div>
+        <span class="cat-label cat-economy">경제·증시</span>
+        <h3>SK하이닉스 나스닥 상장<br>외국기업 역대 최대 40조 조달</h3>
+        <p>
+          SK하이닉스가 미국 나스닥 상장을 통해 공모가 주당 <strong>149달러</strong>,
+          약 <strong>265억 달러(40조원)</strong>를 조달했다. 외국 기업 미국 상장 사상 최대 규모다.
+          자금은 용인 반도체 클러스터, EUV 설비 투자에 활용될 예정이다.
+        </p>
+      </div>
+
+      <!-- 뉴스 3 -->
+      <div class="card">
+        <div class="card-num">03</div>
+        <span class="cat-label cat-disaster">재해·안전</span>
+        <h3>장마철 집중호우 전국 강타<br>600명 이상 대피</h3>
+        <p>
+          전국 장마 전선 영향으로 집중호우가 쏟아지며 <strong>시설 200여 곳</strong> 피해,
+          <strong>600명 이상</strong> 대피 조치됐다. 영주에서는 급류에 1명이 실종됐으며
+          정부는 긴급 재난 대책 회의를 소집했다.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MIDDLE 3-COL -->
+  <p class="section-title">국제 · 외교 · 안보</p>
+  <div class="mid-grid">
+
+    <!-- 뉴스 4 -->
+    <div class="card">
+      <div class="card-num">04</div>
+      <span class="cat-label cat-military">군사·외교</span>
+      <h3>미국-이란 군사 충돌 3일째<br>부셰르·코나라크 추가 타격</h3>
+      <p>
+        미 중부사령부가 이란 부셰르·코나라크 지역 군사 목표물을 추가 타격했다고 밝혔다.
+        이란 혁명수비대도 미군 시설 <strong>85곳</strong>에 미사일·드론 보복 공격을 실시,
+        호르무즈 해협 통제권을 둘러싼 충돌이 3일째 이어지고 있다.
+      </p>
+      <span class="highlight" style="color:#e74c3c;">🔴 유가 급등 압력</span>
+    </div>
+
+    <!-- 뉴스 5 -->
+    <div class="card">
+      <div class="card-num">05</div>
+      <span class="cat-label cat-military">북한</span>
+      <h3>북한, 핵전력 "질·양 모두 강화"<br>공식 선언</h3>
+      <p>
+        조선중앙통신(KCNA)은 북한이 핵전력을 <strong>"질적·양적으로 모두 강화"</strong>하겠다고
+        공식 발표했다고 보도했다. 최근 군비 현대화 기조와 맞물려
+        한반도 긴장 수위가 높아질 것으로 전망된다.
+      </p>
+    </div>
+
+    <!-- 뉴스 6 -->
+    <div class="card">
+      <div class="card-num">06</div>
+      <span class="cat-label cat-world">국제</span>
+      <h3>트럼프, 한국 조선소서<br>미 군함 건조 검토 시사</h3>
+      <p>
+        한국 대통령실 고위 관계자에 따르면 트럼프 대통령이 G7·NATO 정상회의에서
+        이재명 대통령과의 면담 후 <strong>미 군함을 한국 조선소에서 건조하는 방안</strong>에
+        긍정적 반응을 보인 것으로 전해졌다.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <p class="section-title">사회 · 스포츠 · 세계</p>
+  <div class="bot-grid">
+
+    <!-- 뉴스 7 -->
+    <div class="card">
+      <div class="card-num">07</div>
+      <span class="cat-label cat-sports">스포츠</span>
+      <h3>FIFA 월드컵 2026 준결승<br>프랑스 vs 모로코 격돌</h3>
+      <p>
+        북중미에서 열리는 FIFA 월드컵 2026 준결승에서 디펜딩 챔피언
+        <strong>프랑스</strong>와 아프리카 강호 <strong>모로코</strong>가 맞붙었다.
+        전 세계 수억 명이 시청하는 빅 매치로, 결승 진출팀이 결정된다.
+        반대편 대진에서는 브라질 vs 아르헨티나 매치도 예정돼 있다.
+      </p>
+    </div>
+
+    <!-- 뉴스 8 -->
+    <div class="card">
+      <div class="card-num">08</div>
+      <span class="cat-label cat-world">국제</span>
+      <h3>이란 하메네이 전 최고지도자<br>국장·장례식 거행</h3>
+      <p>
+        미국·이스라엘 공습으로 사망한 이란의 전 최고지도자
+        <strong>알리 하메네이</strong>의 국장이 테헤란에서 거행됐다.
+        수십만 명의 조문객이 운집한 가운데 이란 정부는 보복 의지를
+        재확인하며 국제사회 긴장이 고조되고 있다.
+      </p>
+    </div>
+
+    <!-- 뉴스 9 -->
+    <div class="card">
+      <div class="card-num">09</div>
+      <span class="cat-label cat-society">사회</span>
+      <h3>중국 신발공장 화재<br>28명 사망·다수 부상</h3>
+      <p>
+        중국 남동부 한 신발 공장에서 대형 화재가 발생해 <strong>28명이 사망</strong>하고
+        수십 명이 부상을 입었다. 당국은 화재 원인을 조사 중이며, 공장 내
+        안전 기준 위반 여부에 대한 수사도 병행되고 있다.
+      </p>
+    </div>
+
+    <!-- 뉴스 10 -->
+    <div class="card">
+      <div class="card-num">10</div>
+      <span class="cat-label cat-economy">경제·금융</span>
+      <h3>코스피 7,552 돌파<br>반도체·SK하이닉스 상장 효과</h3>
+      <p>
+        10일 코스피 지수가 전일 대비 <strong>+3.57%</strong> 오른 <strong>7,552.49</strong>로
+        출발했다. SK하이닉스 나스닥 상장 성공과 미국 마이크론·샌디스크 등
+        반도체주 강세가 호재로 작용했다. 코스닥도 807선을 회복했다.
+      </p>
+      <span class="highlight" style="color:var(--green);">📈 반도체 섹터 강세 지속 전망</span>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>TODAY BRIEF &copy; 2026 &nbsp;·&nbsp; 매일 오전 9시 업데이트</span>
+  <span>출처: 조선일보 · 연합뉴스 · 중앙일보 · Korea JoongAng Daily · Straits Times · Manila Times</span>
+</footer>
+
+</body>
+</html>
