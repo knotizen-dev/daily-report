@@ -255,6 +255,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 .pin-change-row{display:flex;align-items:center;gap:8px;padding:10px 0}
 .pin-change-input{flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.85rem;font-family:inherit}
 .pin-change-btn{padding:8px 14px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit}
+.hdr-slogan{text-align:center;font-size:14px;opacity:.75;letter-spacing:.3px;padding:3px 0 1px;color:#fff}
+.upd-bar{background:#fffbeb;border-bottom:1px solid #f59e0b;padding:6px 14px;display:flex;align-items:center;gap:8px;font-size:.76rem}
+.upd-bar-date{color:#92400e;font-weight:800;white-space:nowrap;flex-shrink:0}
+.upd-bar-txt{color:#78350f;flex:1;line-height:1.5}
+.upd-bar-close{background:none;border:none;color:#b45309;font-size:1.1rem;cursor:pointer;padding:0 2px;flex-shrink:0;line-height:1}
 
 /* PRICE PANEL */
 .price-btn{background:#e6f7fb;color:var(--sky);border:1.5px solid var(--sky);border-radius:20px;padding:5px 14px;font-size:.76rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:inherit;line-height:1;transition:background .15s,color .15s}
@@ -293,10 +298,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
     <button class="hdr-btn" onclick="openSearch()">🔍</button>
     <button class="hdr-btn" onclick="openIncentive()" title="카마스터 전용">🔒</button>
   </div>
+  <div class="hdr-slogan">함께하는 충북, 미래의 中心 충(忠)북</div>
 </header>
 
 <div class="cat-wrap" id="catWrap"></div>
 
+<div class="upd-bar" id="upd-bar">
+  <span class="upd-bar-date">📋 최종수정: 2026-08-04</span>
+  <div class="upd-bar-txt">8월 1차특별 반영 &nbsp;— &nbsp;싼타페HEV 7월 <b>250만</b> &nbsp;/ &nbsp;팰리세이드HEV 7월 <b>50만 신규</b> &nbsp;/ &nbsp;포터LPDi 6월 <b>200만</b> &nbsp;&nbsp;(8/5 09:30~ 전산오픈, 총 4,000대 한정)</div>
+  <button class="upd-bar-close" onclick="document.getElementById('upd-bar').style.display='none'" title="닫기">✕</button>
+</div>
 <div id="pages">
   <div class="page" id="pg-help"></div>
   <div class="page" id="pg-calc"></div>
@@ -417,26 +428,26 @@ ice:[
    exhibitCar:'30만', saveAuto:'30만', targets:['rentcar-common']},
 
   {id:'santafe', name:'싼타페', variants:['일반','HEV'], hl:'최대 300만 썸머페스타',
-   change:{type:'up',txt:'7월 생산분 200만 신규 추가!'},
+   change:{type:'up',txt:'1차특별: HEV 7월 250만 (8/5 09:30~, 1,500대)'},
    summerFesta:{
-     '일반':{'3월이전':'300만','4월':'150만','6월':'100만','7월':'200만 ★신규'},
-     'HEV':{'3월이전':'300만','4월':'150만','6월':'100만','7월':'200만 ★신규'}
+     '일반':{'3월이전':'300만','4월':'150만','6월':'100만','7월':'200만'},
+     'HEV':{'3월이전':'300만','4월':'150만','6월':'100만','7월':'250만 ★1차특별'}
    },
    tradeIn:{corp:'50만',other:'30만'}, finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
    exhibitCar:'30만', saveAuto:'30만',
    targets:['rentcar-common','santafe-black'],
-   notes:'※ 블랙패키지 조건: 남양/영남/칠곡 출고 한정'},
+   notes:'※ 블랙패키지 조건: 남양/영남/칠곡 출고 한정\n※ 1차특별(HEV 7월 +50만): 8/5(화) 09:30~ 전산오픈, 선호재고 1,500대 한정'},
 
-  {id:'palisade', name:'팰리세이드', variants:['일반','HEV'], hl:'3월이전 200만 + 전용카드 50만',
-   change:{type:'new',txt:'전용카드 프로모션 50만 신규 (7월: 없음)'},
+  {id:'palisade', name:'팰리세이드', variants:['일반','HEV'], hl:'3월이전 200만 + 전용카드 50만 / HEV 7월 50만',
+   change:{type:'new',txt:'1차특별: HEV 7월 50만 신규 (8/5 09:30~, 1,600대)'},
    summerFesta:{
      '일반':{'3월이전':'200만','4월':'150만','6월':'100만'},
-     'HEV':{'3월이전':'200만','4월':'150만','6월':'100만'}
+     'HEV':{'3월이전':'200만','4월':'150만','6월':'100만','7월':'50만 ★1차특별'}
    },
    tradeIn:{corp:'50만',other:'30만'}, finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
    exhibitCar:'50만', saveAuto:'30만/50만',
    targets:['palisade-card','rentcar-common'],
-   notes:'※ 7월 유류비30만(15만DC+15만캐시백) → 8월 삭제\n※ 전용카드50만 신규: 2000만원이상+세이브오토 必'},
+   notes:'※ 전용카드50만 신규: 2000만원이상+세이브오토 必\n※ 1차특별(HEV 7월 +50만): 8/5(화) 09:30~ 전산오픈, 선호재고 1,600대 한정'},
 
   {id:'staria', name:'스타리아', variants:['일반','HEV'], hl:'3월이전 200만',
    summerFesta:{
@@ -611,12 +622,13 @@ genesis:[
 
 truck:[
   {id:'porter-lp', name:'포터 LPDi', hl:'3월이전 200만 + 상생파트너 40만',
-   summerFesta:{'일반':{'3월이전':'200만','4월':'200만','5월':'200만','6월':'150만','7월':'150만 (특장 제외)'}},
+   change:{type:'up',txt:'1차특별: 6월 생산분 200만 (8/5 09:30~, 900대)'},
+   summerFesta:{'일반':{'3월이전':'200만','4월':'200만','5월':'200만','6월':'200만 ★1차특별','7월':'150만 (특장 제외)'}},
    tradeIn:{corp:'100만',other:null},
    finance:'36M 6.5% / 48M 6.6% / 60M 6.7% (선수금 10% 이상)',
    exhibitCar:null, saveAuto:'20만/30만',
    targets:['porter-partner'],
-   notes:'※ 상생파트너: 1차산업종사자(농축수임광업) 또는 영업용 운전자 限\n※ 증빙서류 필수 (농업경영체등록확인서 / 화물운송종사자격증 등)'},
+   notes:'※ 상생파트너: 1차산업종사자(농축수임광업) 또는 영업용 운전자 限\n※ 증빙서류 필수 (농업경영체등록확인서 / 화물운송종사자격증 등)\n※ 1차특별(6월생산 +50만): 8/5(화) 09:30~ 전산오픈, 6월생산 900대 한정'},
 
   {id:'pavise', name:'파비스', hl:'노후차/원콜 타겟 / 납기 카고 4개월·샤시캡 3.5개월',
    summerFesta:{'일반':{}},
