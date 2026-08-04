@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>2026년 8월 판매조건 가이드 [본부용 통합]</title>
+<title>2026년 8월 판매조건 가이드 [카마스터]</title>
 <!-- v2: 고객 제안서 + 판촉지원금 추가 -->
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -255,6 +255,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 .pin-change-row{display:flex;align-items:center;gap:8px;padding:10px 0}
 .pin-change-input{flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.85rem;font-family:inherit}
 .pin-change-btn{padding:8px 14px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit}
+
+/* PRICE PANEL */
+.price-btn{background:#e6f7fb;color:var(--sky);border:1.5px solid var(--sky);border-radius:20px;padding:5px 14px;font-size:.76rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:inherit;line-height:1;transition:background .15s,color .15s}
+.price-btn.on{background:var(--sky);color:#fff}
+.dpanel-conds{}
+.vtabs-wrap{display:flex;align-items:center;background:#f9fafb;border-bottom:1px solid var(--border)}
+.vtabs-wrap>.vtabs{flex:1;border-bottom:none;background:none}
+.vtab-btn-wrap{padding:6px 12px;flex-shrink:0}
+.price-body{padding:14px 16px 6px}
+.price-hdr{font-weight:800;font-size:.9rem;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.pg-sep{font-size:.78rem;font-weight:800;color:tomato;margin:12px 0 5px;padding-left:2px;letter-spacing:-.2px}
+.pg-sep:first-child{margin-top:0}
+.ptbl{width:100%;border-collapse:collapse;margin-bottom:4px}
+.ptbl th{text-align:left;padding:5px 8px;font-size:.72rem;color:var(--gray);font-weight:600;border-bottom:2px solid var(--border)}
+.ptbl th:last-child{text-align:right}
+.ptbl td{padding:7px 8px;font-size:.85rem;border-bottom:1px solid #f3f4f6}
+.ptbl td:last-child{text-align:right;font-weight:700;color:var(--navy);white-space:nowrap}
+.ptbl tr:last-child td{border-bottom:none}
+.opt-sep{font-size:.78rem;font-weight:700;color:var(--gray);margin:12px 0 6px;padding-left:2px}
+.opt-grid{display:flex;flex-wrap:wrap;gap:5px}
+.opt-chip{background:#f3f4f6;border-radius:20px;padding:5px 11px;font-size:.77rem;display:inline-flex;align-items:center;gap:6px;line-height:1.2}
+.opt-chip-nm{color:#374151;font-weight:500}
+.opt-chip-pr{color:var(--sky);font-weight:800;white-space:nowrap}
+.price-foot{font-size:.7rem;color:#9ca3af;margin-top:10px;padding-top:8px;border-top:1px solid var(--border);line-height:1.6}
+.no-price-msg{padding:20px;text-align:center;color:var(--gray);font-size:.84rem}
 </style>
 </head>
 <body>
@@ -262,7 +287,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 <header class="hdr">
   <div style="display:flex;align-items:center">
     <span class="hdr-logo">🚗 판매조건 가이드</span>
-    <span class="hdr-badge">2026년 8월</span><span class="hdr-badge" style="background:#7c3aed">본부용 (통합)</span>
+    <span class="hdr-badge">2026년 8월</span><span class="hdr-badge" style="background:#002c5f">카마스터 (직영)</span>
   </div>
   <div style="display:flex;gap:2px">
     <button class="hdr-btn" onclick="openSearch()">🔍</button>
@@ -646,6 +671,324 @@ taxi:[
   {id:'staria-ev-tx', name:'스타리아 EV 영업용', hl:null,
    evBenefit:'20만 충전크레딧 또는 홈충전기', targets:[]},
 ]
+};
+
+
+/* ===== 간단 가격표 데이터 (2026년 8월 기준 / PDF 추출) ===== */
+// g: [{l:'그룹라벨', t:[['트림', 가격(만원)], ...]}]  ·  o: [['옵션명', 가격(만원)], ...]
+const PRICE_DATA = {
+
+  /* ─── 국내승용 ─── */
+  'avante': {
+    '일반/HEV': {
+      g:[
+        {l:'가솔린 1.6 IVT · 복합 15.0km/ℓ',        t:[['스마트',2062],['모던',2388],['인스퍼레이션',2756],['N라인',2845]]},
+        {l:'HEV 1.6 하이브리드 · 복합 21.1km/ℓ',     t:[['스마트',2655],['라이트',2682],['모던',2930],['인스퍼레이션',3261],['N라인',3331]]}
+      ],
+      o:[['컨비니언스',38],['하이패스',20],['현대 스마트센스',69],['17인치 휠&타이어Ⅰ',49],['선루프',45],['파킹 어시스트 플러스',129],['익스테리어 디자인',45],['컴포트Ⅰ',106],['빌트인 캠',69],['컴포트Ⅱ',91]]
+    },
+    'N': {
+      g:[{l:'N 2.0 T-GDi · 복합 12.2km/ℓ', t:[['N',3356]]}],
+      o:[['선루프',45],['N DCT 패키지',208],['빌트인 캠',69],['N 라이트 스포츠 버켓 시트',109],['19인치 초경량 단조 휠',79],['N 현대 스마트센스Ⅰ',129],['N 컴포트',59],['시티 팩',365],['트랙 팩',414]]
+    }
+  },
+
+  'sonata': {
+    '일반': {
+      g:[
+        {l:'1.6 터보 T-GDi 8AT · 복합 12.6km/ℓ', t:[['프리미엄',2933],['S',3065],['익스클루시브',3373],['인스퍼레이션',3666]]},
+        {l:'2.0 가솔린 IVA 6AT · 복합 13.5km/ℓ',  t:[['프리미엄',2866],['S',2998],['익스클루시브',3306],['인스퍼레이션',3600]]}
+      ],
+      o:[['인포테인먼트 내비Ⅰ',140],['파킹 어시스트Ⅰ',168],['현대 스마트센스Ⅰ',45],['컴포트Ⅰ',64],['컴포트Ⅱ',67],['하이패스',20],['플래티넘Ⅰ',130],['파노라마 선루프',119],['BOSE 프리미엄 사운드',64],['파킹 어시스트Ⅱ',138]]
+    },
+    'HEV': {
+      g:[{l:'2.0 하이브리드 6AT · 복합 19.4km/ℓ', t:[['프리미엄',3418],['S',3520],['익스클루시브',3827],['인스퍼레이션',4137]]}],
+      o:[['인포테인먼트 내비Ⅱ',106],['파킹 어시스트Ⅰ',168],['현대 스마트센스Ⅰ',45],['컴포트Ⅰ',64],['컴포트Ⅱ',67],['하이패스',20],['플래티넘Ⅰ',130],['파노라마 선루프',119],['BOSE 프리미엄 사운드',64]]
+    }
+  },
+
+  'grandeur-old': {
+    '일반': {
+      g:[
+        {l:'2.5 가솔린 8AT · 복합 11.6km/ℓ',           t:[['프리미엄',4245],['익스클루시브',4694],['캘리그래피',5310],['블랙잉크',5400]]},
+        {l:'LPG 3.5 8AT · 복합 10.0km/ℓ ★26년5월신규', t:[['프리미엄',4393],['익스클루시브',4842]]}
+      ],
+      o:[['20인치 알로이 휠',45],['시트 컴포트 플러스',150],['스마트 비전 루프',180],['현대 스마트센스Ⅰ',140],['파킹 어시스트',170],['프리미엄 초이스',120],['플래티넘',205],['파노라마 선루프',120],['HTRAC(AWD)',220],['빌트인 캠2 Plus',65]]
+    },
+    'HEV': {
+      g:[{l:'2.5 하이브리드 6AT · 복합 18.4km/ℓ', t:[['프리미엄',4933],['익스클루시브',5382],['캘리그래피',5999],['블랙잉크',6089]]}],
+      o:[['현대 스마트센스Ⅰ',140],['파킹 어시스트',170],['프리미엄 초이스',120],['플래티넘',205],['시트 컴포트Ⅱ',185],['20인치 알로이 휠',25],['파노라마 선루프',120],['빌트인 캠2 Plus',65],['시트 컴포트 플러스',150],['스마트 비전 루프',180]]
+    }
+  },
+
+  'grandeur-new': {
+    '일반/HEV': {
+      g:[
+        {l:'2.5 가솔린 8AT · 복합 11.6km/ℓ',           t:[['프리미엄',4245],['익스클루시브',4694],['캘리그래피',5310],['블랙잉크',5400]]},
+        {l:'LPG 3.5 8AT · 복합 10.0km/ℓ ★26년5월신규', t:[['프리미엄',4393],['익스클루시브',4842]]},
+        {l:'2.5 하이브리드 6AT · 복합 18.4km/ℓ',       t:[['프리미엄',4933],['익스클루시브',5382],['캘리그래피',5999],['블랙잉크',6089]]}
+      ],
+      o:[['20인치 알로이 휠',45],['시트 컴포트 플러스',150],['스마트 비전 루프',180],['현대 스마트센스Ⅰ',140],['파킹 어시스트',170],['프리미엄 초이스',120],['플래티넘',205],['파노라마 선루프',120],['HTRAC(AWD)',220],['빌트인 캠2 Plus',65]]
+    }
+  },
+
+  'venue': {
+    '일반': {
+      g:[{l:'가솔린 1.6 IVT · 복합 13.7km/ℓ', t:[['스마트',1994],['프리미엄',2292],['플럭스',2440]]}],
+      o:[['하이패스',20],['내비게이션 패키지',50],['선루프',40],['투톤 컬러 루프',40],['스타일',55],['테크',35],['17인치 블랙 알로이 휠',54],['인조가죽 시트+열선',25]]
+    }
+  },
+
+  'kona': {
+    '일반': {
+      g:[
+        {l:'1.6 터보 8AT · 복합 13.0km/ℓ (AWD 11.2)', t:[['모던',2463],['H-Pick',2685],['프리미엄',2915],['인스퍼레이션',3146],['N Line',3245]]},
+        {l:'2.0 가솔린 IVT · 복합 13.6km/ℓ',           t:[['모던',2393],['H-Pick',2625]]}
+      ],
+      o:[['내비게이션 패키지Ⅰ',55],['현대 스마트센스Ⅰ',110],['컴포트 초이스',40],['베스트 셀렉션',79],['파킹어시스트',99],['BOSE 프리미엄 사운드',59],['투톤 컬러 루프',30],['HTRAC(AWD) 복합 11.2km/ℓ',203],['와이드 선루프',59],['하이패스',20]]
+    },
+    'HEV': {
+      g:[{l:'1.6 터보 하이브리드 6DCT · 복합 19.8km/ℓ', t:[['모던',3038],['H-Pick',3220],['프리미엄',3467],['인스퍼레이션',3663],['N Line',3762]]}],
+      o:[['내비게이션 패키지Ⅱ',30],['현대 스마트센스Ⅰ',110],['컴포트 초이스',40],['베스트 셀렉션',79],['파킹어시스트',99],['BOSE 프리미엄 사운드',59],['투톤 컬러 루프',30],['와이드 선루프',59],['하이패스',20]]
+    }
+  },
+
+  'tucson': {
+    '일반': {
+      g:[
+        {l:'가솔린 1.6 터보 2WD 7DCT · 복합 12.5km/ℓ', t:[['모던',2844],['프리미엄',3112],['H-Pick',3201],['인스퍼레이션',3456],['N Line',3541]]}
+      ],
+      o:[['파노라마 선루프+루프랙',116],['인포테인먼트 내비',89],['현대 스마트센스',40],['컴포트Ⅰ',69],['파킹어시스트Ⅰ',123],['컴포트Ⅱ',74],['플래티넘',109],['BOSE 프리미엄 사운드',59],['HTRAC(AWD) 복합 11.6km/ℓ',198]]
+    },
+    'HEV': {
+      g:[
+        {l:'1.6 터보 하이브리드 2WD 6DCT · 복합 16.2km/ℓ', t:[['모던',3418],['프리미엄',3665],['H-Pick',3749],['인스퍼레이션',4017],['N Line',4082]]}
+      ],
+      o:[['파노라마 선루프+루프랙',116],['인포테인먼트 내비(HEV)',59],['현대 스마트센스',40],['컴포트Ⅰ',69],['파킹어시스트Ⅱ(HEV)',153],['컴포트Ⅱ',74],['플래티넘',109],['BOSE 프리미엄 사운드',59],['HTRAC(AWD) 복합 14.7km/ℓ',0]]
+    }
+  },
+
+  'santafe': {
+    '일반': {
+      g:[{l:'가솔린 2.5 터보 2WD 8DCT · 복합 11.0km/ℓ', t:[['익스클루시브',3657],['프레스티지',3944],['H-Pick',4209],['캘리그래피',4547],['블랙잉크',4547]]}],
+      o:[['동승석 8way 전동시트',20],['헤드업디스플레이',59],['파킹 어시스트 플러스Ⅰ',119],['플래티넘Ⅰ',45],['베스트 셀렉션Ⅰ',150],['듀얼 와이드 선루프',89],['시트플러스',74],['BOSE 프리미엄 사운드',64],['20인치 휠&타이어',49],['6인승',104],['7인승',69],['블랙잉크 플러스',94]]
+    },
+    'HEV': {
+      g:[
+        {l:'1.6 터보 하이브리드 2WD 6DCT · 복합 15.0km/ℓ', t:[['익스클루시브',4122],['프레스티지',4409],['H-Pick',4673],['캘리그래피',4977],['블랙잉크',4977]]},
+        {l:'1.6 터보 하이브리드 AWD 6DCT · 복합 13.5km/ℓ',  t:[['익스클루시브',4345],['프레스티지',4632],['H-Pick',4896],['캘리그래피',5200],['블랙잉크',5200]]}
+      ],
+      o:[['동승석 8way 전동시트',20],['헤드업디스플레이',59],['파킹 어시스트 플러스Ⅰ',119],['플래티넘Ⅰ',45],['베스트 셀렉션Ⅰ',150],['듀얼 와이드 선루프',89],['시트플러스',74],['BOSE 프리미엄 사운드',64],['6인승',104],['7인승',69],['블랙잉크 플러스',94]]
+    }
+  },
+
+  'palisade': {
+    '일반': {
+      g:[
+        {l:'가솔린 3.5 V6 2WD · 복합 9.7km/ℓ', t:[['익스클루시브',4383],['프레스티지',4936],['캘리그래피',5586]]},
+        {l:'가솔린 3.5 V6 AWD · 복합 8.7km/ℓ',  t:[['익스클루시브',4510],['프레스티지',5093],['캘리그래피',5787]]}
+      ],
+      o:[['현대 스마트센스',133],['컴포트',133],['원격 스마트 주차 보조',66],['플래티넘',171],['듀얼 와이드 선루프',85],['사이드스텝',43],['빌트인 공기청정기',52],['프리뷰 전자제어 서스펜션',123],['2열 다이내믹 바디케어 시트',80]]
+    },
+    'HEV': {
+      g:[
+        {l:'1.6 터보 하이브리드 2WD · 복합 14.1km/ℓ', t:[['익스클루시브',4383],['프레스티지',4936],['캘리그래피',5586]]},
+        {l:'1.6 터보 하이브리드 AWD · 복합 12.7km/ℓ',  t:[['익스클루시브',4510],['프레스티지',5093],['캘리그래피',5787]]}
+      ],
+      o:[['현대 스마트센스',133],['컴포트',133],['원격 스마트 주차 보조',66],['플래티넘',171],['듀얼 와이드 선루프',85],['사이드스텝',43],['빌트인 공기청정기',52],['프리뷰 전자제어 서스펜션',123]]
+    }
+  },
+
+  'staria': {
+    '일반': {
+      g:[{l:'가솔린 3.5 V6 8AT · 복합 9.5km/ℓ', t:[['스마트',3502],['모던',3659]]}],
+      o:[['멀티미디어 내비플러스Ⅰ',190],['멀티미디어 내비플러스Ⅱ',170],['컴포트',55],['테크Ⅰ',135],['테크Ⅱ',125],['트레일러 패키지',127]]
+    },
+    'HEV': {
+      g:[{l:'1.6 터보 하이브리드 6DCT · 복합 12.7km/ℓ', t:[['스마트',3870],['모던',3999]]}],
+      o:[['멀티미디어 내비플러스Ⅰ',170],['멀티미디어 내비플러스Ⅱ',150],['컴포트',55],['테크Ⅰ',135],['테크Ⅱ',125]]
+    }
+  },
+
+  /* ─── EV / 수소 ─── */
+  'nexo': {
+    '일반': {
+      g:[{l:'수소 연료전지 95kW · 복합 636km', t:[['모던',8044],['익스클루시브',8349],['프레스티지',8814]]}],
+      o:[['현대 스마트센스',68],['컴포트 플러스',153],['실내외 V2L',85],['파킹어시스트',95],['19인치 알로이 휠',25],['비전루프',90],['디지털 사이드 미러',138],['카메라 패키지',75]]
+    }
+  },
+
+  'kona-ev': {
+    '일반': {
+      g:[
+        {l:'표준레인지 48.4kWh · 복합 311km', t:[['이-밸류 플러스',4368],['프리미엄',4583],['인스퍼레이션',5252],['N Line',5351]]},
+        {l:'롱레인지 65.4kWh · 복합 417km',   t:[['모던 플러스',4803],['프리미엄',4899]]}
+      ],
+      o:[['하이패스',20],['컴포트 초이스',98],['현대 스마트센스Ⅱ',49],['시트플러스',49],['컨비니언스',75],['파킹어시스트',99],['헤드업 디스플레이',59],['BOSE 프리미엄 사운드',59],['와이드 선루프',59]]
+    }
+  },
+
+  'ioniq5': {
+    '일반': {
+      g:[
+        {l:'스탠다드 2WD 58kWh · 복합 385km',    t:[['이-밸류 플러스',4981],['이-라이트',5327],['모던',5565]]},
+        {l:'롱레인지 2WD 77.4kWh · 복합 485km',  t:[['프리미엄',6127],['N Line',6254],['인스퍼레이션',6447]]}
+      ],
+      o:[['현대 스마트센스',110],['컴포트 초이스',110],['컴포트',150],['스타일',120],['파킹 어시스트',150],['비전루프',74],['플래티넘',110],['디지털 사이드 미러',138],['HTRAC(AWD) 복합 425km',247]]
+    },
+    'N': {
+      g:[{l:'N 전기 84kWh 2모터 AWD', t:[['에센셜',7879],['IONIQ 5 N',8142]]}],
+      o:[['파킹 어시스트 Lite',90],['파킹 어시스트',168],['디지털 센터 미러',50],['비전루프',74],['컴포트 플러스',59]]
+    }
+  },
+
+  'ioniq6': {
+    '일반': {
+      g:[
+        {l:'RWD 스탠다드 53kWh · 복합 429km',    t:[['스탠다드',5109]]},
+        {l:'RWD 롱레인지 77.4kWh · 복합 614km',  t:[['롱레인지',5802],['N Line',6044]]},
+        {l:'AWD 롱레인지 77.4kWh · 복합 519km',  t:[['스탠다드',5360],['롱레인지',6283],['N Line',6451]]}
+      ],
+      o:[['컴포트 초이스',120],['현대 스마트센스Ⅰ',148],['컨비니언스',69],['파킹 어시스트',80],['플래티넘',71],['HTRAC(AWD)',247],['와이드 선루프',64],['디지털 사이드 미러',138],['하이테크 플러스',95]]
+    },
+    'N': {
+      g:[{l:'N 전기 84kWh AWD', t:[['IONIQ 6 N',8406]]}],
+      o:[['와이드 선루프',64],['스포츠 디자인 패키지',75]]
+    }
+  },
+
+  'ioniq9': {
+    '일반': {
+      g:[
+        {l:'2WD 110.3kWh · 복합 476km', t:[['익스클루시브',7110],['프레스티지',7705],['캘리그래피',8217]]},
+        {l:'AWD 110.3kWh · 복합 461km', t:[['익스클루시브',7171],['프레스티지',7757],['캘리그래피',8374]]}
+      ],
+      o:[['파킹 어시스트',135],['BOSE 프리미엄 사운드',119],['21인치 휠&타이어',100],['플래티넘',110],['컴포트 플러스',63],['HTRAC Ⅱ(AWD)',370],['파노라마 선루프',119],['빌트인 캠2',59]]
+    }
+  },
+
+  'porter-ev': {
+    '일반': {
+      g:[{l:'전기 58.8kWh · 복합 248km · 캡/적재함에 따라 상이', t:[['스페셜 (1ton)',4350],['스페셜 (스탠다드)',4485],['스페셜 (익스텐디드)',4645]]}],
+      o:[['운전석 시트 패키지',35],['하이패스',20],['운전석 통풍시트',20],['플라스틱 적재함 커버',63]]
+    }
+  },
+
+  'st1': {
+    '일반': {
+      g:[
+        {l:'전기 76.1kWh · 복합 340km (표준)', t:[['스타일',5874],['스마트',6040],['프리미엄',6418]]},
+        {l:'전기 76.1kWh · 복합 365km (롱WB)',  t:[['스마트',6875],['프리미엄',7253]]}
+      ],
+      o:[['하이패스',20],['테크',155],['컨비니언스Ⅰ',85],['컨비니언스Ⅱ',20],['빌트인 캠',45]]
+    }
+  },
+
+  'staria-ev': {
+    '일반': {
+      g:[{l:'전기 76.1kWh · 복합 336km', t:[['모던',6029]]}],
+      o:[['후방 충전 도어(완속)',45],['멀티미디어 내비플러스',110],['익스테리어 디자인',65],['컴포트',55],['테크Ⅰ',140],['테크Ⅱ',125],['트레일러 패키지',127]]
+    }
+  },
+
+  /* ─── 상용 / 트럭 ─── */
+  'porter-lp': {
+    '일반': {
+      g:[{l:'LPDi 2.6 (5MT/6AT) · 캡/적재함에 따라 상이 (최저가)', t:[['스마트',2141],['모던',2242],['프리미엄',2365]]}],
+      o:[['내비게이션 패키지Ⅰ',150],['내비게이션 패키지Ⅱ',95],['5단 자동변속기',113],['플라스틱 적재함 커버',63]]
+    }
+  },
+
+  'solati': {
+    '일반': {
+      g:[
+        {l:'디젤 2.5 승합', t:[['스탠다드 15인승',6703],['디럭스 15인승',6882],['럭셔리 15인승',7104]]},
+        {l:'디젤 2.5 화물', t:[['스탠다드 2인승',6441],['럭셔리 2인승',6842]]}
+      ],
+      o:[['8인치 내비게이션',135]]
+    }
+  },
+
+  /* ─── 영업용 ─── */
+  'sonata-tx': {
+    '일반': {
+      g:[{l:'LPG 2.0 (6AT) · 복합 9.5km/ℓ', t:[['모빌리티',2595]]}],
+      o:[['현대 스마트센스',64],['1열 통풍시트',38]]
+    }
+  },
+
+  'grandeur-tx': {
+    '일반': {
+      g:[{l:'LPG 3.0 (8AT)', t:[['고급형',4217]]}],
+      o:[['VIP 패키지',137],['동승석 컴포트',28]]
+    }
+  },
+
+  /* ─── 제네시스 (기본 모델 + 필수 선택사양 구조) ─── */
+  'g70': {
+    '일반': {
+      g:[
+        {l:'G70 가솔린 2.5T · 복합 11.6km/ℓ (2WD 기준)', t:[['기본 모델',4500]]},
+        {l:'G70 S/B 가솔린 2.5T',                         t:[['기본 모델',4698]]}
+      ],
+      o:[['3.3T 엔진 추가 (복합 10.4km/ℓ)',495],['AWD 구동',247],['스포츠 패키지(2.5T)',356],['스포츠 패키지(3.3T)',237],['와이드 선루프',99],['하이테크 패키지',158],['렉시콘 사운드 패키지',119],['매트 컬러',69]]
+    }
+  },
+
+  'g80': {
+    '일반': {
+      g:[{l:'가솔린 2.5T · 복합 11.3km/ℓ (2WD 기준)', t:[['기본 모델',6063]]}],
+      o:[['AWD 구동',280],['스포츠 패키지Ⅰ',400],['스포츠 패키지Ⅱ',560],['프리뷰 전자제어 서스펜션',300],['파노라마 선루프',110],['시그니쳐 디자인Ⅰ',150],['시그니쳐 디자인Ⅱ',300],['뒷좌석 엔터테인먼트',300],['매트 컬러',70]]
+    }
+  },
+
+  'g80ev': {
+    '일반': {
+      g:[{l:'전기 AWD 94.5kWh · 복합 443km', t:[['기본 모델',8908],['세제혜택 후',8479]]}],
+      o:[['시그니쳐 디자인 셀렉션',300],['후륜 조향 시스템',130],['파퓰러 패키지',540],['뒷좌석 전동식 도어 커튼',450],['뒷좌석 엔터테인먼트',300],['빌트인 캠 패키지',85],['매트 컬러',70]]
+    }
+  },
+
+  'g90': {
+    '일반': {
+      g:[
+        {l:'G90 가솔린 3.5T · 복합 9.5km/ℓ (2WD 기준)', t:[['기본 모델',9748]]},
+        {l:'G90 LWB 가솔린 3.5T',                        t:[['기본 모델',9748]]}
+      ],
+      o:[['AWD 구동',350],['48V 일렉트릭 슈퍼차저',600],['파퓰러 컬렉션',560],['파노라마 선루프',350],['동승석 에르고 릴렉싱 시트',250],['뒷좌석 컴포트Ⅱ+후석엔터테인먼트',2300],['매트 컬러',80]]
+    }
+  },
+
+  'gv60': {
+    '일반': {
+      g:[{l:'전기 RWD 84.0kWh · 복합 429km (기준)', t:[['기본 모델',6828]]}],
+      o:[['AWD 234kW 듀얼모터 복합 368km',380],['Performance AWD 360kW',840],['21인치 휠&프리뷰 서스펜션',230],['파퓰러 패키지Ⅰ',470],['파퓰러 패키지Ⅱ',680],['헤드업 디스플레이',130],['비전루프+루프랙',100],['디지털 사이드 미러',150],['매트 컬러',70]]
+    }
+  },
+
+  'gv70': {
+    '일반': {
+      g:[{l:'가솔린 2.5T · 복합 12.0km/ℓ (2WD 기준)', t:[['기본 모델',5473]]}],
+      o:[['AWD (복합 10.6km/ℓ)',300],['3.5T AWD 스포츠 패키지',550],['프리뷰 전자제어 서스펜션',230],['스포츠 패키지Ⅰ',280],['스포츠 패키지Ⅱ',335],['파퓰러 패키지Ⅰ',295],['파퓰러 패키지Ⅱ',660],['전체 패키지',1190],['파노라마 선루프',130],['매트 컬러',70]]
+    }
+  },
+
+  'gv70ev': {
+    '일반': {
+      g:[{l:'전기 AWD 77.4kWh · 복합 400km', t:[['기본 모델',7974],['세제혜택 후',7580]]}],
+      o:[['파퓰러 패키지Ⅰ',295],['파퓰러 패키지Ⅱ',660],['전체 패키지',1160],['파노라마 선루프',130],['컴포트 패키지',100],['드라이빙 어시스턴스Ⅱ',200],['뱅앤올룹슨 사운드',170],['빌트인 캠 패키지',85],['매트 컬러',70]]
+    }
+  },
+
+  'gv80': {
+    '일반': {
+      g:[
+        {l:'GV80 가솔린 2.5T · 복합 11.0km/ℓ (2WD 기준)', t:[['기본 모델',6886]]},
+        {l:'GV80 쿠페 가솔린 2.5T',                        t:[['기본 모델',8130]]}
+      ],
+      o:[['AWD (복합 9.8km/ℓ)',300],['GV80 쿠페 3.5T 엔진',420],['파노라마 선루프',140],['헤드업 디스플레이',130],['뒷좌석 엔터테인먼트',300],['파퓰러 패키지',620],['컴포트 패키지',320],['사이드 스텝',245],['매트 컬러',70]]
+    }
+  }
 };
 
 /* ===== 현대자동차 전용카드 혜택 (2026년 8월) ===== */
@@ -1128,7 +1471,8 @@ function buildDetail(v, variant){
   const sf = v.summerFesta && (v.summerFesta[variant] || v.summerFesta[Object.keys(v.summerFesta)[0]]);
   const hasAnySf = sf && Object.values(sf).some(x=>x);
 
-  let html = `<div class="dpanel">`;
+  const _hasPD = !!(PRICE_DATA[v.id]);
+  let html = `<div class="dpanel" id="dpanel-${v.id}">`;  // v2
   // Header
   html += `<div class="dpanel-hdr">
     <div class="dpanel-name">${v.name}${v.sub?' <span style="font-size:.8rem;opacity:.7">'+v.sub+'</span>':''}</div>
@@ -1140,8 +1484,13 @@ function buildDetail(v, variant){
     </div>
   </div>`;
 
-  // Variant tabs
-  html += buildVariantTabs(v);
+  // Variant tabs + 간단 가격표 버튼 (탭 행 우측)
+  const _tabHtml = buildVariantTabs(v);
+  const _btnHtml = _hasPD ? `<button class="price-btn" onclick="togglePriceView('${v.id}')">간단 가격표</button>` : '';
+  if(_tabHtml || _btnHtml){
+    html += `<div class="vtabs-wrap">${_tabHtml}<div style="flex:1"></div>${_btnHtml?`<div class="vtab-btn-wrap">${_btnHtml}</div>`:''}</div>`;
+  }
+  html += '<div class="dpanel-conds">';  // v2
 
   // 납기 섹션 (최상단에 배치)
   const dlv = DELIVERY[v.id];
@@ -1286,7 +1635,9 @@ function buildDetail(v, variant){
     html += `<div style="padding:0 16px 14px"><div class="nbox">${v.notes}</div></div>`;
   }
 
-  html += `</div>`;
+  html += '</div>';  // close dpanel-conds  v2
+  if(_hasPD) html += `<div class="price-body" style="display:none">${buildPricePanel(v.id,variant)}</div>`;
+  html += `</div>`;  // close dpanel
   return html;
 }
 
@@ -1368,6 +1719,47 @@ function toggleSec(id){
   chev.classList.toggle('open');
 }
 
+function buildPricePanel(vid, variant){
+  var d = PRICE_DATA[vid];
+  if(!d) return '<div class="no-price-msg">📋 가격표 데이터가 없습니다</div>';
+  var vdata = d[variant] || d['\uc77c\ubc18'] || d[Object.keys(d)[0]];
+  if(!vdata) return '<div class="no-price-msg">📋 해당 트림 가격 정보가 없습니다</div>';
+  var html = '<div class="price-hdr">📋 트림별 기본가격</div>';
+  for(var gi=0;gi<vdata.g.length;gi++){
+    var gr=vdata.g[gi];
+    if(gr.l) html += '<div class="pg-sep">\u25b8 '+gr.l+'</div>';
+    html += '<table class="ptbl"><tr><th>트림</th><th>기본가격</th></tr>';
+    for(var ti=0;ti<gr.t.length;ti++){
+      var nm=gr.t[ti][0], pr=gr.t[ti][1];
+      html += '<tr><td>'+nm+'</td><td>'+pr.toLocaleString()+'만원</td></tr>';
+    }
+    html += '</table>';
+  }
+  if(vdata.o && vdata.o.length){
+    html += '<div class="opt-sep">📦 주요 옵션 (선택사양)</div><div class="opt-grid">';
+    for(var oi=0;oi<vdata.o.length;oi++){
+      var on=vdata.o[oi][0], op=vdata.o[oi][1];
+      html += '<div class="opt-chip"><span class="opt-chip-nm">'+on+'</span><span class="opt-chip-pr">'+op+'만</span></div>';
+    }
+    html += '</div>';
+  }
+  html += '<div class="price-foot">* 기본가격 기준 · 부가세 포함 · 정부 보조금 미적용 · 실제 가격은 옵션·지역·시기에 따라 다를 수 있음</div>';
+  return html;
+}
+
+function togglePriceView(vid){
+  const panel = document.getElementById('dpanel-'+vid);
+  if(!panel) return;
+  const btn = panel.querySelector('.price-btn');
+  const priceBody = panel.querySelector('.price-body');
+  const conds = panel.querySelector('.dpanel-conds');
+  const isOpen = priceBody && priceBody.style.display !== 'none';
+  if(conds) conds.style.display = isOpen ? '' : 'none';
+  if(priceBody) priceBody.style.display = isOpen ? 'none' : 'block';
+  if(btn){ btn.textContent = isOpen ? '간단 가격표' : '← 판매조건'; btn.classList.toggle('on', !isOpen); }
+}
+
+
 /* ===== RENDER TARGETS PAGE ===== */
 function renderTargets(){
   const el = document.getElementById('pg-targets');
@@ -1426,16 +1818,15 @@ function gotoVehicle(cat,id){
 
 /* ===== 판촉지원금 데이터 (카마스터 전용) ===== */
 const INCENTIVE = {
-  notice: '본부용 통합 자료 (전체 역할 포함) — 대외비',
+  notice: '직영 카마스터 전용 자료입니다. 고객에게 노출되지 않도록 주의하세요.',
   general: [
     {
       name: '월초 조기 출고 판촉지원금',
       period: '8월 1일~14일', badge: '★신규',
       rows: [
-        {label:'지점 카마스터', amt:'대당 10만원', cond:'전차종(상용·캐스퍼 제외), AA1·BA1'},
-        {label:'대리점', amt:'대당 5만원', cond:'위 동일 조건'},
+        {label:'지점 카마스터', amt:'대당 10만원', cond:'전차종(상용·캐스퍼 제외), AA1·BA1 限'},
       ],
-      note: '9월 10일 기준 재평가'
+      note: '9월 10일 기준 재평가 (매출취소·미등록 차감)'
     },
     {
       name: '넥쏘 판촉지원금',
@@ -1449,8 +1840,8 @@ const INCENTIVE = {
       name: '캐스퍼 판촉지원금',
       period: '8월 상시', badge: '유지',
       rows: [
-        {label:'캐스퍼 내연기관', amt:'대당 5만원', cond:'지점·대리점 공통'},
-        {label:'캐스퍼 일렉트릭', amt:'대당 10만원', cond:'지점·대리점 공통'},
+        {label:'캐스퍼 내연기관', amt:'대당 5만원', cond:'고객케어지원금 인정 기준 충족시 별도 지급'},
+        {label:'캐스퍼 일렉트릭', amt:'대당 10만원', cond:'온라인 계약 시 구매지원 카마스터 고객 직접 입력 必'},
       ],
       note: '고객케어지원금과 별도 지급'
     },
@@ -1458,11 +1849,10 @@ const INCENTIVE = {
       name: '200만 굿프렌드 판촉지원금',
       period: '8월 상시', badge: '유지',
       rows: [
-        {label:'신규가망 - 지점 카마스터', amt:'10만 CRM포인트', cond:'월 2대 이상'},
-        {label:'기출고 - 지점 카마스터', amt:'5만 CRM포인트', cond:'월 2대 이상'},
-        {label:'신규가망 - 대리점', amt:'5만원', cond:'굿프렌드 비율 10% 이상 必'},
+        {label:'신규 가망고객 출고', amt:'대당 10만 CRM포인트', cond:'월 2대 이상 출고 限'},
+        {label:'기출고 전담고객 출고', amt:'대당 5만 CRM포인트', cond:'월 2대 이상 출고 限'},
       ],
-      note: ''
+      note: '지점 카마스터 월 2대 이상 출고 시 포상 / CRM포인트 지급'
     },
   ],
   truck: [
@@ -1470,77 +1860,45 @@ const INCENTIVE = {
       name: '엑시언트 트랙터·8X4덤프 판촉지원금',
       period: '8월', badge: '강화',
       rows: [
-        {label:'트럭지점 카마스터 1대', amt:'30만원', cond:'트랙터·8X4덤프 합산'},
-        {label:'트럭지점 카마스터 2대', amt:'100만원', cond:'트랙터·8X4덤프 합산'},
-        {label:'트럭지점 카마스터 3대+', amt:'대당 60만원', cond:'트랙터·8X4덤프 합산'},
+        {label:'1대 판매', amt:'30만원', cond:'트랙터·8X4덤프 합산'},
+        {label:'2대 판매', amt:'100만원', cond:'트랙터·8X4덤프 합산'},
+        {label:'3대 이상', amt:'대당 60만원', cond:'트랙터·8X4덤프 합산'},
       ],
-      note: ''
+      note: '대상: 트럭지점 카마스터 / 8월 실출고 기준'
     },
     {
       name: '중형트럭 구매부담Down 판촉지원금',
       period: '8월', badge: '유지',
       rows: [
-        {label:'지점 카마스터 (첫 출고)', amt:'50만원', cond:'마이티/파비스 구매부담Down 이용'},
+        {label:'첫 출고 시', amt:'50만원', cond:'마이티/파비스 구매부담Down 이용 첫 출고'},
       ],
-      note: ''
+      note: '9월 10일 기준 재평가'
     },
     {
       name: '중대형트럭 재고 판촉지원금',
       period: '8월', badge: '유지',
       rows: [
-        {label:'마이티 26년4-5월 재고 (지점·대리점)', amt:'대당 50만원', cond:'동일업체 월 5대 限'},
-        {label:'파비스 26년4-5월 재고 (지점·대리점)', amt:'대당 30만원', cond:'동일업체 월 5대 限'},
-        {label:'엑시언트 25년6-7월 (지점·대리점)', amt:'대당 200만원', cond:''},
-        {label:'엑시언트 25년8-9월 (지점·대리점)', amt:'대당 100만원', cond:''},
+        {label:'마이티 (26년 4-5월 구형재고)', amt:'대당 50만원', cond:'동일업체 월 5대 限'},
+        {label:'파비스 (26년 4-5월 구형재고)', amt:'대당 30만원', cond:'동일업체 월 5대 限'},
+        {label:'엑시언트 (25년 6-7월 생산)', amt:'대당 200만원', cond:''},
+        {label:'엑시언트 (25년 8-9월 생산)', amt:'대당 100만원', cond:''},
       ],
-      note: ''
+      note: '재고 현황은 지역본부 담당자 확인'
     },
   ],
   campaign: [
     {
-      name: '3분기 지점장 캠페인',
-      period: '7월~9월', badge: '유지',
-      desc: '3분기 전차종 목표 달성률 상위 30% 지점장 포상 (택시·트럭지점 제외)',
+      name: '3분기 영업팀 캠페인 (내 포상)',
+      period: '7월~9월 (분기)', badge: '유지',
+      desc: '월별 전차종 목표 달성률 상위 30% 영업팀 포상\n• 제네시스 1대 = 1.5대 가중치 (50% 가중 운영)',
       rows: [
-        {label:'상위 30% 지점장', amt:'제주 해비치 호텔 1박 숙박권', cond:'3개월 누계 100% 이상 必'},
+        {label:'월 상위 5%', amt:'50만원 (국민관광상품권)', cond:'月 단위 포상'},
+        {label:'월 상위 20%', amt:'20만원', cond:'月 단위 포상'},
+        {label:'월 상위 30%', amt:'10만원', cond:'月 단위 포상'},
+        {label:'분기 3회 달성', amt:'+20만원 추가', cond:'해당 영업팀 인당 추가 포상'},
+        {label:'분기 2회 달성', amt:'+10만원 추가', cond:'해당 영업팀 인당 추가 포상'},
       ],
-      note: ''
-    },
-    {
-      name: '3분기 영업팀 캠페인',
-      period: '7월~9월', badge: '유지',
-      desc: '월별 전차종 목표 달성률 상위 30% 영업팀 포상\n• 제네시스 50% 가중 (1대=1.5대)',
-      rows: [
-        {label:'월 상위 5%', amt:'50만원 (국민관광상품권)', cond:'月 단위'},
-        {label:'월 상위 20%', amt:'20만원', cond:'月 단위'},
-        {label:'월 상위 30%', amt:'10만원', cond:'月 단위'},
-        {label:'분기 3회 달성', amt:'+20만원 추가', cond:'팀원 인당'},
-        {label:'분기 2회 달성', amt:'+10만원 추가', cond:'팀원 인당'},
-      ],
-      note: '3대 미만 판매 시 포상 제외'
-    },
-    {
-      name: '대리점 여름 총력 출고 캠페인',
-      period: '7월~9월', badge: '유지',
-      desc: '3분기 목표 달성률 상위 30% 대리점 가전 포상',
-      rows: [
-        {label:'315대 이상', amt:'가전 8개', cond:''},
-        {label:'235~314대', amt:'가전 6개', cond:''},
-        {label:'160~234대', amt:'가전 4개', cond:''},
-        {label:'160대 미만', amt:'가전 2개', cond:''},
-      ],
-      note: ''
-    },
-    {
-      name: '대리점 중형트럭 판매 썸머 레이스',
-      period: '7월~8월', badge: '유지',
-      desc: '판매 구간별 TOP7 포상 (25년 월평균 기준)',
-      rows: [
-        {label:'프로 구간 1위', amt:'100만원', cond:'4대미만 구간'},
-        {label:'엑스퍼트 구간 1위', amt:'200만원', cond:'4-9대 구간'},
-        {label:'마스터 구간 1위', amt:'500만원', cond:'10대이상 구간'},
-      ],
-      note: ''
+      note: '분기 內 3대 미만 판매시 포상 제외 / 달성률 100% 이상 必'
     },
   ],
 };
