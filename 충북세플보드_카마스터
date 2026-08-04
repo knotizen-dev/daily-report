@@ -1,1 +1,2919 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>2026년 8월 판매조건 가이드 [카마스터]</title>
+<!-- v2: 고객 제안서 + 판촉지원금 추가 -->
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:18px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#eef0f3;color:#1a1a2e;padding-bottom:72px}
+:root{--navy:#002c5f;--blue:#0d4a8a;--sky:#00aad2;--green:#16a34a;--green-bg:#dcfce7;--amber:#d97706;--amber-bg:#fef3c7;--red:#dc2626;--red-bg:#fee2e2;--purple:#7c3aed;--gray:#6b7280;--border:#e5e7eb;--card:#fff;--shadow:0 2px 8px rgba(0,44,95,.1)}
+
+/* HEADER */
+.hdr{background:var(--navy);color:#fff;padding:10px 14px;position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.hdr-logo{font-weight:800;font-size:1rem;letter-spacing:-.3px}
+.hdr-badge{background:var(--sky);color:#fff;padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:700;margin-left:8px}
+.hdr-btn{background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;padding:4px 6px}
+
+/* CATEGORY TABS */
+.cat-wrap{background:var(--navy);padding:0 8px 8px;display:flex;gap:5px;overflow-x:auto;scrollbar-width:none}
+.cat-wrap::-webkit-scrollbar{display:none}
+.cat-btn{flex:0 0 auto;background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);border:none;border-radius:20px;padding:6px 13px;font-size:.78rem;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit}
+.cat-btn.on{background:var(--sky);color:#fff}
+
+/* PAGES */
+.page{display:none;padding:10px}.page.on{display:block}
+
+/* VEHICLE GRID */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
+@media(min-width:540px){.vgrid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:768px){.vgrid{grid-template-columns:repeat(5,1fr)}}
+.vcard{background:var(--card);border-radius:12px;padding:11px 7px;text-align:center;cursor:pointer;border:2px solid transparent;box-shadow:var(--shadow);position:relative;transition:transform .15s}
+.vcard:active{transform:scale(.95)}
+.vcard.sel{border-color:var(--sky);background:#e8f6fb}
+.vcard-name{font-weight:700;font-size:.88rem;color:var(--navy);line-height:1.2;margin-bottom:3px}
+.vcard-sub{font-size:.75rem;color:var(--gray)}
+.vcard-hl{font-size:.75rem;font-weight:700;color:var(--green);margin-top:2px}
+.vcard-hl.none{color:#bbb}
+.badge{position:absolute;top:4px;right:4px;font-size:.65rem;font-weight:800;padding:1px 5px;border-radius:8px;color:#fff}
+.badge.new{background:var(--purple)}
+.badge.up{background:var(--green)}
+.badge.dn{background:var(--red)}
+
+/* DETAIL PANEL */
+.dpanel{background:var(--card);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;margin-top:8px}
+.dpanel-hdr{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:13px 16px}
+.dpanel-name{font-size:1.15rem;font-weight:800;margin-bottom:2px}
+.dpanel-sub{font-size:.75rem;opacity:.8}
+.dpanel-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.tag{display:inline-block;padding:2px 9px;border-radius:12px;font-size:.7rem;font-weight:700}
+.tag-green{background:rgba(22,163,74,.25);color:#a7f3d0}
+.tag-amber{background:rgba(217,119,6,.25);color:#fcd34d}
+.tag-blue{background:rgba(255,255,255,.2);color:#fff}
+
+/* SECTIONS */
+.sec{border-bottom:1px solid var(--border)}
+.sec:last-child{border-bottom:none}
+.sec-hdr{display:flex;align-items:center;gap:8px;padding:12px 16px;cursor:pointer;user-select:none}
+.sec-ico{font-size:1rem;width:22px;text-align:center}
+.sec-title{font-weight:700;font-size:.92rem;color:var(--navy);flex:1}
+.sec-sum{font-size:.8rem;font-weight:700;color:var(--green)}
+.sec-sum.none{color:#bbb}
+.sec-sum.info{color:var(--sky)}
+.chev{color:#bbb;font-size:.8rem;transition:transform .2s}
+.chev.open{transform:rotate(180deg)}
+.sec-body{padding:0 16px 14px;display:none}
+.sec-body.open{display:block}
+
+/* MONTH TABLE */
+.mtbl{width:100%;border-collapse:separate;border-spacing:3px;margin-top:6px}
+.mtbl th{background:#f3f4f6;color:var(--gray);font-size:.75rem;font-weight:600;padding:5px 2px;border-radius:6px;text-align:center}
+.mtbl td{text-align:center;padding:7px 3px;border-radius:8px;font-size:.8rem;font-weight:700}
+.mc-has{background:var(--green-bg);color:var(--green)}
+.mc-none{background:#f3f4f6;color:#bbb}
+.mc-hot{background:#fee2e2;color:var(--red)}
+.mc-blue{background:#dbeafe;color:#1d4ed8}
+.mc-new{background:#f0fdf4;color:var(--green);outline:2px solid var(--green)}
+
+/* INFO ROWS */
+.irow{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid #f3f4f6}
+.irow:last-child{border-bottom:none}
+.ilbl{font-size:.82rem;color:var(--gray);font-weight:600;min-width:82px;padding-top:1px}
+.ival{font-size:.88rem;color:#1a1a2e;font-weight:500;flex:1;line-height:1.5}
+.ival.g{color:var(--green);font-weight:700}
+.ival.b{color:#1d4ed8;font-weight:600}
+.ival.a{color:var(--amber);font-weight:600}
+
+/* TARGET ITEMS */
+.titem{background:#f9fafb;border-radius:10px;padding:10px 12px;margin-bottom:6px;border-left:3px solid var(--sky)}
+.titem-name{font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:4px}
+.titem-amt{display:inline-block;background:var(--green);color:#fff;padding:2px 9px;border-radius:10px;font-size:.8rem;font-weight:700;margin-bottom:5px}
+.titem-cond{font-size:.8rem;color:var(--gray);line-height:1.6;white-space:pre-line}
+
+/* FINANCE */
+.fbox{background:#f0f9ff;border-radius:10px;padding:10px 12px;margin-bottom:6px}
+.fbox-title{font-size:.82rem;color:#0369a1;font-weight:700;margin-bottom:3px}
+.fbox-rate{font-size:.88rem;color:#1e40af;font-weight:600;line-height:1.6}
+.fbox-promo{background:#fffbeb;border-radius:10px;padding:10px 12px;margin-bottom:6px;border-left:3px solid var(--amber)}
+.fbox-promo-title{font-size:.82rem;color:var(--amber);font-weight:700;margin-bottom:3px}
+.fbox-promo-txt{font-size:.85rem;color:#92400e;line-height:1.6;white-space:pre-line}
+
+/* NOTICE */
+.nbox{background:var(--amber-bg);border-radius:8px;padding:8px 12px;margin-top:6px;font-size:.8rem;color:#92400e;line-height:1.6;white-space:pre-line}
+
+/* BLUE MEMBERS */
+.bm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:6px}
+.bm-cell{background:#eef2ff;border-radius:8px;padding:7px 4px;text-align:center}
+.bm-turn{font-size:.65rem;color:#6366f1;font-weight:700}
+.bm-amt{font-size:.82rem;color:#3730a3;font-weight:800}
+
+/* GENESIS STOCK */
+.gstock{display:flex;gap:6px;margin-top:6px}
+.gstock-cell{flex:1;text-align:center;padding:10px 6px;border-radius:10px}
+.gstock-pre{background:#fee2e2;color:var(--red)}
+.gstock-jul{background:#fef3c7;color:var(--amber)}
+.gstock-label{font-size:.67rem;font-weight:600;margin-bottom:3px}
+.gstock-amt{font-size:1.1rem;font-weight:900}
+
+/* EV SPECIAL */
+.ev-box{background:linear-gradient(135deg,#065f46,#047857);color:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;text-align:center}
+.ev-box-label{font-size:.75rem;opacity:.85;margin-bottom:3px}
+.ev-box-amt{font-size:1.5rem;font-weight:900}
+.ev-box-note{font-size:.7rem;opacity:.8;margin-top:3px}
+
+/* HOME PAGE */
+.hcard{background:var(--card);border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow)}
+.hcard-title{font-weight:800;font-size:1rem;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:6px;border-bottom:2px solid var(--sky);padding-bottom:8px}
+.hrow{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)}
+.hrow:last-child{border-bottom:none}
+.hveh{font-weight:700;font-size:.88rem;color:var(--navy);min-width:88px}
+.hcond{font-size:.85rem;color:#374151;flex:1;line-height:1.5}
+.chg-badge{display:inline-block;font-size:.68rem;font-weight:800;padding:1px 5px;border-radius:6px;color:#fff;margin-left:3px}
+.chg-new{background:var(--purple)}
+.chg-up{background:var(--green)}
+.chg-dn{background:var(--red)}
+
+/* TARGET PAGE */
+.tcat{font-weight:800;font-size:.95rem;color:var(--navy);margin:14px 0 6px;padding-left:4px;border-left:3px solid var(--sky)}
+
+/* BOTTOM NAV */
+.bnav{position:fixed;bottom:0;left:0;right:0;height:64px;background:#fff;border-top:1px solid var(--border);display:flex;z-index:200;box-shadow:0 -2px 8px rgba(0,0,0,.07)}
+.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;background:none;border:none;cursor:pointer;color:#9ca3af;font-size:.68rem;font-weight:600;font-family:inherit}
+.bnav-btn.on{color:var(--sky)}
+.bnav-ico{font-size:1.3rem}
+
+/* SEARCH */
+.soverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300}
+.soverlay.open{display:block}
+.sbox{background:#fff;padding:14px}
+.sinput{width:100%;padding:10px 16px;border:2px solid var(--sky);border-radius:24px;font-size:.95rem;outline:none;font-family:inherit}
+.sresults{margin-top:8px;max-height:65vh;overflow-y:auto}
+.sitem{padding:11px 4px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.sitem:active{background:#f0f9ff}
+.sitem-name{font-weight:700;font-size:.95rem}
+.sitem-cat{font-size:.78rem;color:var(--gray)}
+.sitem-hl{font-size:.8rem;color:var(--green);font-weight:600;text-align:right}
+
+/* VARIANT TABS */
+.vtabs{display:flex;gap:5px;padding:8px 16px;background:#f9fafb;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.vtabs::-webkit-scrollbar{display:none}
+.vtab{flex:0 0 auto;padding:5px 11px;border-radius:16px;font-size:.76rem;font-weight:600;border:1.5px solid var(--border);background:#fff;color:#4b5563;cursor:pointer;font-family:inherit}
+.vtab.on{background:var(--sky);color:#fff;border-color:var(--sky)}
+
+.section-divider{height:6px;background:#f3f4f6;margin:0 -16px}
+
+/* ===== 납기 섹션 ===== */
+.delivery-wrap{padding:4px 0}
+.delivery-row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid #f3f4f6}
+.delivery-row:last-child{border-bottom:none}
+.delivery-type{font-size:.8rem;color:#374151;font-weight:600;min-width:110px;line-height:1.4}
+.delivery-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:.82rem;font-weight:800;white-space:nowrap}
+.d-instant{background:#dcfce7;color:#15803d}
+.d-1m{background:#d1fae5;color:#166534}
+.d-1h{background:#fef9c3;color:#854d0e}
+.d-2m{background:#fef3c7;color:#92400e}
+.d-3m{background:#ffedd5;color:#9a3412}
+.d-4m{background:#fee2e2;color:#991b1b}
+.d-none{background:#f3f4f6;color:#6b7280}
+.delivery-stock{display:inline-block;background:#dbeafe;color:#1e40af;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:4px;white-space:nowrap}
+.delivery-note{font-size:.75rem;color:#6b7280;line-height:1.5;margin-top:3px}
+.delivery-notice{background:#fef3c7;border-radius:8px;padding:8px 12px;margin-top:6px;font-size:.75rem;color:#92400e;line-height:1.6}
+
+/* ===== 고객 제안서 ===== */
+.prop-wrap{padding:10px}
+.prop-step{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow)}
+.prop-step-title{font-weight:800;font-size:.9rem;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:var(--sky);color:#fff;border-radius:50%;font-size:.72rem;font-weight:800;flex-shrink:0}
+.prop-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f3f4f6}
+.prop-row:last-child{border-bottom:none}
+.prop-lbl{font-size:.78rem;color:var(--gray);font-weight:600;min-width:80px}
+.prop-sel{flex:1;padding:7px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:.82rem;font-family:inherit;color:#1a1a2e;background:#fff}
+.prop-sel:focus{border-color:var(--sky);outline:none}
+.prop-check-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px}
+@media(min-width:480px){.prop-check-grid{grid-template-columns:1fr 1fr 1fr}}
+.prop-check{display:flex;align-items:center;gap:6px;padding:7px 10px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:600;color:#4b5563;background:#fff;user-select:none}
+.prop-check.on{border-color:var(--green);background:var(--green-bg);color:var(--green)}
+.prop-check input{display:none}
+.prop-generate{width:100%;padding:14px;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit;margin-top:4px;letter-spacing:-.3px}
+.prop-generate:active{opacity:.85}
+
+/* 제안서 결과 */
+.result-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,44,95,.15);margin-top:12px}
+.result-hdr{background:linear-gradient(135deg,var(--navy),#1a4a8a);color:#fff;padding:18px 20px;text-align:center}
+.result-hdr-month{font-size:.75rem;opacity:.8;margin-bottom:4px}
+.result-hdr-model{font-size:1.5rem;font-weight:900;margin-bottom:4px}
+.result-hdr-sub{font-size:.78rem;opacity:.8}
+.result-total{background:linear-gradient(135deg,#065f46,#047857);color:#fff;padding:16px 20px;text-align:center}
+.result-total-label{font-size:.78rem;opacity:.85;margin-bottom:4px}
+.result-total-amount{font-size:2.2rem;font-weight:900;line-height:1}
+.result-total-sub{font-size:.72rem;opacity:.8;margin-top:4px}
+.result-breakdown{padding:14px 18px}
+.result-item{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f3f4f6}
+.result-item:last-child{border-bottom:none}
+.result-item-name{font-size:.82rem;color:#374151;font-weight:500}
+.result-item-name .ri{font-size:.9rem;margin-right:4px}
+.result-item-amt{font-size:.9rem;font-weight:800;color:var(--green)}
+.result-finance{background:#f0f9ff;border-radius:10px;padding:12px 14px;margin:0 18px 14px}
+.result-finance-title{font-size:.75rem;color:#0369a1;font-weight:700;margin-bottom:5px}
+.result-finance-body{font-size:.8rem;color:#1e40af;font-weight:600;line-height:1.7;white-space:pre-line}
+.result-notice{background:#fef3c7;margin:0 18px 16px;border-radius:8px;padding:10px 12px;font-size:.72rem;color:#92400e;line-height:1.6}
+.result-btn-row{display:flex;gap:8px;padding:0 18px 16px}
+.result-btn{flex:1;padding:11px;border-radius:10px;font-size:.82rem;font-weight:700;border:none;cursor:pointer;font-family:inherit}
+.result-btn-print{background:var(--navy);color:#fff}
+.result-btn-reset{background:#f3f4f6;color:#374151}
+
+/* ===== 판촉지원금 (카마스터 전용) ===== */
+.pin-overlay{display:none;position:fixed;inset:0;background:linear-gradient(135deg,var(--navy),#0d4a8a);z-index:400;flex-direction:column;align-items:center;justify-content:center}
+.pin-overlay.open{display:flex}
+.pin-box{width:300px;max-width:90vw;text-align:center}
+.pin-logo{font-size:2.5rem;margin-bottom:8px}
+.pin-title{color:#fff;font-size:1.1rem;font-weight:800;margin-bottom:4px}
+.pin-sub{color:rgba(255,255,255,.7);font-size:.78rem;margin-bottom:24px}
+.pin-dots{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.pin-dot{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.3);transition:background .2s}
+.pin-dot.filled{background:#fff}
+.pin-keys{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pin-key{padding:14px;background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:12px;font-size:1.2rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
+.pin-key:active{background:rgba(255,255,255,.35)}
+.pin-err{color:#fca5a5;font-size:.8rem;margin-top:8px;min-height:20px}
+.pin-close{position:absolute;top:16px;right:16px;background:none;border:none;color:rgba(255,255,255,.6);font-size:1.5rem;cursor:pointer}
+
+/* 판촉지원금 페이지 */
+.inc-section{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow)}
+.inc-title{font-weight:800;font-size:.95rem;color:var(--navy);padding-bottom:8px;margin-bottom:10px;border-bottom:2px solid var(--red);display:flex;align-items:center;gap:6px}
+.inc-table{width:100%;border-collapse:collapse;font-size:.78rem}
+.inc-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.inc-table th{background:#f8fafc;color:var(--navy);font-weight:700;padding:9px 7px;text-align:left;border-bottom:2px solid var(--border)}
+.inc-table td{padding:9px 7px;border-bottom:1px solid #f3f4f6;vertical-align:top;line-height:1.6}
+.inc-table tr:last-child td{border-bottom:none}
+.inc-amt{font-weight:800;color:var(--red);white-space:nowrap}
+.inc-period{display:inline-block;background:#fee2e2;color:var(--red);padding:1px 6px;border-radius:6px;font-size:.72rem;font-weight:700;margin-bottom:2px}
+.inc-note{font-size:.75rem;color:var(--gray);margin-top:2px}
+.inc-alert{background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:.78rem;color:#991b1b;font-weight:600;display:flex;align-items:center;gap:6px}
+.pin-change-row{display:flex;align-items:center;gap:8px;padding:10px 0}
+.pin-change-input{flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.85rem;font-family:inherit}
+.pin-change-btn{padding:8px 14px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit}
+
+/* PRICE PANEL */
+.price-btn{background:#e6f7fb;color:var(--sky);border:1.5px solid var(--sky);border-radius:20px;padding:5px 14px;font-size:.76rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:inherit;line-height:1;transition:background .15s,color .15s}
+.price-btn.on{background:var(--sky);color:#fff}
+.dpanel-conds{}
+.vtabs-wrap{display:flex;align-items:center;background:#f9fafb;border-bottom:1px solid var(--border)}
+.vtabs-wrap>.vtabs{flex:1;border-bottom:none;background:none}
+.vtab-btn-wrap{padding:6px 12px;flex-shrink:0}
+.price-body{padding:14px 16px 6px}
+.price-hdr{font-weight:800;font-size:.9rem;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.pg-sep{font-size:.78rem;font-weight:700;color:var(--gray);margin:12px 0 5px;padding-left:2px;letter-spacing:-.2px}
+.pg-sep:first-child{margin-top:0}
+.ptbl{width:100%;border-collapse:collapse;margin-bottom:4px}
+.ptbl th{text-align:left;padding:5px 8px;font-size:.72rem;color:var(--gray);font-weight:600;border-bottom:2px solid var(--border)}
+.ptbl th:last-child{text-align:right}
+.ptbl td{padding:7px 8px;font-size:.85rem;border-bottom:1px solid #f3f4f6}
+.ptbl td:last-child{text-align:right;font-weight:700;color:var(--navy);white-space:nowrap}
+.ptbl tr:last-child td{border-bottom:none}
+.opt-sep{font-size:.78rem;font-weight:700;color:var(--gray);margin:12px 0 6px;padding-left:2px}
+.opt-grid{display:flex;flex-wrap:wrap;gap:5px}
+.opt-chip{background:#f3f4f6;border-radius:20px;padding:5px 11px;font-size:.77rem;display:inline-flex;align-items:center;gap:6px;line-height:1.2}
+.opt-chip-nm{color:#374151;font-weight:500}
+.opt-chip-pr{color:var(--sky);font-weight:800;white-space:nowrap}
+.price-foot{font-size:.7rem;color:#9ca3af;margin-top:10px;padding-top:8px;border-top:1px solid var(--border);line-height:1.6}
+.no-price-msg{padding:20px;text-align:center;color:var(--gray);font-size:.84rem}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div style="display:flex;align-items:center">
+    <span class="hdr-logo">🚗 판매조건 가이드</span>
+    <span class="hdr-badge">2026년 8월</span><span class="hdr-badge" style="background:#002c5f">카마스터 (직영)</span>
+  </div>
+  <div style="display:flex;gap:2px">
+    <button class="hdr-btn" onclick="openSearch()">🔍</button>
+    <button class="hdr-btn" onclick="openIncentive()" title="카마스터 전용">🔒</button>
+  </div>
+</header>
+
+<div class="cat-wrap" id="catWrap"></div>
+
+<div id="pages">
+  <div class="page" id="pg-help"></div>
+  <div class="page" id="pg-calc"></div>
+  <div class="page" id="pg-home"></div>
+  <div class="page" id="pg-ice"></div>
+  <div class="page" id="pg-ev"></div>
+  <div class="page" id="pg-genesis"></div>
+  <div class="page" id="pg-truck"></div>
+  <div class="page" id="pg-taxi"></div>
+  <div class="page" id="pg-targets"></div>
+  <div class="page" id="pg-proposal"></div>
+  <div class="page" id="pg-incentive"></div>
+</div>
+
+<!-- PIN 잠금 오버레이 -->
+<div class="pin-overlay" id="pinOverlay">
+  <button class="pin-close" onclick="closePinOverlay()">✕</button>
+  <div class="pin-box">
+    <div class="pin-logo">🔐</div>
+    <div class="pin-title">카마스터 전용</div>
+    <div class="pin-sub">판촉지원금 / 인센티브 정보<br>PIN 4자리를 입력하세요</div>
+    <div class="pin-dots" id="pinDots">
+      <div class="pin-dot" id="pd0"></div>
+      <div class="pin-dot" id="pd1"></div>
+      <div class="pin-dot" id="pd2"></div>
+      <div class="pin-dot" id="pd3"></div>
+    </div>
+    <div class="pin-keys">
+      <button class="pin-key" onclick="pinInput('1')">1</button>
+      <button class="pin-key" onclick="pinInput('2')">2</button>
+      <button class="pin-key" onclick="pinInput('3')">3</button>
+      <button class="pin-key" onclick="pinInput('4')">4</button>
+      <button class="pin-key" onclick="pinInput('5')">5</button>
+      <button class="pin-key" onclick="pinInput('6')">6</button>
+      <button class="pin-key" onclick="pinInput('7')">7</button>
+      <button class="pin-key" onclick="pinInput('8')">8</button>
+      <button class="pin-key" onclick="pinInput('9')">9</button>
+      <button class="pin-key" onclick="pinClear()" style="font-size:.85rem">지우기</button>
+      <button class="pin-key" onclick="pinInput('0')">0</button>
+      <button class="pin-key" onclick="pinInput('X')" style="font-size:.85rem">전체삭제</button>
+    </div>
+    <div class="pin-err" id="pinErr"></div>
+    <div style="margin-top:12px;font-size:.68rem;color:rgba(255,255,255,.5)">기본 PIN: 1234 (내부에서 변경 가능)</div>
+  </div>
+</div>
+
+<nav class="bnav">
+  <button class="bnav-btn" onclick="switchTab('home')"><span class="bnav-ico">🏠</span>홈</button>
+  <button class="bnav-btn" onclick="switchTab('ice')"><span class="bnav-ico">🚗</span>차종조건</button>
+  <button class="bnav-btn" onclick="switchTab('calc')"><span class="bnav-ico">🧮</span>할부금계산기</button>
+  <button class="bnav-btn" onclick="switchTab('proposal')"><span class="bnav-ico">📝</span>제안서</button>
+  <button class="bnav-btn" onclick="openIncentive()"><span class="bnav-ico">🔒</span>판촉</button>
+</nav>
+
+<div class="soverlay" id="soverlay" onclick="closeSearch()">
+  <div class="sbox" onclick="e=>e.stopPropagation()">
+    <input class="sinput" id="sinput" placeholder="차종 검색..." oninput="doSearch()" onclick="event.stopPropagation()">
+    <div class="sresults" id="sresults"></div>
+  </div>
+</div>
+
+<script>
+/* ===== DATA ===== */
+const MONTHS = ['3월이전','4월','5월','6월','7월'];
+
+const VEHICLES = {
+ice:[
+  {id:'avante', name:'아반떼', variants:['일반/HEV','N'], hl:'N 3월이전 200만',
+   summerFesta:{
+     '일반/HEV':{},
+     'N':{'3월이전':'200만','6월':'100만'}
+   },
+   tradeIn:{corp:'50만',other:'30만'},
+   finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'30만',
+   targets:['driving-plcc']},
+
+  {id:'sonata', name:'쏘나타', variants:['일반','HEV'], hl:'3월이전 100만',
+   change:{type:'dn',txt:'7월 기본200만/무이자→썸머페스타100만'},
+   summerFesta:{'일반':{'3월이전':'100만','4월':'100만','5월':'100만','6월':'100만','7월':'100만'},'HEV':{'3월이전':'100만','4월':'100만','5월':'100만','6월':'100만','7월':'100만'}},
+   tradeIn:{corp:'50만',other:'30만'},
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   exhibitCar:'30만', saveAuto:'30만', targets:[]},
+
+  {id:'grandeur-old', name:'그랜저 구형', variants:['일반','HEV'], hl:'3월이전 300만',
+   summerFesta:{
+     '일반':{'3월이전':'300만 (3.5가솔린 450만)'},
+     'HEV':{'3월이전':'300만'}
+   },
+   tradeIn:{corp:'50만',other:'30만'},
+   finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'30만/50만', targets:[]},
+
+  {id:'grandeur-new', name:'그랜저 신형', sub:'26MY', hl:'5/6월 생산 200/100만+저금리',
+   change:{type:'dn',txt:'7월 기본200만OR무이자→8월 생산월조건으로 변경'},
+   summerFesta:{
+     '일반/HEV':{'5월':'200만 (+저금리)','6월':'100만 (+저금리)'}
+   },
+   financePromo:'재고한정 저금리 (5~6월 생산분 限)\n36M 3.0% / 48M 3.5% / 60M 4.0%\n※ 할인 조건 차감 없음',
+   finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'30만/50만', targets:[],
+   notes:'※ 선택형 저금리는 생산월 조건 적용 차량 限 (미적용차량 저금리 불가)'},
+
+  {id:'venue', name:'베뉴', hl:null,
+   summerFesta:{'일반':{}},
+   tradeIn:{corp:'50만',other:'30만'}, finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'30만', targets:['driving-plcc']},
+
+  {id:'kona', name:'코나', variants:['일반','HEV'], hl:null,
+   summerFesta:{'일반':{},'HEV':{}},
+   tradeIn:{corp:'50만',other:'30만'},
+   finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'30만', targets:['driving-plcc']},
+
+  {id:'tucson', name:'투싼', variants:['일반','HEV'], hl:null,
+   summerFesta:{'일반':{},'HEV':{}},
+   tradeIn:{corp:'50만',other:'30만'}, finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'30만', targets:['rentcar-common']},
+
+  {id:'santafe', name:'싼타페', variants:['일반','HEV'], hl:'최대 300만 썸머페스타',
+   change:{type:'up',txt:'7월 생산분 200만 신규 추가!'},
+   summerFesta:{
+     '일반':{'3월이전':'300만','4월':'150만','6월':'100만','7월':'200만 ★신규'},
+     'HEV':{'3월이전':'300만','4월':'150만','6월':'100만','7월':'200만 ★신규'}
+   },
+   tradeIn:{corp:'50만',other:'30만'}, finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'30만',
+   targets:['rentcar-common','santafe-black'],
+   notes:'※ 블랙패키지 조건: 남양/영남/칠곡 출고 한정'},
+
+  {id:'palisade', name:'팰리세이드', variants:['일반','HEV'], hl:'3월이전 200만 + 전용카드 50만',
+   change:{type:'new',txt:'전용카드 프로모션 50만 신규 (7월: 없음)'},
+   summerFesta:{
+     '일반':{'3월이전':'200만','4월':'150만','6월':'100만'},
+     'HEV':{'3월이전':'200만','4월':'150만','6월':'100만'}
+   },
+   tradeIn:{corp:'50만',other:'30만'}, finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'50만', saveAuto:'30만/50만',
+   targets:['palisade-card','rentcar-common'],
+   notes:'※ 7월 유류비30만(15만DC+15만캐시백) → 8월 삭제\n※ 전용카드50만 신규: 2000만원이상+세이브오토 必'},
+
+  {id:'staria', name:'스타리아', variants:['일반','HEV'], hl:'3월이전 200만',
+   summerFesta:{
+     '일반':{'3월이전':'200만','4월':'150만','6월':'100만'},
+     'HEV':{'3월이전':'200만','4월':'150만','6월':'100만'}
+   },
+   tradeIn:{corp:'50만',other:'30만'},
+   finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'30만',
+   targets:['rentcar-common'],
+   notes:'※ 썸머페스타 특장 제외'},
+],
+
+ev:[
+  {id:'nexo', name:'넥쏘', hl:'부담DOWN 6만/월 + 트레이드인 200만',
+   summerFesta:{'일반':{'3월이전':'200만'}},
+   tradeIn:{corp:'200만 (당사/타사 차종 매각 모두 가능)',other:'100만'},
+   financePromo:'넥쏘 부담DOWN (39M 차량반납 유예형 할부)\n금리 1.8% / 최대 유예율 45%\n최저 월납입금 약 6만원',
+   finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   evBenefit:'40만원 수소충전 크레딧',
+   exhibitCar:'20만', saveAuto:'30만/50만',
+   targets:['tradein'],
+   notes:'※ 트레이드인 특별패키지: 썸머페스타200만 + 트레이드인200만 동시 적용 가능\n※ 5월부 당사/타사차량→넥쏘 트레이드인 가능 (기존: 넥쏘→넥쏘만)'},
+
+  {id:'kona-ev', name:'코나 EV', hl:'100만대기념 150만',
+   change:{type:'up',txt:'7월 100만→8월 150만 (+50만 강화)'},
+   ioniq100k:'150만',
+   summerFesta:{'일반':{'3월이전':'150만','4월':'150만','5월':'150만','6월':'50만'}},
+   tradeIn:{corp:'100만',other:'50만'},
+   financePromo:'현대EV 부담DOWN (36M 차량반납 유예형 할부)\n금리 2.8% / 최대 유예율 60%\n※ 스트레스프리 패키지: 바디케어3년 + 자동차보험 자기부담금 지원',
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   evBenefit:'에브리케어 20만 충전크레딧',
+   exhibitCar:'30만', saveAuto:'30만',
+   targets:['driving-plcc','tradein']},
+
+  {id:'ioniq5', name:'아이오닉 5', variants:['일반','N'], hl:'100만대기념 150만',
+   ioniq100k:'150만 (N 제외)',
+   summerFesta:{'일반':{'3월이전':'150만','4월':'150만','5월':'150만','6월':'50만'},'N':{}},
+   tradeIn:{corp:'100만',other:'50만'},
+   financePromo:'현대EV 부담DOWN (36M 차량반납 유예형 할부)\n금리 2.8% / 최대 유예율 60%\n※ 스트레스프리 패키지 포함',
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   evBenefit:'에브리케어 20만 충전크레딧',
+   exhibitCar:'30만 (N은 50만)', saveAuto:'30만',
+   targets:[],
+   notes:'※ 아이오닉5 N: 아이오닉100만대 기념 조건 미해당'},
+
+  {id:'ioniq6', name:'아이오닉 6', variants:['일반','N'], hl:'100만대기념 150만',
+   ioniq100k:'150만 (N 제외)',
+   summerFesta:{'일반':{'3월이전':'150만','4월':'150만','5월':'150만','6월':'50만'},'N':{}},
+   tradeIn:{corp:'100만',other:'50만'},
+   financePromo:'현대EV 부담DOWN (36M 차량반납 유예형 할부)\n금리 2.8% / 최대 유예율 60%',
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   evBenefit:'에브리케어 20만 충전크레딧',
+   exhibitCar:'30만 (N은 50만)', saveAuto:'30만', targets:[],
+   notes:'※ 아이오닉6 N: 아이오닉100만대 기념 조건 미해당'},
+
+  {id:'ioniq9', name:'아이오닉 9', hl:'100만대기념 150만 + 최대 400만',
+   ioniq100k:'150만',
+   summerFesta:{'일반':{'3월이전':'400만','4월':'300만','6월':'200만','7월':'100만'}},
+   tradeIn:{corp:'100만',other:null},
+   financePromo:'현대EV 부담DOWN (36M 차량반납 유예형 할부)\n금리 2.8%',
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   evBenefit:'에브리케어 20만 충전크레딧',
+   exhibitCar:'50만', saveAuto:'30만/50만', targets:[]},
+
+  {id:'porter-ev', name:'포터 EV', hl:'100만대기념 100만 + 최대 150만',
+   ioniq100k:'100만',
+   summerFesta:{'일반':{'3월이전':'150만','4월':'150만','5월':'150만','6월':'50만'}},
+   tradeIn:{corp:'100만',other:'100만'},
+   financePromo:'포터EV 부담DOWN (36M 차량반납 유예형 할부)\n금리 2.8% / 최대 유예율 50%\n※ 만기시 차량반납으로 유예금 상환 불가',
+   finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   evBenefit:'20만 충전크레딧 또는 홈충전기',
+   exhibitCar:'20만', saveAuto:'20만/30만',
+   targets:['tradein']},
+
+  {id:'st1', name:'ST1', hl:'100만대기념 100만 + 3월이전 150만',
+   ioniq100k:'100만 (샤시캡 제외)',
+   summerFesta:{'일반(샤시캡 제외)':{'3월이전':'150만','4월':'150만','5월':'150만','6월':'50만'}},
+   tradeIn:{corp:'100만',other:'100만'},
+   finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'20만/30만', targets:[],
+   notes:'※ ST1 샤시캡: 아이오닉100만대 기념 미해당'},
+
+  {id:'staria-ev', name:'스타리아 EV', hl:null,
+   summerFesta:{'일반':{}},
+   tradeIn:null,
+   finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'30만', targets:[]},
+],
+
+genesis:[
+  {id:'g70', name:'G70', sub:'S/B 포함', hl:null,
+   summerFesta:{'일반':{}},
+   tradeIn:{corp:'200만',other:'100만'},
+   genesisPromo:'GS칼텍스 고급유 할인 프로모션 (내연기관)\n내연기관 GS칼텍스 제휴 할인 혜택',
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   genesisFinance:'파이낸스 렌트/리스 특화 프로그램',
+   exhibitCar:'50만', saveAuto:'30만/50만',
+   bm:['15만','20만','30만','40만','50만','60만'],
+   targets:['tradein']},
+
+  {id:'g80', name:'G80', hl:'6월이전재고 4% / 7월재고 2%',
+   genesisStock:{pre6:'4%',jul:'2%'},
+   genesisPromo:'GS칼텍스 고급유 할인 프로모션 (내연기관)',
+   tradeIn:{corp:'200만',other:'100만'},
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   genesisFinance:'파이낸스 렌트/리스 특화 프로그램',
+   exhibitCar:'50만', saveAuto:'30만/50만',
+   bm:['20만','40만','50만','60만','70만','80만'],
+   targets:['tradein']},
+
+  {id:'g80ev', name:'G80 EV', hl:'3월이전 10% / 4월 5% / 5월 3%',
+   change:{type:'dn',txt:'7월 르망24기념저금리(24M 0.9%)→8월 없어짐(일반금리)'},
+   summerFesta:{'일반':{'3월이전':'10%','4월':'5%','5월':'3%'}},
+   genesisPromo:'대한항공 마일리지 1만 마일리지 적립 (EV)',
+   tradeIn:{corp:'200만',other:'100만'},
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   genesisFinance:'파이낸스 렌트/리스 특화 프로그램',
+   exhibitCar:'50만', saveAuto:'30만/50만',
+   bm:['20만','40만','50만','60만','70만','80만'],
+   targets:['tradein']},
+
+  {id:'g90', name:'G90', hl:'3월이전 10% / 4월 5%',
+   summerFesta:{'일반':{'3월이전':'10%','4월':'5%'}},
+   genesisPromo:'GS칼텍스 고급유 할인 프로모션',
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   genesisFinance:'파이낸스 렌트/리스 특화 프로그램',
+   exhibitCar:'100만', saveAuto:'30만/50만',
+   bm:['25만','50만','60만','70만','80만','90만'],
+   targets:[]},
+
+  {id:'gv60', name:'GV60', hl:'3월이전 10% / 4월 5% / 5월 3%',
+   summerFesta:{'일반':{'3월이전':'10%','4월':'5%','5월':'3%'}},
+   genesisPromo:'대한항공 마일리지 1만 마일리지 적립 (EV)',
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   genesisFinance:'파이낸스 렌트/리스 특화 프로그램',
+   exhibitCar:'50만', saveAuto:'30만/50만',
+   bm:['10만','15만','20만','30만','40만','50만'],
+   targets:[]},
+
+  {id:'gv70', name:'GV70', hl:'6월이전재고 3% / 7월재고 2%',
+   change:{type:'up',txt:'7월 기본100만+썸머페스타→8월 재고조건 유지'},
+   genesisStock:{pre6:'3%',jul:'2%'},
+   genesisPromo:'GS칼텍스 고급유 할인 프로모션',
+   tradeIn:{corp:'200만',other:'100만'},
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   genesisFinance:'파이낸스 렌트/리스 특화\n리스 67만~/월 | 렌트 75만~/월',
+   exhibitCar:'50만', saveAuto:'30만/50만',
+   bm:['15만','20만','30만','40만','50만','60만'],
+   targets:[]},
+
+  {id:'gv70ev', name:'GV70 EV', hl:'3월이전 10% / 4월 5% / 5월 3%',
+   summerFesta:{'일반':{'3월이전':'10%','4월':'5%','5월':'3%'}},
+   tradeIn:{corp:'200만',other:'100만'},
+   genesisPromo:'대한항공 마일리지 1만 마일리지 적립 (EV)',
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   genesisFinance:'파이낸스 렌트/리스 특화 프로그램',
+   exhibitCar:'50만', saveAuto:'30만/50만',
+   bm:['15만','20만','30만','40만','50만','60만'],
+   targets:[]},
+
+  {id:'gv80', name:'GV80', sub:'쿠페 포함', hl:'6월이전재고 5% / 7월재고 2%',
+   genesisStock:{pre6:'5%',jul:'2%'},
+   genesisPromo:'GS칼텍스 고급유 할인 프로모션',
+   tradeIn:{corp:'200만',other:'100만'},
+   finance:'36M 4.9% / 48M 5.0% / 60M 5.1%',
+   genesisFinance:'파이낸스 렌트/리스 특화\n리스 84만~/월 | 렌트 94만~/월',
+   exhibitCar:'50만', saveAuto:'30만/50만',
+   bm:['20만','40만','50만','60만','70만','80만'],
+   targets:['tradein']},
+],
+
+truck:[
+  {id:'porter-lp', name:'포터 LPDi', hl:'3월이전 200만 + 상생파트너 40만',
+   summerFesta:{'일반':{'3월이전':'200만','4월':'200만','5월':'200만','6월':'150만','7월':'150만 (특장 제외)'}},
+   tradeIn:{corp:'100만',other:null},
+   finance:'36M 6.5% / 48M 6.6% / 60M 6.7% (선수금 10% 이상)',
+   exhibitCar:null, saveAuto:'20만/30만',
+   targets:['porter-partner'],
+   notes:'※ 상생파트너: 1차산업종사자(농축수임광업) 또는 영업용 운전자 限\n※ 증빙서류 필수 (농업경영체등록확인서 / 화물운송종사자격증 등)'},
+
+  {id:'pavise', name:'파비스', hl:'노후차/원콜 타겟 / 납기 카고 4개월·샤시캡 3.5개월',
+   summerFesta:{'일반':{}},
+   tradeIn:null,
+   finance:'36M 6.5% / 48M 6.6% / 60M 6.7% (선수금 10% 이상)',
+   exhibitCar:null, saveAuto:'50만',
+   bm:['60만'],
+   targets:['wonkol-100','oldcar-50'],
+   notes:'※ 대상: 2027 더 뉴 파비스 限'},
+
+  {id:'mighty', name:'마이티', hl:'타겟 최대 150만',
+   summerFesta:{'일반':{}},
+   tradeIn:null,
+   finance:'36M 2.7% / 48M 2.8% / 60M 2.9% (마이티 전용 저금리)',
+   exhibitCar:null, saveAuto:'50만',
+   bm:['30만'],
+   targets:['wonkol-100','oldcar-50','startup-50','mighty-loan'],
+   notes:'※ 원콜/노후차/창업지원 타겟 중복 적용 불가\n※ 대상: 2027 더 뉴 마이티 限'},
+
+  {id:'solati', name:'쏠라티', hl:'3월이전 100만 / 납기 즉시',
+   summerFesta:{'일반':{'3월이전':'100만'}},
+   tradeIn:null,
+   finance:'36M 5.7% / 48M 5.8% / 60M 5.9%',
+   exhibitCar:null, saveAuto:'50만',
+   bm:['50만'],
+   targets:['rentcar-solati']},
+
+  {id:'county', name:'카운티', hl:'디젤 24개월이상 / EV 7개월이상',
+   summerFesta:{'일반':{}},
+   tradeIn:null,
+   finance:'36M 5.7% / 48M 5.8% / 60M 5.9%',
+   exhibitCar:null, saveAuto:'50만',
+   bm:['50만'], targets:[]},
+],
+
+taxi:[
+  {id:'sonata-tx', name:'쏘나타 택시', sub:'DT23', hl:'재구매 최대 50만 / 증차 60만',
+   taxiConds:{'재구매 2회차':'30만','재구매 3회차 이상':'50만','증차 기본조건':'60만 (지방자치단체 본인가 공문 필요)'},
+   saveAuto:'30만', targets:[]},
+  {id:'grandeur-tx', name:'그랜저 영업용', sub:'신형 포함', hl:'4월이전 300만',
+   summerFesta:{'일반':{'4월이전':'300만','5월':'250만'}},
+   saveAuto:'자가용과 동일 조건', targets:[]},
+  {id:'ioniq5-tx', name:'아이오닉 5 영업용', hl:'친환경택시 50만',
+   summerFesta:{'일반':{'6월':'50만'}},
+   evBenefit:'에브리케어 20만 충전크레딧',
+   financePromo:'EV 택시 동반자 플랜\n36M 2.7% / 48M 2.8% / 60M 2.9%\n※ 법인택시 모빌리티(JM) 출고 불가',
+   taxiConds:{'친환경차 택시 타겟':'26년 8월 친환경 개인택시 출고 고객 50만'},
+   targets:[]},
+  {id:'ioniq6-tx', name:'아이오닉 6 영업용', hl:'EV택시동반자플랜',
+   financePromo:'EV 택시 동반자 플랜\n36M 2.7% / 48M 2.8% / 60M 2.9%\n※ 법인택시 모빌리티(JM) 출고 불가',
+   targets:[]},
+  {id:'staria-ev-tx', name:'스타리아 EV 영업용', hl:null,
+   evBenefit:'20만 충전크레딧 또는 홈충전기', targets:[]},
+]
+};
+
+
+/* ===== 간단 가격표 데이터 (2026년 8월 기준 / PDF 추출) ===== */
+// g: [{l:'그룹라벨', t:[['트림', 가격(만원)], ...]}]  · l:null = 라벨 없음
+// o: [['옵션명', 가격(만원)], ...]
+const PRICE_DATA = {
+
+  /* ───── 국내승용 ───── */
+  'avante': {
+    '일반/HEV': {
+      g: [
+        {l:'가솔린 1.6 IVT', t:[['스마트',2062],['모던',2388],['인스퍼레이션',2756],['N라인',2845]]},
+        {l:'HEV 1.6 하이브리드', t:[['스마트',2655],['라이트',2682],['모던',2930],['인스퍼레이션',3261],['N라인',3331]]}
+      ],
+      o:[['컨비니언스',38],['하이패스',20],['현대 스마트센스',69],['17인치 휠&타이어Ⅰ',49],['선루프',45],['파킹 어시스트 플러스',129],['익스테리어 디자인',45],['컴포트Ⅰ',106],['빌트인 캠',69],['컴포트Ⅱ',91]]
+    },
+    'N': {
+      g:[{l:'N 2.0 T-GDi', t:[['N',3356]]}],
+      o:[['선루프',45],['N DCT 패키지',208],['빌트인 캠',69],['N 라이트 스포츠 버켓 시트',109],['19인치 초경량 단조 휠',79],['N 현대 스마트센스Ⅰ',129],['N 컴포트',59],['시티 팩',365],['트랙 팩',414]]
+    }
+  },
+
+  'sonata': {
+    '일반': {
+      g:[
+        {l:'1.6 터보 (T-GDi 8AT)', t:[['프리미엄',2933],['S',3065],['익스클루시브',3373],['인스퍼레이션',3666]]},
+        {l:'2.0 가솔린 (IVA 6AT)', t:[['프리미엄',2866],['S',2998],['익스클루시브',3306],['인스퍼레이션',3600]]}
+      ],
+      o:[['인포테인먼트 내비Ⅰ',140],['파킹 어시스트Ⅰ',168],['현대 스마트센스Ⅰ',45],['컴포트Ⅰ',64],['컴포트Ⅱ',67],['하이패스',20],['플래티넘Ⅰ',130],['파노라마 선루프',119],['BOSE 프리미엄 사운드',64],['파킹 어시스트Ⅱ',138]]
+    },
+    'HEV': {
+      g:[{l:'2.0 하이브리드 (6AT)', t:[['프리미엄',3418],['S',3520],['익스클루시브',3827],['인스퍼레이션',4137]]}],
+      o:[['인포테인먼트 내비Ⅱ',106],['파킹 어시스트Ⅰ',168],['현대 스마트센스Ⅰ',45],['컴포트Ⅰ',64],['컴포트Ⅱ',67],['하이패스',20],['플래티넘Ⅰ',130],['파노라마 선루프',119],['BOSE 프리미엄 사운드',64]]
+    }
+  },
+
+  'grandeur-old': {
+    '일반': {
+      g:[
+        {l:'2.5 가솔린 (8AT)', t:[['프리미엄',4245],['익스클루시브',4694],['캘리그래피',5310],['블랙잉크',5400]]},
+        {l:'LPG 3.5 (8AT) ★26년 5월 신규', t:[['프리미엄',4393],['익스클루시브',4842]]}
+      ],
+      o:[['20인치 알로이 휠',45],['시트 컴포트 플러스',150],['스마트 비전 루프',180],['현대 스마트센스Ⅰ',140],['파킹 어시스트',170],['프리미엄 초이스',120],['플래티넘',205],['스마트스트림 3.5 엔진(가솔린→LPG)',247],['파노라마 선루프',120],['HTRAC',220],['빌트인 캠2 Plus',65]]
+    },
+    'HEV': {
+      g:[{l:'2.5 하이브리드 (6AT)', t:[['프리미엄',4933],['익스클루시브',5382],['캘리그래피',5999],['블랙잉크',6089]]}],
+      o:[['현대 스마트센스Ⅰ',140],['파킹 어시스트',170],['프리미엄 초이스',120],['플래티넘',205],['시트 컴포트Ⅱ',185],['20인치 알로이 휠',25],['파노라마 선루프',120],['빌트인 캠2 Plus',65],['시트 컴포트 플러스',150],['스마트 비전 루프',180]]
+    }
+  },
+
+  'grandeur-new': {
+    '일반/HEV': {
+      g:[
+        {l:'LPG 3.5 (8AT) 26MY 신형', t:[['프리미엄',4393],['익스클루시브',4842]]},
+        {l:'2.5 하이브리드 (6AT)', t:[['프리미엄',4933],['익스클루시브',5382],['캘리그래피',5999],['블랙잉크',6089]]}
+      ],
+      o:[['20인치 알로이 휠',45],['시트 컴포트 플러스',150],['스마트 비전 루프',180],['현대 스마트센스Ⅰ',140],['파킹 어시스트',170],['프리미엄 초이스',120],['플래티넘',205],['파노라마 선루프',120],['HTRAC',220],['빌트인 캠2 Plus',65]]
+    }
+  },
+
+  'venue': {
+    '일반': {
+      g:[{l:'가솔린 1.6 IVT', t:[['스마트',1994],['프리미엄',2292],['플럭스',2440]]}],
+      o:[['하이패스',20],['내비게이션 패키지',50],['선루프',40],['투톤 컬러 루프',40],['스타일',55],['테크',35],['17인치 블랙 알로이 휠',54],['인조가죽 시트+열선',25]]
+    }
+  },
+
+  'kona': {
+    '일반': {
+      g:[
+        {l:'1.6 터보 (8AT)', t:[['모던',2463],['H-Pick',2685],['프리미엄',2915],['인스퍼레이션',3146],['N Line',3245]]},
+        {l:'2.0 가솔린 (IVT)', t:[['모던',2393],['H-Pick',2625]]}
+      ],
+      o:[['내비게이션 패키지Ⅰ',55],['현대 스마트센스Ⅰ',110],['컴포트 초이스',40],['베스트 셀렉션',79],['파킹어시스트',99],['BOSE 프리미엄 사운드',59],['투톤 컬러 루프',30],['HTRAC',203],['와이드 선루프',59],['하이패스',20]]
+    },
+    'HEV': {
+      g:[{l:'1.6 터보 하이브리드 (6DCT)', t:[['모던',3038],['H-Pick',3220],['프리미엄',3467],['인스퍼레이션',3663],['N Line',3762]]}],
+      o:[['내비게이션 패키지Ⅱ',30],['현대 스마트센스Ⅰ',110],['컴포트 초이스',40],['베스트 셀렉션',79],['파킹어시스트',99],['BOSE 프리미엄 사운드',59],['투톤 컬러 루프',30],['와이드 선루프',59],['하이패스',20]]
+    }
+  },
+
+  'tucson': {
+    '일반': {
+      g:[{l:'가솔린 1.6 터보 (7DCT)', t:[['모던',2844],['프리미엄',3112],['H-Pick',3201],['인스퍼레이션',3456],['N Line',3541]]}],
+      o:[['파노라마 선루프+루프랙',116],['인포테인먼트 내비',89],['현대 스마트센스',40],['컴포트Ⅰ',69],['파킹어시스트Ⅰ',123],['컴포트Ⅱ',74],['플래티넘',109],['BOSE 프리미엄 사운드',59],['HTRAC(AWD)',198]]
+    },
+    'HEV': {
+      g:[{l:'1.6 터보 하이브리드 (6DCT)', t:[['모던',3418],['프리미엄',3665],['H-Pick',3749],['인스퍼레이션',4017],['N Line',4082]]}],
+      o:[['파노라마 선루프+루프랙',116],['인포테인먼트 내비(HEV)',59],['현대 스마트센스',40],['컴포트Ⅰ',69],['파킹어시스트Ⅱ',153],['컴포트Ⅱ',74],['플래티넘',109],['BOSE 프리미엄 사운드',59]]
+    }
+  },
+
+  'santafe': {
+    '일반': {
+      g:[{l:'가솔린 2.5 터보 (8DCT)', t:[['익스클루시브',3657],['프레스티지',3944],['H-Pick',4209],['캘리그래피',4547],['블랙잉크',4547]]}],
+      o:[['동승석 8way 전동시트',20],['헤드업디스플레이',59],['파킹 어시스트 플러스Ⅰ',119],['플래티넘Ⅰ',45],['베스트 셀렉션Ⅰ',150],['듀얼 와이드 선루프',89],['시트플러스',74],['BOSE 프리미엄 사운드',64],['20인치 휠&타이어',49],['6인승',104],['7인승',69],['블랙잉크 플러스',94]]
+    },
+    'HEV': {
+      g:[
+        {l:'1.6 터보 하이브리드 2WD (6DCT)', t:[['익스클루시브',4122],['프레스티지',4409],['H-Pick',4673],['캘리그래피',4977],['블랙잉크',4977]]},
+        {l:'1.6 터보 하이브리드 AWD (6DCT)', t:[['익스클루시브',4345],['프레스티지',4632],['H-Pick',4896],['캘리그래피',5200],['블랙잉크',5200]]}
+      ],
+      o:[['동승석 8way 전동시트',20],['헤드업디스플레이',59],['파킹 어시스트 플러스Ⅰ',119],['플래티넘Ⅰ',45],['베스트 셀렉션Ⅰ',150],['듀얼 와이드 선루프',89],['시트플러스',74],['BOSE 프리미엄 사운드',64],['6인승',104],['7인승',69],['블랙잉크 플러스',94]]
+    }
+  },
+
+  'palisade': {
+    '일반': {
+      g:[
+        {l:'가솔린 3.5 V6 2WD', t:[['익스클루시브',4383],['프레스티지',4936],['캘리그래피',5586]]},
+        {l:'가솔린 3.5 V6 AWD', t:[['익스클루시브',4510],['프레스티지',5093],['캘리그래피',5787]]}
+      ],
+      o:[['현대 스마트센스',133],['컴포트',133],['원격 스마트 주차 보조',66],['플래티넘',171],['듀얼 와이드 선루프',85],['사이드스텝',43],['빌트인 공기청정기',52],['프리뷰 전자제어 서스펜션',123],['2열 다이내믹 바디케어 시트',80]]
+    },
+    'HEV': {
+      g:[
+        {l:'1.6 터보 하이브리드 2WD', t:[['익스클루시브',4383],['프레스티지',4936],['캘리그래피',5586]]},
+        {l:'1.6 터보 하이브리드 AWD', t:[['익스클루시브',4510],['프레스티지',5093],['캘리그래피',5787]]}
+      ],
+      o:[['현대 스마트센스',133],['컴포트',133],['원격 스마트 주차 보조',66],['플래티넘',171],['듀얼 와이드 선루프',85],['사이드스텝',43],['빌트인 공기청정기',52],['프리뷰 전자제어 서스펜션',123]]
+    }
+  },
+
+  'staria': {
+    '일반': {
+      g:[{l:'가솔린 3.5 V6 (8AT)', t:[['스마트',3502],['모던',3659]]}],
+      o:[['멀티미디어 내비플러스Ⅰ',190],['멀티미디어 내비플러스Ⅱ',170],['컴포트',55],['테크Ⅰ',135],['테크Ⅱ',125],['트레일러 패키지',127]]
+    },
+    'HEV': {
+      g:[{l:'1.6 터보 하이브리드 (6DCT)', t:[['스마트',3870],['모던',3999]]}],
+      o:[['멀티미디어 내비플러스Ⅰ',170],['멀티미디어 내비플러스Ⅱ',150],['컴포트',55],['테크Ⅰ',135],['테크Ⅱ',125]]
+    }
+  },
+
+  /* ───── EV / 수소 ───── */
+  'nexo': {
+    '일반': {
+      g:[{l:'수소 연료전지 (95kW)', t:[['모던',8044],['익스클루시브',8349],['프레스티지',8814]]}],
+      o:[['현대 스마트센스',68],['컴포트 플러스',153],['실내외 V2L',85],['파킹어시스트',95],['19인치 알로이 휠',25],['비전루프',90],['디지털 사이드 미러',138],['카메라 패키지',75]]
+    }
+  },
+
+  'kona-ev': {
+    '일반': {
+      g:[
+        {l:'전기 표준레인지 (48.4kWh)', t:[['이-밸류 플러스',4368],['프리미엄',4583],['인스퍼레이션',5252],['N Line',5351]]},
+        {l:'전기 롱레인지 (65.4kWh)', t:[['모던 플러스',4803],['프리미엄',4899]]}
+      ],
+      o:[['하이패스',20],['컴포트 초이스',98],['현대 스마트센스Ⅱ',49],['시트플러스',49],['컨비니언스',75],['파킹어시스트',99],['헤드업 디스플레이',59],['BOSE 프리미엄 사운드',59],['와이드 선루프',59]]
+    }
+  },
+
+  'ioniq5': {
+    '일반': {
+      g:[{l:'전기 (58kWh/77.4kWh)', t:[['이-밸류 플러스',4981],['이-라이트',5327],['모던',5565],['프리미엄',6127],['N Line',6254],['인스퍼레이션',6447]]}],
+      o:[['현대 스마트센스',110],['컴포트 초이스',110],['컴포트',150],['스타일',120],['파킹 어시스트',150],['비전루프',74],['플래티넘',110],['디지털 사이드 미러',138],['HTRAC(AWD)',247]]
+    },
+    'N': {
+      g:[{l:'전기 N (84kWh 2모터)', t:[['에센셜',7879],['IONIQ 5 N',8142]]}],
+      o:[['파킹 어시스트 Lite',90],['파킹 어시스트',168],['디지털 센터 미러',50],['비전루프',74],['컴포트 플러스',59]]
+    }
+  },
+
+  'ioniq6': {
+    '일반': {
+      g:[
+        {l:'전기 RWD (53kWh/77.4kWh)', t:[['스탠다드',5109],['롱레인지',5802],['N Line',6044]]},
+        {l:'전기 AWD (77.4kWh)', t:[['스탠다드',5360],['롱레인지',6283],['N Line',6451]]}
+      ],
+      o:[['컴포트 초이스',120],['현대 스마트센스Ⅰ',148],['컨비니언스',69],['파킹 어시스트',80],['플래티넘',71],['HTRAC(AWD)',247],['와이드 선루프',64],['디지털 사이드 미러',138],['하이테크 플러스',95]]
+    },
+    'N': {
+      g:[{l:'전기 N (84kWh AWD)', t:[['IONIQ 6 N',8406]]}],
+      o:[['와이드 선루프',64],['스포츠 디자인 패키지',75]]
+    }
+  },
+
+  'ioniq9': {
+    '일반': {
+      g:[
+        {l:'전기 2WD (110.3kWh)', t:[['익스클루시브',7110],['프레스티지',7705],['캘리그래피',8217]]},
+        {l:'전기 AWD (110.3kWh)', t:[['익스클루시브',7171],['프레스티지',7757],['캘리그래피',8374]]}
+      ],
+      o:[['파킹 어시스트',135],['BOSE 프리미엄 사운드',119],['21인치 휠&타이어',100],['플래티넘',110],['컴포트 플러스',63],['HTRAC Ⅱ(AWD)',370],['파노라마 선루프',119],['빌트인 캠2',59]]
+    }
+  },
+
+  'porter-ev': {
+    '일반': {
+      g:[{l:'전기 (58.8kWh) · 캡/적재함에 따라 상이', t:[['스페셜 (1ton)',4350],['스페셜 (스탠다드)',4485],['스페셜 (익스텐디드)',4645]]}],
+      o:[['운전석 시트 패키지',35],['하이패스',20],['운전석 통풍시트',20],['플라스틱 적재함 커버',63]]
+    }
+  },
+
+  'st1': {
+    '일반': {
+      g:[
+        {l:'전기 카고 (표준)', t:[['스타일',5874],['스마트',6040],['프리미엄',6418]]},
+        {l:'전기 카고 (롱휠베이스)', t:[['스마트',6875],['프리미엄',7253]]}
+      ],
+      o:[['하이패스',20],['테크',155],['컨비니언스Ⅰ',85],['컨비니언스Ⅱ',20],['빌트인 캠',45]]
+    }
+  },
+
+  'staria-ev': {
+    '일반': {
+      g:[{l:'전기 (76.1kWh)', t:[['모던',6029]]}],
+      o:[['후방 충전 도어(완속)',45],['멀티미디어 내비플러스',110],['익스테리어 디자인',65],['컴포트',55],['테크Ⅰ',140],['테크Ⅱ',125],['트레일러 패키지',127]]
+    }
+  },
+
+  /* ───── 상용/트럭 ───── */
+  'porter-lp': {
+    '일반': {
+      g:[{l:'LPDi 2.6 (5MT/6AT) · 캡/적재함에 따라 가격 상이 (최저가)', t:[['스마트',2141],['모던',2242],['프리미엄',2365]]}],
+      o:[['내비게이션 패키지Ⅰ',150],['내비게이션 패키지Ⅱ',95],['5단 자동변속기',113],['플라스틱 적재함 커버',63]]
+    }
+  },
+
+  'solati': {
+    '일반': {
+      g:[
+        {l:'디젤 2.5 승합', t:[['스탠다드 15인승',6703],['디럭스 15인승',6882],['럭셔리 15인승',7104]]},
+        {l:'디젤 2.5 화물', t:[['스탠다드 2인승',6441],['럭셔리 2인승',6842]]}
+      ],
+      o:[['8인치 내비게이션',135]]
+    }
+  },
+
+  /* ───── 영업용 ───── */
+  'sonata-tx': {
+    '일반': {
+      g:[{l:'LPG 2.0 (6AT)', t:[['모빌리티',2595]]}],
+      o:[['현대 스마트센스',64],['1열 통풍시트',38]]
+    }
+  },
+
+  'grandeur-tx': {
+    '일반': {
+      g:[{l:'LPG 3.0 (8AT)', t:[['고급형',4217]]}],
+      o:[['VIP 패키지',137],['동승석 컴포트',28]]
+    }
+  }
+};
+
+/* ===== 현대자동차 전용카드 혜택 (2026년 8월) ===== */
+const CARD_DATA = {
+  cards: [
+    {name:'현대 모빌리티 카드 Basic', short:'Basic'},
+    {name:'현대 모빌리티 플래티넘', short:'플래티넘'},
+    {name:'현대 EV카드', short:'EV카드'},
+    {name:'제네시스 카드', short:'제네시스카드'},
+    {name:'상용 전용카드', short:'상용카드'},
+  ],
+  customerBenefit: [
+    {label:'캐시백', sub:'세이브오토 이용시', basic:'1%', platinum:'1%', note:'세이브오토 미이용 → 캐시백 불가'},
+    {label:'블루멤버스 포인트', sub:'자동적립', basic:'1.5%', platinum:'2.0%', note:'캐시백 OR 포인트 택1'},
+  ],
+  cardRate: [
+    {label:'승용 2~12개월', rate:'무이자'},
+    {label:'승용 13~18개월', rate:'4.5%'},
+    {label:'승용 20~50개월', rate:'5.7%'},
+    {label:'승용 60개월', rate:'5.9%'},
+    {label:'대형상용 20~50개월', rate:'6.8%'},
+    {label:'대형상용 60개월', rate:'7.0%'},
+  ],
+  incentive: [
+    {label:'캐시백/포인트 + 세이브오토', rate:'0.5%', note:'기본 이용수수료'},
+    {label:'카드할부 20~60개월', rate:'1.6%', note:'현대/제네시스, 마이티/카운티/쏠라티 포함'},
+    {label:'모빌리티할부 선수금 일시불 (500만↑)', rate:'0.5%', note:'모빌리티 할부 선택 시'},
+    {label:'선수금 12개월 무이자', rate:'0.3%', note:'정책상 무이자는 수수료 없으나 긴급 판촉'},
+  ],
+  promos: [
+    {
+      name:'카드할부 (20~60M) 추가 수수료',
+      cond:'전용카드 발급 + 세이브오토 + 결제금액 기준 (건당)',
+      tiers:[
+        {range:'2천만~3천만', bonus:'+12만원'},
+        {range:'3천만~4천만', bonus:'+18만원'},
+        {range:'4천만~5천만', bonus:'+24만원'},
+        {range:'5천만 이상', bonus:'+30만원'},
+      ]
+    },
+    {
+      name:'일시불+캐시백 추가 수수료',
+      cond:'일시불 전용카드 결제 + 캐시백 선택 + 세이브오토 (누적 기준)',
+      tiers:[
+        {range:'6천만 이상', bonus:'+10만원'},
+        {range:'1.2억 이상', bonus:'+20만원'},
+        {range:'1.5억 이상', bonus:'+30만원'},
+      ]
+    },
+    {
+      name:'대형트럭/버스 추가 수수료',
+      cond:'전용카드 발급 + 세이브오토 + 일시불 or 모빌리티할부선수금 500만이상\n대상: 파비스, 뉴파워트럭, 엑시언트, 에어로시티, 유니버스, 초저상버스 등',
+      tiers:[{range:'해당 차종 전체', bonus:'+0.5%'}],
+      note:'모빌리티 카드할부 제외, 선수금 무이자 제외'
+    },
+  ],
+};
+
+/* ===== 금융 월납입금 예시 데이터 (2026년 8월) ===== */
+// EV 부담DOWN + 제네시스 파이낸스 월납입금 (60M, 2만km/년 기준)
+const PAYMENT_DATA = {
+  // ── EV 부담DOWN ──────────────────────────────────────────────
+  'nexo': {
+    type:'ev', product:'넥쏘 부담DOWN (39M 차량반납 유예형 할부)',
+    rateNew:'1.8%', rateRebuy:'1.8%',
+    payments:[
+      {label:'선수율 5% + 트레이드인200만 (신규)', amount:'약 8만원/월'},
+      {label:'일 환산', amount:'약 2,600원/일'},
+    ]
+  },
+  'kona-ev': {
+    type:'ev', product:'현대EV 부담DOWN (36M 차량반납 유예형 할부)',
+    rateNew:'2.8%', rateRebuy:'2.3%',
+    payments:[
+      {label:'선수율 1% (신규)', amount:'15만원/월'},
+      {label:'선수율 5% (신규)', amount:'11만원/월'},
+      {label:'선수율 1% (재구매)', amount:'14만원/월'},
+    ]
+  },
+  'ioniq5': {
+    type:'ev', product:'현대EV 부담DOWN (36M 차량반납 유예형 할부)',
+    rateNew:'2.8%', rateRebuy:'2.3%',
+    payments:[
+      {label:'선수율 1% (신규)', amount:'20만원/월'},
+      {label:'선수율 5% (신규)', amount:'14만원/월'},
+      {label:'선수율 1% (재구매)', amount:'18만원/월'},
+      {label:'선수율 5% (재구매)', amount:'13만원/월'},
+    ]
+  },
+  'ioniq6': {
+    type:'ev', product:'현대EV 부담DOWN (36M 차량반납 유예형 할부)',
+    rateNew:'2.8%', rateRebuy:'2.3%',
+    payments:[
+      {label:'선수율 1% (신규)', amount:'17만원/월'},
+      {label:'선수율 5% (신규)', amount:'12만원/월'},
+      {label:'선수율 1% (재구매)', amount:'16만원/월'},
+      {label:'선수율 5% (재구매)', amount:'10만원/월'},
+    ]
+  },
+  'porter-ev': {
+    type:'ev', product:'포터EV 부담DOWN (36M 차량반납 유예형 할부)',
+    rateNew:'2.8%', rateRebuy:'2.8%',
+    payments:[
+      {label:'소상공인 (추가보조금 290만)', amount:'약 5만원/월'},
+      {label:'농업인 (추가보조금 97만)', amount:'약 11만원/월'},
+      {label:'일반 (보조금 기본)', amount:'약 14만원/월'},
+    ]
+  },
+  // ── 제네시스 파이낸스 월납입금 (60M, 2만km/년) ────────────────
+  'g90': {
+    type:'genesis', vehiclePrice:'9,748만원',
+    lease60:'163만원', rent60:'175만원', tbcLease60:'155만원', summerLease60:'139만원'
+  },
+  'g80': {
+    type:'genesis', vehiclePrice:'6,063만원',
+    lease60:'91만원', rent60:'104만원', tbcLease60:'86만원', summerLease60:'83만원'
+  },
+  'g80ev': {
+    type:'genesis', vehiclePrice:'8,479만원',
+    lease60:'116만원', rent60:'138만원', tbcLease60:'109만원', summerLease60:'97만원'
+  },
+  'g70': {
+    type:'genesis', vehiclePrice:'4,500만원',
+    lease60:'72만원', rent60:'81만원', tbcLease60:'69만원', summerLease60:null
+  },
+  'gv80': {
+    type:'genesis', vehiclePrice:'6,886만원',
+    lease60:'98만원', rent60:'114만원', tbcLease60:'92만원', summerLease60:'87만원'
+  },
+  'gv70': {
+    type:'genesis', vehiclePrice:'5,473만원',
+    lease60:'82만원', rent60:'91만원', tbcLease60:'77만원', summerLease60:null
+  },
+  'gv70ev': {
+    type:'genesis', vehiclePrice:'7,974만원',
+    lease60:'102만원', rent60:'121만원', tbcLease60:'96만원', summerLease60:null
+  },
+  'gv60': {
+    type:'genesis', vehiclePrice:'6,828만원',
+    lease60:'84만원', rent60:'103만원', tbcLease60:'79만원', summerLease60:'70만원'
+  },
+};
+
+/* ===== 납기 데이터 (2026년 8월 기준) ===== */
+// d: 납기 등급 (instant=즉시, 1m=1개월, 1hm=1.5개월, 2m=2개월, 3m=3개월, 4m=4개월, 6m=6개월, none=생산없음/단산)
+// stock: 발급가능재고 대수 (있으면 즉시 출고 가능)
+// note: 특이사항
+const DELIVERY = {
+'avante':[
+  {type:'가솔린/LPi (N라인 포함)', d:'none', delivery:'추가생산 없음', note:'CN7 ICE 현 생산계획 외 추가 생산 없음', stock:null},
+  {type:'HEV (N라인 포함)', d:'none', delivery:'요청일 무관 출고', note:'HEV 10월까지 추가 생산 예정, 요청일 무관 생산계획 조회 시 출고 가능', stock:null},
+  {type:'N', d:'1m', delivery:'약 1개월', note:'발급가능재고 즉시 출고 가능', stock:'아반떼 N 150대'},
+],
+'sonata':[
+  {type:'가솔린/LPi · N라인 · HEV', d:'2m', delivery:'약 2개월', note:'썬루프 사양 선택 시 2주 추가 소요', stock:null},
+],
+'grandeur-old':[
+  {type:'가솔린/LPi', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 즉시 출고 가능 / 왼손왼발 등 장애 사양 1개월 추가', stock:'그랜저 가솔린 3,000대'},
+  {type:'HEV', d:'3m', delivery:'약 3개월', note:'캘리그래피+20인치 피렐리 타이어 선택 시 1개월 추가 / 우드내장 추가 시 2개월 추가', stock:null},
+],
+'grandeur-new':[
+  {type:'가솔린/LPi', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 즉시 출고 가능', stock:'그랜저 가솔린 3,000대'},
+  {type:'HEV', d:'3m', delivery:'약 3개월', note:'캘리그래피+피렐리 타이어 1개월 추가 / 우드내장 추가 시 2개월 추가', stock:null},
+],
+'venue':[
+  {type:'전차종', d:'6m', delivery:'약 6개월', note:'초크화이트메탈릭 (A23/TN3) 단산 — 26.6.24 이전 배정요청 건만 생산대응', stock:null},
+],
+'kona':[
+  {type:'가솔린 (N라인 포함)', d:'4m', delivery:'약 4개월', note:null, stock:null},
+  {type:'HEV', d:'3m', delivery:'약 3개월', note:null, stock:null},
+],
+'kona-ev':[
+  {type:'EV (영업용 포함)', d:'1hm', delivery:'약 1.5개월', note:'로트 생산 방식 — 정해진 기간에만 생산 가능. 당월 불가 시 익월 생산일정에 따라 최대 1.5개월', stock:null},
+],
+'tucson':[
+  {type:'가솔린 · HEV (N라인 포함)', d:'none', delivery:'생산계획 内 출고', note:'구형 8월 내 생산 예정. FMC 전환 시 구형 원요청일 보전 컨버전 미진행', stock:null},
+],
+'santafe':[
+  {type:'가솔린', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 즉시 출고 가능', stock:'싼타페 ICE 550대'},
+  {type:'HEV', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 즉시 출고 가능', stock:'싼타페 HEV 3,400대'},
+],
+'palisade':[
+  {type:'가솔린 · HEV', d:'1m', delivery:'약 1개월', note:null, stock:null},
+],
+'staria':[
+  {type:'LPi · HEV', d:'1m', delivery:'약 1개월', note:'전 모델(화물/승용/승합) 전기차 보조금 누리집 등재 완료', stock:null},
+],
+'staria-ev':[
+  {type:'EV', d:'4m', delivery:'4~6개월', note:null, stock:null},
+],
+'nexo':[
+  {type:'FCEV', d:'1m', delivery:'약 1개월', note:null, stock:null},
+],
+'ioniq5':[
+  {type:'EV (영업용 포함)', d:'1m', delivery:'약 1개월', note:null, stock:null},
+  {type:'N', d:'none', delivery:'로트 생산', note:'로트 생산 방식 — 정해진 기간에만 생산 가능', stock:null},
+],
+'ioniq6':[
+  {type:'EV (N 포함)', d:'1hm', delivery:'약 1.5개월', note:'발급가능재고 즉시 출고 가능', stock:'아이오닉6 900대'},
+],
+'ioniq9':[
+  {type:'EV', d:'1hm', delivery:'약 1.5개월', note:null, stock:null},
+],
+'porter-ev':[
+  {type:'EV', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 즉시 출고 가능 / 특장 차량은 특장 납기 추가', stock:'포터EV 2,000대'},
+],
+'st1':[
+  {type:'EV', d:'2m', delivery:'약 2개월', note:'8월 중순 27MY 런칭 예정 — 26MY 발급가능재고 우선 판촉. 신규 생산 시 최소 1.5개월 이상 소요', stock:null},
+],
+'porter-lp':[
+  {type:'일반/슈퍼캡 A/T', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 즉시 출고 가능 / 수동(M/T) 생산투입은 차종담당자 별도 문의 / 특장 납기 추가', stock:'포터 LPDi 4,800대'},
+  {type:'더블캡', d:'1m', delivery:'약 1개월', note:null, stock:null},
+],
+'pavise':[
+  {type:'카고', d:'4m', delivery:'약 4개월', note:'특별주문/주문사양 추가 기간 소요 → 양산사양 우선 안내 요망', stock:null},
+  {type:'샤시캡', d:'4m', delivery:'약 3.5개월', note:null, stock:null},
+],
+'mighty':[
+  {type:'카고', d:'2m', delivery:'약 2개월', note:'특별주문/주문사양 추가 기간 소요 → 양산사양 우선 안내 요망 / 발급가능재고 적극 활용', stock:null},
+  {type:'샤시캡', d:'1hm', delivery:'약 1.5개월', note:null, stock:null},
+],
+'solati':[
+  {type:'전 차종', d:'instant', delivery:'즉시', note:'재고 미보유 사양의 경우 신규투입시 약 2개월 예상 / 미완성자동차(샤시캡·쏠라티 포함) 자기인증 특장업체 명의 출고 필수', stock:null},
+],
+'county':[
+  {type:'디젤 (마을버스 포함)', d:'none', delivery:'24개월 이상', note:'OT 칼라 선택 시 추가 납기 소요 / 주문제작 의뢰 후 담당자 납기 별도 확인 必 ★ 경유차 어린이통학버스 2027.12.31 신규등록 限 — 현 납기 고려 시 출고 불가 → 계약시 고객 사전 고지 必', stock:null},
+  {type:'EV (전기버스)', d:'none', delivery:'7개월 이상', note:'주문제작 의뢰 후 담당자 납기 별도 확인 必', stock:null},
+],
+'g70':[
+  {type:'G70 (S/B 포함)', d:'1m', delivery:'약 1개월', note:null, stock:null},
+],
+'g80':[
+  {type:'가솔린', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 즉시 출고 가능 / BTO 사양 1주 추가', stock:'G80 3,000대'},
+],
+'g80ev':[
+  {type:'G80 EV', d:'1m', delivery:'약 1개월', note:'BTO 사양 1주 추가', stock:null},
+],
+'g90':[
+  {type:'G90 (LWB 포함)', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 즉시 출고 가능 / LWB·BLACK 1주 추가', stock:'G90 650대'},
+],
+'gv60':[
+  {type:'일반', d:'1m', delivery:'약 1개월', note:null, stock:null},
+  {type:'마그마', d:'2m', delivery:'약 2개월', note:'일반 대비 도장 2주 + 검사 3주 추가 (유광컬러 한)', stock:null},
+],
+'gv70':[
+  {type:'가솔린', d:'1hm', delivery:'약 1.5개월', note:'발급가능재고 즉시 출고 가능 / BTO 사양 1주 추가', stock:'GV70 1,750대'},
+],
+'gv70ev':[
+  {type:'GV70 EV', d:'1m', delivery:'약 1개월', note:null, stock:null},
+],
+'gv80':[
+  {type:'GV80 (쿠페 포함)', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 즉시 출고 가능 / BTO 사양 1주 추가', stock:'GV80 2,000대'},
+],
+'sonata-tx':[
+  {type:'쏘나타 택시 (DT23)', d:'1m', delivery:'약 1개월', note:'선적/탁송 상황에 따라 납기 변동 가능', stock:null},
+],
+'grandeur-tx':[
+  {type:'그랜저 영업용', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 활용', stock:'그랜저 가솔린 3,000대'},
+],
+'ioniq5-tx':[
+  {type:'아이오닉 5 영업용', d:'1m', delivery:'약 1개월', note:null, stock:null},
+],
+'ioniq6-tx':[
+  {type:'아이오닉 6 영업용', d:'1hm', delivery:'약 1.5개월', note:'발급가능재고 활용 시 즉시', stock:'아이오닉6 900대'},
+],
+};
+
+const TARGETS = {
+'tradein':{
+  name:'트레이드인 특별조건', cat:'공통 타겟',
+  amounts:[
+    {v:'국내승용 내연 (캐스퍼·더뉴그랜저 제외)', c:'50만', o:'30만'},
+    {v:'국내승용 EV (캐스퍼EV·스타리아EV 제외)', c:'100만', o:'50만'},
+    {v:'1톤 화물 (포터/ST1)', c:'100만', o:'-'},
+    {v:'제네시스 / 넥쏘', c:'200만', o:'100만'},
+  ],
+  cond:'현대/제네시스 인증중고차에 보유차량 매각 후 15일 이내 신차 구매\n• 보유차량 기준: 10년/15만km 이내\n• 전자서명 완료일(D) 기준 D+15일 이내 출고 必\n• 26년 6월부 그룹사·관계사·협력사 포함 (AA1, BA1, AG1~5, AJ1~2)\n\n★ 26년 8월부 공동명의 기준 완화\n• 중고차 공동명의자(배우자·직계존비속)가 신차 출고 시 트레이드인 적용 가능\n• 예시: 중고차 A외B(배우자) → 신차 B 출고 → 트레이드인 인정 (8월~)\n• 증빙: 가족관계증빙서류 필요\n\n[노후차 트레이드인] +20만 추가\n• 대상: 10년 또는 15만km 초과 ~ 15년/25만km 이내\n• 1톤 화물 디젤: 연식/주행거리 무관 매각 가능'},
+
+'oldcar-tradein':{
+  name:'노후차 트레이드인', cat:'공통 타겟',
+  amt:'기본 트레이드인 + 20만',
+  cond:'10년 또는 15만km 초과 ~ 15년/25만km 이내 차량\n※ 1톤화물 디젤: 연식/주행거리 무관\n※ 기타 유의사항은 트레이드인 특별조건과 동일'},
+
+'ioniq-100k':{
+  name:'아이오닉 100만대 기념 특별조건', cat:'EV 특화',
+  amt:'아이오닉5/6/9, 코나EV: 150만 / 포터EV, ST1(샤시캡제외): 100만',
+  cond:'26년 계약, 8월 내 출고 완료 고객 (AA1, BA1)\n※ 타겟조건 공동명의 기준 무관 적용 가능 (제3자 공동명의 적용 가능)'},
+
+'driving-plcc':{
+  name:'운전결심 X PLCC카드', cat:'차종 특화',
+  amt:'20만 캐시백',
+  vehicles:'아반떼, 베뉴, 코나 (HEV/EV 포함)',
+  cond:'운전결심 연수 완료 + 현대차 전용카드 500만원 이상 결제 + 세이브오토 이용\n※ 운전결심 통해 연수완료한 본인 회원 기준 1인 1회'},
+
+'palisade-card':{
+  name:'팰리세이드 전용카드 프로모션', cat:'차종 특화 ★신규',
+  amt:'50만 (25만 DC + 25만 캐시백)',
+  vehicles:'팰리세이드 (HEV 포함)',
+  cond:'현대차/제네시스 전용카드 2,000만원 이상 결제 + 세이브오토 이용\n※ AA1, BA1 限 / 출고 전 타겟코드 입력 必\n※ 블루멤버스 전용카드 / 3-BODY 카드 적용 불가'},
+
+'porter-partner':{
+  name:'포터 상생파트너 충전비 지원', cat:'차종 특화',
+  amt:'40만 충전비 (20만 할인 + SK가스 20만 충전비)',
+  vehicles:'포터 LPDi',
+  cond:'① 1차 산업종사자 (농·축·수·임·광업)\n② 영업용 운전자\n※ 증빙: 농업경영체등록확인서 / 화물운송종사자격증 등'},
+
+'santafe-black':{
+  name:'싼타페 블랙패키지 할인', cat:'차종 특화',
+  amt:'5만',
+  vehicles:'싼타페 (HEV 포함)',
+  cond:'싼타페 블랙사이드스텝, 블랙잉크 플러스 패키지 파츠 출고 고객\n※ 남양/영남/칠곡 출고 한정'},
+
+'rentcar-common':{
+  name:'현장렌트사 우대 타겟', cat:'공통 타겟',
+  amt:'1대 10만 / 2~3대 30만 / 4~5대 40만 / 6대이상 50만\nG80, GV70, GV80: 1대 20만 / 2~3대 40만 / 4~5대 60만 / 6대이상 100만\n쏠라티: 1대 20만 / 2대이상 100만',
+  vehicles:'쏘나타, 그랜저, 코나, 투싼, 싼타페, 팰리세이드, 스타리아, 아이오닉5, 아이오닉6',
+  cond:'현장렌트사(CR1) / BA1 자동차대여사업자등록증 증빙 출고건\n※ Fleet Sales팀 FLEET社 제외\n※ 2대이상 묶기: ① 동일 거점/카마스터/업체 + ② 동일 계약일/배정요청일 (or 계약 후 20일 이내 출고)\n※ 묶기: 타겟 적용 차종 한하여만 가능'},
+
+'rentcar-solati':{
+  name:'현장렌트사 우대 (쏠라티)', cat:'공통 타겟',
+  amt:'1대 20만 / 2대이상 100만',
+  vehicles:'쏠라티',
+  cond:'현장렌트사 출고건'},
+
+'benefia':{
+  name:'베네피아 제휴 타겟', cat:'공통 타겟',
+  amt:'20만',
+  vehicles:"국내승용 전차종 (캐스퍼·더뉴그랜저·스타리아EV 제외)",
+  cond:"'26년 이후 포인트 전환 고객이 7~9월 출고시 적용"},
+
+'company-mgmt':{
+  name:'현장관리법인', cat:'공통 타겟',
+  amt:'법인 현대20만/제네시스50만\n대표자 현대50만/제네시스100만\n키맨 현대30만/제네시스50만',
+  vehicles:'국내승용 전차종 (캐스퍼·상용 제외)',
+  cond:'① 법인업무용(CA1): 현대닷컴 가입법인 中 직구매 출고이력 보유법인\n② 대표자(AA1)\n③ 키맨(AA1)'},
+
+'goodfriend':{
+  name:'200만 굿프렌드', cat:'공통 타겟',
+  amt:'기출고 10만 / 신규가망 15만',
+  vehicles:'국내승용',
+  cond:'200만 굿프렌드 구축고객 中 전담고객, 굿프렌드 구축 후 1개월 이후 계약\n※ 배우자·직계존비속 적용 가능\n※ 전담고객은 반드시 기출고 타겟 적용 (신규가망 적용 불가)'},
+
+'wonkol-100':{
+  name:'원콜 우수고객 특별할인', cat:'트럭 특화',
+  amt:'100만',
+  vehicles:'마이티, 파비스 (2027 더 뉴)',
+  cond:'원콜(화물중개플랫폼) 별도 지정 우수고객 100명\n※ 증빙: 고객 문자 내용 스캔본'},
+
+'oldcar-50':{
+  name:'중형트럭 노후차 조건', cat:'트럭 특화',
+  amt:'50만',
+  vehicles:'마이티, 파비스',
+  cond:'차령 7년 이상 노후차 보유 고객\n※ 19년 8월 31일 이전 등록, 계약월 전전월 마감일 限 보유'},
+
+'startup-50':{
+  name:'마이티 신규 창업 지원', cat:'트럭 특화',
+  amt:'50만',
+  vehicles:'마이티',
+  cond:'출고월 기준 3개월 이내 신규 창업 고객\n예) 26.8월 출고 → 개업연월일 26.5월 이후\n※ 증빙: 사업자등록증 사본'},
+
+'mighty-loan':{
+  name:'마이티 구매부담 Down(론)', cat:'트럭 특화',
+  amt:'150만',
+  vehicles:'마이티',
+  cond:'현대커머셜 구매부담Down(유예론)으로 마이티 구매시\n※ 노후차 타겟 중복 적용 불가\n※ LX판토스 추천서 첨부 必'},
+
+'cpo-dreamcoupon':{
+  name:'더드림쿠폰 (CPO 중고차 혜택)', cat:'공통 타겟',
+  amt:'EV 100만 / 내연기관 30만 (최종견적 추가 적용)',
+  vehicles:'EV: GV60·GV70EV·G80EV·아이오닉5·아이오닉6 / 내연기관(가솔린/HEV/LPG): 캐스퍼·아반떼·쏘나타·그랜저(IG)·코나·투싼 *디젤 제외',
+  cond:'현대/제네시스 인증중고차에 보유차량 매각 시 최종견적에 쿠폰 자동 적용\n• 연식: ~7년8개월 이내 / 주행거리: 14만km 이내\n• 1년/5천km 미만 차량 및 N·마그마 제외\n• 골격사고·상품화 과다·미승인 구조변경·랩핑·흡연차량 직매집 불가 차량 제외\n• 타 쿠폰과 중복 적용 불가\n\n[사용방법] 최종견적 발송 시점에 쿠폰 발급 → 견적 수락 시 자동 적용'},
+};
+
+/* ===== APP STATE ===== */
+let curCat = 'home';
+let selectedVehicle = null;
+let selectedVariant = null;
+
+/* ===== RENDER HOME ===== */
+function renderHome(){
+  const el = document.getElementById('pg-home');
+  el.innerHTML = `
+<div class="hcard">
+  <div class="hcard-title">🌟 8월 주요 강조 사항</div>
+  <div class="hrow"><span class="hveh">썸머페스타</span><span class="hcond">싼타페 7월생산 200만 <span class="chg-badge chg-new">신규</span> / 아이오닉9 7월생산 100만<br>팰리세이드 3월이전 200만 + 전용카드 50만 <span class="chg-badge chg-new">신규</span></span></div>
+  <div class="hrow"><span class="hveh">EV 특별혜택</span><span class="hcond">아이오닉5/6/9·코나EV <b>150만</b> ↑ (7월 100만→150만)<br>포터EV·ST1 <b>100만</b> (아이오닉100만대 기념)</span></div>
+  <div class="hrow"><span class="hveh">넥쏘 패키지</span><span class="hcond">썸머페스타 200만 + 트레이드인 200만 동시가능<br>부담DOWN 금리 1.8% / 최저 월납입금 약 6만원</span></div>
+  <div class="hrow"><span class="hveh">제네시스재고</span><span class="hcond">GV80 6월이전 5% / G80 4% / GV70 3% 할인<br>7월 생산분: GV80/G80/GV70 모두 2% 할인</span></div>
+  <div class="hrow"><span class="hveh">그랜저신형</span><span class="hcond">7월 기본조건200만/무이자 → 8월 생산월 조건으로 변경<br>5월생산 200만+저금리 / 6월생산 100만+저금리 <span class="chg-badge chg-dn">조건하향</span></span></div>
+  <div class="hrow"><span class="hveh">G80EV금리</span><span class="hcond">7월 르망24기념저금리 24M 0.9% <span class="chg-badge chg-dn">종료</span><br>→ 8월 일반금리 복귀</span></div>
+</div>
+
+<div class="hcard">
+  <div class="hcard-title">📋 모빌리티 할부 표준금리</div>
+  <div class="hrow"><span class="hveh">쏘나타/G80계열</span><span class="hcond">36M 4.9% / 48M 5.0% / 60M 5.1%</span></div>
+  <div class="hrow"><span class="hveh">일반승용/EV</span><span class="hcond">36M 5.4% / 48M 5.5% / 60M 5.6%</span></div>
+  <div class="hrow"><span class="hveh">마이티 저금리</span><span class="hcond">36M 2.7% / 48M 2.8% / 60M 2.9%</span></div>
+  <div class="hrow"><span class="hveh">포터/파비스</span><span class="hcond">36M 6.5% / 48M 6.6% / 60M 6.7%</span></div>
+  <div class="hrow"><span class="hveh">쏠라티/카운티</span><span class="hcond">36M 5.7% / 48M 5.8% / 60M 5.9%</span></div>
+  <div style="margin-top:8px;font-size:.72rem;color:var(--gray)">※ 모빌리티 할부: 선수금 전액 현대카드 결제 (차량가 1% 이상 必)</div>
+</div>
+
+<div class="hcard">
+  <div class="hcard-title">🎯 공통 타겟 조건 요약</div>
+  <div class="hrow"><span class="hveh">트레이드인</span><span class="hcond">내연 50만/EV 100만/제네시스 200만 (인증중고차 매각+15일이내 출고)</span></div>
+  <div class="hrow"><span class="hveh">현장렌트사</span><span class="hcond">1대 10만~6대이상 50만 (G80계열 최대 100만)</span></div>
+  <div class="hrow"><span class="hveh">베네피아</span><span class="hcond">20만 (26년 포인트 전환 고객, 7~9월 출고)</span></div>
+  <div class="hrow"><span class="hveh">현장관리법인</span><span class="hcond">법인 20만 / 대표자 50만 / 키맨 30만 (제네시스 2배)</span></div>
+  <div class="hrow"><span class="hveh">200만굿프렌드</span><span class="hcond">기출고 10만 / 신규가망 15만</span></div>
+</div>
+
+<div class="hcard">
+  <div class="hcard-title">💳 현대자동차 전용카드 고객 혜택 (8월)</div>
+  <div class="hrow"><span class="hveh">카드 종류</span><span class="hcond">현대 모빌리티 Basic · 플래티넘 · EV카드 · 제네시스카드 · 상용전용카드</span></div>
+  <div class="hrow"><span class="hveh">캐시백</span><span class="hcond"><b>1%</b> (세이브오토 이용 필수 / 미이용시 불가)</span></div>
+  <div class="hrow"><span class="hveh">포인트 적립</span><span class="hcond">Basic/EV/제네시스카드 <b>1.5%</b> · 플래티넘 <b>2.0%</b> 블루멤버스 자동적립</span></div>
+  <div class="hrow"><span class="hveh">카드 할부 금리</span><span class="hcond">승용 2~12M 무이자 · 13~18M 4.5% · 20~50M 5.7% · 60M 5.9%<br>대형상용 20~50M 6.8% · 60M 7.0%</span></div>
+  <div class="hrow"><span class="hveh">카드할부 대상</span><span class="hcond">현대/제네시스 전차종 + 마이티/카운티/쏠라티 (택시 포함)</span></div>
+  <div style="margin-top:8px;font-size:.75rem;color:var(--gray)">※ 캐시백/포인트 중 택1 · 세이브오토 가입 필수 · 모빌리티할부 선수금 500만이상시 수수료 발생</div>
+</div>
+
+<div class="hcard">
+  <div class="hcard-title">⚠️ 주요 유의사항</div>
+  <div style="font-size:.78rem;color:#374151;line-height:1.8">
+  ※ 생산월 조건 차량은 조건+할부/카드프로모션 중복 적용 가능<br>
+  ※ 전시차 조건: 전월 말일 이전 입고분 限 (당사임직원 5%이상 적용 불가)<br>
+  ※ 렌트/리스 프로모션 이용시 다른 타겟 중복 적용 불가<br>
+  ※ 출고 전 타겟조건 입력 必 (출고 후 입력 불가)<br>
+  ※ 총 DC 금액이 차가의 30% 초과 불가
+  </div>
+</div>`;
+}
+
+/* ===== RENDER VEHICLE LIST ===== */
+function renderVehicleList(cat){
+  const list = VEHICLES[cat];
+  if(!list) return '';
+  return `<div class="vgrid">${list.map(v=>`
+    <div class="vcard" id="vc-${v.id}" onclick="selectVehicle('${cat}','${v.id}')">
+      ${v.change?`<span class="badge ${v.change.type}">${v.change.type==='new'?'신규':v.change.type==='up'?'↑강화':'↓변경'}</span>`:''}
+      <div class="vcard-name">${v.name}</div>
+      ${v.sub?`<div class="vcard-sub">${v.sub}</div>`:''}
+      <div class="vcard-hl ${v.hl?'':'none'}">${v.hl||'조건없음'}</div>
+    </div>`).join('')}</div>
+  <div id="detail-${cat}"></div>`;
+}
+
+/* ===== RENDER DETAIL ===== */
+function selectVehicle(cat, id){
+  document.querySelectorAll('.vcard').forEach(c=>c.classList.remove('sel'));
+  const card = document.getElementById('vc-'+id);
+  if(card) card.classList.add('sel');
+  const v = VEHICLES[cat].find(x=>x.id===id);
+  if(!v) return;
+  selectedVehicle = v;
+  const variants = v.variants || Object.keys(v.summerFesta||{});
+  selectedVariant = variants[0];
+  const el = document.getElementById('detail-'+cat);
+  el.innerHTML = buildDetail(v, selectedVariant);
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function buildVariantTabs(v){
+  const variants = v.variants || Object.keys(v.summerFesta||{});
+  if(variants.length<=1) return '';
+  return `<div class="vtabs">${variants.map(va=>`
+    <button class="vtab ${va===selectedVariant?'on':''}" onclick="changeVariant('${va}')">${va}</button>
+  `).join('')}</div>`;
+}
+
+function changeVariant(va){
+  selectedVariant = va;
+  const v = selectedVehicle;
+  const cat = Object.keys(VEHICLES).find(c=>VEHICLES[c].some(x=>x.id===v.id));
+  const el = document.getElementById('detail-'+cat);
+  el.innerHTML = buildDetail(v, va);
+}
+
+function buildDetail(v, variant){
+  const sf = v.summerFesta && (v.summerFesta[variant] || v.summerFesta[Object.keys(v.summerFesta)[0]]);
+  const hasAnySf = sf && Object.values(sf).some(x=>x);
+
+  const _hasPD = !!(PRICE_DATA[v.id]);
+  let html = `<div class="dpanel" id="dpanel-${v.id}">`;  // v2
+  // Header
+  html += `<div class="dpanel-hdr">
+    <div class="dpanel-name">${v.name}${v.sub?' <span style="font-size:.8rem;opacity:.7">'+v.sub+'</span>':''}</div>
+    <div class="dpanel-sub">2026년 8월 판매조건</div>
+    <div class="dpanel-tags">
+      ${v.ioniq100k?`<span class="tag tag-green">🎉 100만대기념 ${v.ioniq100k}</span>`:''}
+      ${v.genesisStock?`<span class="tag tag-blue">📦 재고할인 최대 ${v.genesisStock.pre6}</span>`:''}
+      ${v.change?`<span class="tag tag-amber">${v.change.type==='new'?'★신규':v.change.type==='up'?'↑강화':'↓변경'}: ${v.change.txt}</span>`:''}
+    </div>
+  </div>`;
+
+  // Variant tabs + 간단 가격표 버튼 (탭 행 우측)
+  const _tabHtml = buildVariantTabs(v);
+  const _btnHtml = _hasPD ? `<button class="price-btn" onclick="togglePriceView('${v.id}')">간단 가격표</button>` : '';
+  if(_tabHtml || _btnHtml){
+    html += `<div class="vtabs-wrap">${_tabHtml}<div style="flex:1"></div>${_btnHtml?`<div class="vtab-btn-wrap">${_btnHtml}</div>`:''}</div>`;
+  }
+  html += '<div class="dpanel-conds">';  // v2
+
+  // 납기 섹션 (최상단에 배치)
+  const dlv = DELIVERY[v.id];
+  if(dlv && dlv.length>0){
+    html += buildSection('🚚 납기 안내', buildDeliverySummary(dlv), 'info', buildDeliveryBody(dlv), true);
+  }
+
+  // EV 100만대 기념 special box
+  if(v.ioniq100k){
+    html += `<div style="padding:12px 16px 0">
+      <div class="ev-box">
+        <div class="ev-box-label">🎉 아이오닉 100만대 기념 특별조건 (26년 계약, 8월 내 출고)</div>
+        <div class="ev-box-amt">${v.ioniq100k}</div>
+        <div class="ev-box-note">AA1, BA1 / 공동명의 기준 무관 적용 가능</div>
+      </div>
+    </div>`;
+  }
+
+  // Genesis Stock
+  if(v.genesisStock){
+    html += `<div style="padding:12px 16px 0"><div style="font-size:.78rem;color:var(--gray);font-weight:700;margin-bottom:4px">📦 6월이전 재고 썸머페스타 조건</div>
+    <div class="gstock">
+      <div class="gstock-cell gstock-pre"><div class="gstock-label">6월 이전 생산</div><div class="gstock-amt">${v.genesisStock.pre6}</div></div>
+      <div class="gstock-cell gstock-jul"><div class="gstock-label">7월 생산</div><div class="gstock-amt">${v.genesisStock.jul}</div></div>
+    </div></div>`;
+  }
+
+  // Summer Festa
+  if(sf){
+    html += buildSection('🌟 썸머페스타 생산월 조건', hasAnySf?'조건 있음':'해당없음', hasAnySf?'':'none', buildSummerFesta(sf), true);
+  }
+
+  // Trade-in
+  if(v.tradeIn){
+    const ti = v.tradeIn;
+    html += buildSection('🔄 트레이드인 타겟조건', `당사 ${ti.corp||'-'} / 타사 ${ti.other||'-'}`, 'info', `
+      <div class="irow"><span class="ilbl">당사 매각</span><span class="ival g">${ti.corp||'-'}</span></div>
+      <div class="irow"><span class="ilbl">타사 매각</span><span class="ival g">${ti.other||'-'}</span></div>
+      <div class="nbox">※ 현대/제네시스 인증중고차에 보유차량 매각 후 15일 이내 신차 구매\n※ 보유차량: 10년/15만km 이내 (노후차 +20만 별도 적용 가능)</div>
+    `, false);
+  }
+
+  // Finance — financePromo 있으면 기본 펼침
+  if(v.finance || v.financePromo){
+    const fSum = v.financePromo?'💡 저금리 프로모션 있음':'표준금리';
+    html += buildSection('💳 금융 조건', fSum, 'info', buildFinance(v), !!v.financePromo);
+  }
+
+  // EV 부담DOWN 월납입금 예시 (별도 강조 섹션)
+  const evPay = PAYMENT_DATA[v.id];
+  if(evPay && evPay.type==='ev'){
+    const payRows = evPay.payments.map(p=>
+      `<div class="irow"><span class="ilbl">${p.label}</span><span class="ival g" style="font-size:1rem;font-weight:900">${p.amount}</span></div>`
+    ).join('');
+    html += buildSection('📊 부담DOWN 월납입금 예시', evPay.payments[0].amount+' 수준', 'info', `
+      <div style="background:#065f46;color:#fff;border-radius:10px;padding:10px 12px;margin-bottom:8px">
+        <div style="font-size:.78rem;opacity:.85;margin-bottom:4px">${evPay.product}</div>
+        <div style="font-size:.82rem;font-weight:700">신규 ${evPay.rateNew} / 재구매 ${evPay.rateRebuy}</div>
+      </div>
+      ${payRows}
+      <div class="nbox">※ 차량가·보조금·지역별 상이 / 만기 시 차량반납 또는 재할부\n※ 선수금 전액 현대카드 결제 시 모빌리티 할부 적용</div>
+    `, true);
+  }
+
+  // 제네시스 파이낸스 월납입금 테이블
+  if(v.genesisFinance){
+    const gfPay = PAYMENT_DATA[v.id];
+    const payTable = gfPay && gfPay.type==='genesis' ? `
+      <div style="overflow-x:auto;margin-top:8px">
+      <table class="inc-table">
+        <tr><th>상품</th><th>60M 월납입금</th><th>차량가</th></tr>
+        ${gfPay.lease60?`<tr><td>제네시스 파이낸스 리스</td><td class="inc-amt">${gfPay.lease60}</td><td rowspan="4" style="font-size:.72rem;color:#6b7280">${gfPay.vehiclePrice}</td></tr>`:''}
+        ${gfPay.rent60?`<tr><td>제네시스 파이낸스 렌트</td><td class="inc-amt">${gfPay.rent60}</td></tr>`:''}
+        ${gfPay.tbcLease60?`<tr><td>THE BETTER CHOICE 리스</td><td class="inc-amt" style="color:var(--green)">${gfPay.tbcLease60}</td></tr>`:''}
+        ${gfPay.summerLease60?`<tr><td>썸머페스타 조건 리스</td><td class="inc-amt" style="color:var(--red)">${gfPay.summerLease60}</td></tr>`:''}
+      </table></div>
+      <div style="font-size:.72rem;color:#6b7280;margin-top:6px">※ 2만km/년 기준 / THE BETTER CHOICE: 외산차·제네시스·현대EV 보유 고객 4% 추가 혜택</div>
+    ` : '';
+    html += buildSection('🏦 제네시스 파이낸스 월납입금', gfPay?`리스 ${gfPay.lease60||'-'}부터`:'렌트/리스 특화', 'info', `
+      <div class="fbox">
+        <div class="fbox-title">제네시스 파이낸스 렌트/리스 (판매유형코드 ZF·ZG)</div>
+        <div class="fbox-rate" style="white-space:pre-line">${v.genesisFinance}</div>
+      </div>
+      ${payTable}
+      ${v.genesisPromo?`<div class="fbox-promo" style="margin-top:8px"><div class="fbox-promo-title">🎖 특화 프로모션</div><div class="fbox-promo-txt">${v.genesisPromo}</div></div>`:''}
+      <div class="nbox" style="margin-top:6px">※ THE BETTER CHOICE: 외산/제네시스/현대EV 보유 고객이 제네시스 렌트/리스 구매시\n※ DOUBLE-PICK: 12/24개월 이용 4% 추가\n※ CAR-LIFE: 바디·휠·운전자 3종 케어 무상 포함\n※ 판매유형코드 ZF(리스/렌트)/ZG(이용자명의리스) 입력 必</div>
+    `, true);
+  } else if(v.genesisPromo){
+    html += `<div style="padding:0 16px 10px">
+      <div class="fbox-promo"><div class="fbox-promo-title">🎖 제네시스 특화 프로모션</div><div class="fbox-promo-txt">${v.genesisPromo}</div></div>
+    </div>`;
+  }
+
+  // EV Benefit
+  if(v.evBenefit){
+    html += `<div style="padding:0 16px 10px">
+      <div class="fbox"><div class="fbox-title">⚡ EV 구매혜택</div><div class="fbox-rate">${v.evBenefit}</div></div>
+    </div>`;
+  }
+
+  // Exhibit car / Save Auto — 항상 표시 (해당없음 포함)
+  html += buildSection('🏷 전시차/세이브오토',
+    (v.exhibitCar||'-') + ' / ' + (v.saveAuto||'-'), 'info', `
+    <div class="irow"><span class="ilbl">전시차 조건</span><span class="ival ${v.exhibitCar?'g':''}">${v.exhibitCar||'<span style="color:#bbb">해당없음</span>'}</span></div>
+    <div class="irow"><span class="ilbl">세이브 오토</span><span class="ival ${v.saveAuto?'g':''}">${v.saveAuto||'<span style="color:#bbb">해당없음</span>'}</span></div>
+    <div class="nbox">※ 전시차: 전월 말일 이전 입고분 限\n※ 임직원 5% 이상 직원할인건 전시차 불가</div>
+  `, false);
+
+  // Special Targets
+  if(v.targets && v.targets.length>0){
+    const thtml = v.targets.map(tid=>{
+      const t = TARGETS[tid];
+      if(!t) return '';
+      const amt = t.amt || (t.amounts?t.amounts.map(a=>`${a.v}: 당사 ${a.c}${a.o?' / 타사 '+a.o:''}`).join('\n'):'');
+      return `<div class="titem">
+        <div class="titem-name">${t.name}</div>
+        <span class="titem-amt">${typeof amt==='string'?amt.split('\n')[0]:amt}</span>
+        ${t.vehicles?`<div style="font-size:.72rem;color:#374151;margin-bottom:4px">📌 ${t.vehicles}</div>`:''}
+        <div class="titem-cond">${t.cond||''}</div>
+      </div>`;
+    }).join('');
+    html += buildSection('🎯 적용가능 타겟조건', `${v.targets.length}개`, 'info', thtml, false);
+  }
+
+  // Blue Members
+  if(v.bm){
+    const turns = ['1회','2회','3회','4회','5회','6회+'];
+    html += buildSection('🔵 블루멤버스 포인트 적립', v.bm[0]+'~'+v.bm[v.bm.length-1], 'info', `
+      <div class="bm-grid">${v.bm.map((a,i)=>`<div class="bm-cell"><div class="bm-turn">${turns[i]}</div><div class="bm-amt">${a}</div></div>`).join('')}</div>
+    `, false);
+  }
+
+  // Taxi conditions
+  if(v.taxiConds){
+    html += buildSection('🚕 영업용 특화 조건', '상세보기', 'info', Object.entries(v.taxiConds).map(([k,val])=>`
+      <div class="irow"><span class="ilbl">${k}</span><span class="ival g">${val}</span></div>
+    `).join(''), false);
+  }
+
+  // Notes
+  if(v.notes){
+    html += `<div style="padding:0 16px 14px"><div class="nbox">${v.notes}</div></div>`;
+  }
+
+  html += '</div>';  // close dpanel-conds  v2
+  if(_hasPD) html += `<div class="price-body" style="display:none">${buildPricePanel(v.id,variant)}</div>`;
+  html += `</div>`;  // close dpanel
+  return html;
+}
+
+function dlvClass(d){
+  return {instant:'d-instant',1:'d-1m','1m':'d-1m','1hm':'d-1h','2m':'d-2m','3m':'d-3m','4m':'d-4m','6m':'d-4m',none:'d-none'}[d]||'d-1m';
+}
+function buildDeliverySummary(dlv){
+  const best = dlv.find(r=>r.stock)||dlv[0];
+  if(!best) return '확인 필요';
+  const stockTxt = best.stock?` (재고 ${best.stock.replace(/[^0-9,대]/g,'').trim()})` : '';
+  return best.delivery + stockTxt;
+}
+function buildDeliveryBody(dlv){
+  let h = '<div class="delivery-wrap">';
+  for(const r of dlv){
+    const cls = dlvClass(r.d);
+    const icon = r.d==='instant'?'🟢':r.d==='1m'?'🟩':r.d==='1hm'?'🟡':r.d==='2m'?'🟠':r.d==='3m'||r.d==='4m'||r.d==='6m'?'🔴':'⚪';
+    h += `<div class="delivery-row">
+      <div class="delivery-type">${r.type}</div>
+      <div>
+        <span class="delivery-badge ${cls}">${icon} ${r.delivery}</span>
+        ${r.stock?`<span class="delivery-stock">📦 ${r.stock} (8월 1일 기준)</span>`:''}
+        ${r.note?`<div class="delivery-note">※ ${r.note}</div>`:''}
+      </div>
+    </div>`;
+  }
+  h += `</div><div class="delivery-notice">
+    ※ 재고 수량은 <b>8월 1일 기준</b>이며 실시간 변동됩니다 — 배정요청 전 재고 확인 필수<br>
+    ※ 납기는 배정요청 시점 기준이며 생산 상황에 따라 변동 가능 — 고객 안내 필수<br>
+    ※ 공장 하기휴무 (8/3~8/7) · 아산공장 라인합리화 공사 (7/25~8/17) 반영된 납기<br>
+    ※ '즉시' 납기 차종 중 재고 미보유 사양은 신규 생산 시 2~3주 예상
+  </div>`;
+  return h;
+}
+
+function buildSummerFesta(sf){
+  const months = Object.keys(sf);
+  if(months.length===0) return '<div style="color:#bbb;font-size:.82rem;padding:6px 0">해당 없음</div>';
+  let rows = '<table class="mtbl"><tr><th>생산월</th><th>조건</th></tr>';
+  const allMonths = ['3월이전','4월이전','4월','5월','6월','7월'];
+  for(const m of allMonths){
+    if(!(m in sf)) continue;
+    const val = sf[m];
+    const cls = !val?'mc-none':val.includes('400만')||val.includes('300만')||val.includes('250만')?'mc-hot':val.includes('★신규')?'mc-new':'mc-has';
+    rows += `<tr><td class="mc-none" style="text-align:left;padding-left:8px;font-size:.73rem;color:var(--gray)">${m}</td><td class="${cls}">${val||'–'}</td></tr>`;
+  }
+  rows += '</table>';
+  return rows;
+}
+
+function buildFinance(v){
+  let h = '';
+  if(v.finance){
+    h += `<div class="fbox"><div class="fbox-title">모빌리티 할부 (표준형)</div><div class="fbox-rate">${v.finance}</div></div>`;
+  }
+  if(v.financePromo){
+    h += `<div class="fbox-promo"><div class="fbox-promo-title">💡 프로모션 금리</div><div class="fbox-promo-txt">${v.financePromo}</div></div>`;
+  }
+  h += '<div class="nbox">※ 모빌리티 할부: 선수금 전액 현대카드 결제 (차량가 1% 이상 必)</div>';
+  return h;
+}
+
+function buildSection(title, summary, sumClass, bodyHtml, defaultOpen){
+  const id = 'sec-'+Math.random().toString(36).slice(2);
+  return `<div class="sec">
+    <div class="sec-hdr" onclick="toggleSec('${id}')">
+      <span class="sec-title">${title}</span>
+      <span class="sec-sum ${sumClass||''}">${summary}</span>
+      <span class="chev ${defaultOpen?'open':''}" id="${id}-chev">▼</span>
+    </div>
+    <div class="sec-body ${defaultOpen?'open':''}" id="${id}">${bodyHtml}</div>
+  </div>`;
+}
+
+function toggleSec(id){
+  const body = document.getElementById(id);
+  const chev = document.getElementById(id+'-chev');
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+function buildPricePanel(vid, variant){
+  const d = PRICE_DATA[vid];
+  if(!d) return '<div class="no-price-msg">📋 가격표 데이터가 없습니다</div>';
+  const vdata = d[variant] || d['일반'] || d[Object.keys(d)[0]];
+  if(!vdata) return '<div class="no-price-msg">📋 해당 트림 가격 정보가 없습니다</div>';
+  let html = '<div class="price-hdr">📋 트림별 기본가격</div>';
+  vdata.g.forEach(gr => {
+    if(gr.l) html += `<div class="pg-sep">▸ ${gr.l}</div>`;
+    html += '<table class="ptbl"><tr><th>트림</th><th>기본가격</th></tr>';
+    gr.t.forEach(([nm,pr]) => { html += `<tr><td>${nm}</td><td>${pr.toLocaleString()}만원</td></tr>`; });
+    html += '</table>';
+  });
+  if(vdata.o && vdata.o.length){
+    html += '<div class="opt-sep">📦 주요 옵션 (선택사양)</div><div class="opt-grid">';
+    vdata.o.forEach(([nm,pr]) => {
+      html += `<div class="opt-chip"><span class="opt-chip-nm">${nm}</span><span class="opt-chip-pr">${pr}만</span></div>`;
+    });
+    html += '</div>';
+  }
+  html += '<div class="price-foot">* 기본가격 기준 · 부가세 포함 · 정부 보조금 미적용 · 실제 가격은 옵션·지역·시기에 따라 다를 수 있음</div>';
+  return html;
+}
+
+function togglePriceView(vid){
+  const panel = document.getElementById('dpanel-'+vid);
+  if(!panel) return;
+  const btn = panel.querySelector('.price-btn');
+  const priceBody = panel.querySelector('.price-body');
+  const conds = panel.querySelector('.dpanel-conds');
+  const isOpen = priceBody && priceBody.style.display !== 'none';
+  if(conds) conds.style.display = isOpen ? '' : 'none';
+  if(priceBody) priceBody.style.display = isOpen ? 'none' : 'block';
+  if(btn){ btn.textContent = isOpen ? '간단 가격표' : '← 판매조건'; btn.classList.toggle('on', !isOpen); }
+}
+
+
+/* ===== RENDER TARGETS PAGE ===== */
+function renderTargets(){
+  const el = document.getElementById('pg-targets');
+  const cats = {};
+  Object.entries(TARGETS).forEach(([id,t])=>{
+    if(!cats[t.cat]) cats[t.cat]=[];
+    cats[t.cat].push({id,...t});
+  });
+  let html = '';
+  for(const [cat, items] of Object.entries(cats)){
+    html += `<div class="tcat">${cat}</div>`;
+    for(const t of items){
+      const amt = t.amt||(t.amounts?t.amounts.map(a=>`${a.v}: 당사 ${a.c}${a.o?' / 타사 '+a.o:''}`).join('\n'):'');
+      html += `<div class="titem">
+        <div class="titem-name">${t.name}</div>
+        ${amt?`<span class="titem-amt">${amt.split('\n')[0]}</span>`:''}
+        ${t.vehicles?`<div style="font-size:.72rem;color:#374151;margin:3px 0">📌 ${t.vehicles}</div>`:''}
+        <div class="titem-cond">${t.cond||''}</div>
+      </div>`;
+    }
+  }
+  el.innerHTML = html;
+}
+
+/* ===== SEARCH ===== */
+function openSearch(){
+  document.getElementById('soverlay').classList.add('open');
+  setTimeout(()=>document.getElementById('sinput').focus(),100);
+}
+function closeSearch(){document.getElementById('soverlay').classList.remove('open')}
+function doSearch(){
+  const q = document.getElementById('sinput').value.trim();
+  const out = document.getElementById('sresults');
+  if(!q){out.innerHTML='';return;}
+  const results = [];
+  const catNames = {ice:'국내승용',ev:'EV/수소',genesis:'제네시스',truck:'상용/트럭',taxi:'영업용'};
+  for(const [cat,list] of Object.entries(VEHICLES)){
+    for(const v of list){
+      if(v.name.includes(q)||(v.sub||'').includes(q)){
+        results.push({cat,v});
+      }
+    }
+  }
+  if(!results.length){out.innerHTML='<div style="padding:12px;color:#999;text-align:center">검색 결과 없음</div>';return;}
+  out.innerHTML = results.map(({cat,v})=>`
+    <div class="sitem" onclick="gotoVehicle('${cat}','${v.id}')">
+      <div><div class="sitem-name">${v.name}${v.sub?' ('+v.sub+')':''}</div><div class="sitem-cat">${catNames[cat]}</div></div>
+      <div class="sitem-hl">${v.hl||'—'}</div>
+    </div>`).join('');
+}
+function gotoVehicle(cat,id){
+  closeSearch();
+  switchTab(cat);
+  setTimeout(()=>selectVehicle(cat,id),100);
+}
+
+/* ===== 판촉지원금 데이터 (카마스터 전용) ===== */
+const INCENTIVE = {
+  notice: '직영 카마스터 전용 자료입니다. 고객에게 노출되지 않도록 주의하세요.',
+  general: [
+    {
+      name: '월초 조기 출고 판촉지원금',
+      period: '8월 1일~14일', badge: '★신규',
+      rows: [
+        {label:'지점 카마스터', amt:'대당 10만원', cond:'전차종(상용·캐스퍼 제외), AA1·BA1 限'},
+      ],
+      note: '9월 10일 기준 재평가 (매출취소·미등록 차감)'
+    },
+    {
+      name: '넥쏘 판촉지원금',
+      period: '8월 상시', badge: '유지',
+      rows: [
+        {label:'지점·대리점', amt:'대당 50만원', cond:'넥쏘 판매 대당'},
+      ],
+      note: '9월 10일 기준 재평가 진행 후 포상'
+    },
+    {
+      name: '캐스퍼 판촉지원금',
+      period: '8월 상시', badge: '유지',
+      rows: [
+        {label:'캐스퍼 내연기관', amt:'대당 5만원', cond:'고객케어지원금 인정 기준 충족시 별도 지급'},
+        {label:'캐스퍼 일렉트릭', amt:'대당 10만원', cond:'온라인 계약 시 구매지원 카마스터 고객 직접 입력 必'},
+      ],
+      note: '고객케어지원금과 별도 지급'
+    },
+    {
+      name: '200만 굿프렌드 판촉지원금',
+      period: '8월 상시', badge: '유지',
+      rows: [
+        {label:'신규 가망고객 출고', amt:'대당 10만 CRM포인트', cond:'월 2대 이상 출고 限'},
+        {label:'기출고 전담고객 출고', amt:'대당 5만 CRM포인트', cond:'월 2대 이상 출고 限'},
+      ],
+      note: '지점 카마스터 월 2대 이상 출고 시 포상 / CRM포인트 지급'
+    },
+  ],
+  truck: [
+    {
+      name: '엑시언트 트랙터·8X4덤프 판촉지원금',
+      period: '8월', badge: '강화',
+      rows: [
+        {label:'1대 판매', amt:'30만원', cond:'트랙터·8X4덤프 합산'},
+        {label:'2대 판매', amt:'100만원', cond:'트랙터·8X4덤프 합산'},
+        {label:'3대 이상', amt:'대당 60만원', cond:'트랙터·8X4덤프 합산'},
+      ],
+      note: '대상: 트럭지점 카마스터 / 8월 실출고 기준'
+    },
+    {
+      name: '중형트럭 구매부담Down 판촉지원금',
+      period: '8월', badge: '유지',
+      rows: [
+        {label:'첫 출고 시', amt:'50만원', cond:'마이티/파비스 구매부담Down 이용 첫 출고'},
+      ],
+      note: '9월 10일 기준 재평가'
+    },
+    {
+      name: '중대형트럭 재고 판촉지원금',
+      period: '8월', badge: '유지',
+      rows: [
+        {label:'마이티 (26년 4-5월 구형재고)', amt:'대당 50만원', cond:'동일업체 월 5대 限'},
+        {label:'파비스 (26년 4-5월 구형재고)', amt:'대당 30만원', cond:'동일업체 월 5대 限'},
+        {label:'엑시언트 (25년 6-7월 생산)', amt:'대당 200만원', cond:''},
+        {label:'엑시언트 (25년 8-9월 생산)', amt:'대당 100만원', cond:''},
+      ],
+      note: '재고 현황은 지역본부 담당자 확인'
+    },
+  ],
+  campaign: [
+    {
+      name: '3분기 영업팀 캠페인 (내 포상)',
+      period: '7월~9월 (분기)', badge: '유지',
+      desc: '월별 전차종 목표 달성률 상위 30% 영업팀 포상\n• 제네시스 1대 = 1.5대 가중치 (50% 가중 운영)',
+      rows: [
+        {label:'월 상위 5%', amt:'50만원 (국민관광상품권)', cond:'月 단위 포상'},
+        {label:'월 상위 20%', amt:'20만원', cond:'月 단위 포상'},
+        {label:'월 상위 30%', amt:'10만원', cond:'月 단위 포상'},
+        {label:'분기 3회 달성', amt:'+20만원 추가', cond:'해당 영업팀 인당 추가 포상'},
+        {label:'분기 2회 달성', amt:'+10만원 추가', cond:'해당 영업팀 인당 추가 포상'},
+      ],
+      note: '분기 內 3대 미만 판매시 포상 제외 / 달성률 100% 이상 必'
+    },
+  ],
+};
+
+/* ===== 고객 제안서 ===== */
+function getVehicle(vid){
+  for(const list of Object.values(VEHICLES)){
+    const v=list.find(x=>x.id===vid);
+    if(v) return v;
+  }
+  return null;
+}
+
+function renderProposal(){
+  const pg = document.getElementById('pg-proposal');
+  if(!pg) return;
+
+  // 카테고리별 차종 옵션 생성
+  function vOpts(cat){
+    return (VEHICLES[cat]||[]).map(v=>`<option value="${v.id}">${v.name}${v.sub?' ('+v.sub+')':''}</option>`).join('');
+  }
+
+  pg.innerHTML =
+    '<div class="prop-wrap">' +
+    '<div class="prop-step">' +
+    '<div class="prop-step-title"><span class="step-num">1</span> 차종 선택</div>' +
+    '<div class="prop-row"><span class="prop-lbl">카테고리</span>' +
+    '<select class="prop-sel" id="pp-cat" onchange="ppCatChange(this.value)">' +
+    '<option value="ice">국내승용</option>' +
+    '<option value="ev">EV/수소</option>' +
+    '<option value="genesis">제네시스</option>' +
+    '<option value="truck">상용/트럭</option>' +
+    '<option value="taxi">영업용</option>' +
+    '</select></div>' +
+    '<div class="prop-row"><span class="prop-lbl">차종</span>' +
+    '<select class="prop-sel" id="pp-vid" onchange="ppVidChange(this.value)">' + vOpts('ice') + '</select></div>' +
+    '<div class="prop-row"><span class="prop-lbl">생산월/재고</span>' +
+    '<select class="prop-sel" id="pp-month"><option value="">해당없음</option></select></div>' +
+    '</div>' + // prop-step 1
+
+    '<div class="prop-step">' +
+    '<div class="prop-step-title"><span class="step-num">2</span> 고객 조건 확인 <span style="font-size:.72rem;color:var(--gray)">(해당항목 체크)</span></div>' +
+    '<div class="prop-row" id="pp-ioniq-row" style="display:none"><span class="prop-lbl">100만대 기념</span>' +
+    '<label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pp-ioniq"> <span id="pp-ioniq-label">해당고객</span></label></div>' +
+    '<div class="prop-row"><span class="prop-lbl">트레이드인</span>' +
+    '<label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pp-tradein" onchange="ppToggle(\'tradein-detail\',this.checked)"> 보유차 매각 있음</label></div>' +
+    '<div id="tradein-detail" style="display:none">' +
+    '<div class="prop-row"><span class="prop-lbl">매각 유형</span>' +
+    '<select class="prop-sel" id="pp-titype">' +
+    '<option value="corp-ice">당사 내연 매각 (50만)</option>' +
+    '<option value="corp-ev">당사 EV 매각 (100만)</option>' +
+    '<option value="corp-genesis">당사 제네시스/넥쏘 매각 (200만)</option>' +
+    '<option value="corp-truck">당사 1톤화물 매각 (100만)</option>' +
+    '<option value="other-ice">타사 내연 매각 (30만)</option>' +
+    '<option value="other-ev">타사 EV 매각 (50만)</option>' +
+    '<option value="other-genesis">타사 제네시스 매각 (100만)</option>' +
+    '</select></div>' +
+    '<div class="prop-row"><span class="prop-lbl">노후차</span>' +
+    '<label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pp-oldcar"> 노후차 보유 (+20만)</label></div>' +
+    '</div>' + // tradein-detail
+
+    '<div class="prop-row"><span class="prop-lbl">현장렌트사</span>' +
+    '<label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pp-rentcar" onchange="ppToggle(\'rentcar-detail\',this.checked)"> 현장렌트사 고객</label></div>' +
+    '<div id="rentcar-detail" style="display:none">' +
+    '<div class="prop-row"><span class="prop-lbl">출고 수량</span>' +
+    '<select class="prop-sel" id="pp-rentamt">' +
+    '<option value="10">1대 10만</option>' +
+    '<option value="30">2~3대 30만</option>' +
+    '<option value="40">4~5대 40만</option>' +
+    '<option value="50">6대이상 50만</option>' +
+    '</select></div>' +
+    '</div>' + // rentcar-detail
+
+    '<div class="prop-row" id="pp-benefia-row"><span class="prop-lbl">베네피아</span>' +
+    '<label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pp-benefia"> 26년 포인트 전환 고객 (20만)</label></div>' +
+
+    '<div class="prop-row"><span class="prop-lbl">현장관리법인</span>' +
+    '<label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pp-company" onchange="ppToggle(\'company-detail\',this.checked)"> 법인/대표자/키맨</label></div>' +
+    '<div id="company-detail" style="display:none">' +
+    '<div class="prop-row"><span class="prop-lbl">구분</span>' +
+    '<select class="prop-sel" id="pp-cmtype">' +
+    '<option value="corp-20">법인 (20만)</option>' +
+    '<option value="ceo-50">대표자 (50만)</option>' +
+    '<option value="keyman-30">키맨 (30만)</option>' +
+    '</select></div></div>' +
+
+    '<div class="prop-row"><span class="prop-lbl">굿프렌드</span>' +
+    '<div style="display:flex;gap:12px;flex-wrap:wrap">' +
+    '<label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" id="pp-gfnew"> 신규가망 (15만)</label>' +
+    '<label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" id="pp-gfexist"> 기출고전담 (10만)</label>' +
+    '</div></div>' +
+
+    '<div class="prop-row" id="pp-special-row" style="display:none"><span class="prop-lbl" id="pp-special-lbl">차종특화</span>' +
+    '<label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pp-special"> <span id="pp-special-desc"></span></label></div>' +
+    '</div>' + // prop-step 2
+
+    '<div class="prop-step">' +
+    '<div class="prop-step-title"><span class="step-num">3</span> 금융 방식</div>' +
+    '<div class="prop-row"><span class="prop-lbl">금융 선택</span>' +
+    '<select class="prop-sel" id="pp-finance" onchange="ppFinanceChange(this.value)">' +
+    '<option value="standard">모빌리티 할부 (표준)</option>' +
+    '<option value="promo">프로모션 저금리</option>' +
+    '<option value="burden-down">부담DOWN 유예형 할부</option>' +
+    '<option value="lease">리스</option>' +
+    '<option value="rent">렌트</option>' +
+    '<option value="cash">현금</option>' +
+    '</select></div>' +
+    '</div>' + // prop-step 3
+
+    // ── 4단계: 할부금 계산 ──────────────────────────
+    '<div class="prop-step" id="pp-calc-wrap" style="display:none">' +
+    '<div class="prop-step-title"><span class="step-num">4</span> 💰 월납입금 계산 <span style="font-size:.72rem;color:var(--gray)">(선택)</span></div>' +
+
+    // 표준형
+    '<div id="pp-std-calc">' +
+    '<div class="prop-row"><span class="prop-lbl">할부원금</span>' +
+    '<div style="display:flex;align-items:center;gap:6px;flex:1">' +
+    '<input type="text" inputmode="numeric" id="pp-std-principal" class="prop-sel" placeholder="예: 3,500" oninput="fmtNum(this);ppCalcStd()">' +
+    '<span style="font-size:.82rem;color:#6b7280;font-weight:600">만원</span></div></div>' +
+    '<div class="prop-row"><span class="prop-lbl">금리</span>' +
+    '<select class="prop-sel" id="pp-std-rate" onchange="ppCalcStd()">' +
+    '<option value="0.027">2.7% (마이티 저금리 36M)</option>' +
+    '<option value="0.028">2.8% (EV 부담DOWN)</option>' +
+    '<option value="0.029">2.9% (마이티 저금리 60M)</option>' +
+    '<option value="0.030">3.0% (그랜저 저금리 36M)</option>' +
+    '<option value="0.049">4.9% (쏘나타/EV 36M)</option>' +
+    '<option value="0.050">5.0% (쏘나타/EV 48M)</option>' +
+    '<option value="0.051">5.1% (쏘나타/EV 60M)</option>' +
+    '<option value="0.054" selected>5.4% (일반승용 36M)</option>' +
+    '<option value="0.055">5.5% (일반승용 48M)</option>' +
+    '<option value="0.056">5.6% (일반승용 60M)</option>' +
+    '<option value="0.057">5.7% (전용카드 20~50M)</option>' +
+    '<option value="0.059">5.9% (전용카드 60M)</option>' +
+    '<option value="0.065">6.5% (포터/파비스 36M)</option>' +
+    '<option value="0.067">6.7% (포터/파비스 60M)</option>' +
+    '</select></div>' +
+    '<div class="prop-row"><span class="prop-lbl">개월수</span>' +
+    '<select class="prop-sel" id="pp-std-term" onchange="ppCalcStd()">' +
+    '<option value="24">24개월</option><option value="36" selected>36개월</option>' +
+    '<option value="48">48개월</option><option value="60">60개월</option>' +
+    '<option value="72">72개월</option><option value="84">84개월</option>' +
+    '</select></div>' +
+    '<div id="pp-std-result" style="display:none;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-radius:12px;padding:14px 16px;margin-top:8px;text-align:center">' +
+    '</div></div>' + // pp-std-calc
+
+    // 유예형
+    '<div id="pp-bal-calc" style="display:none">' +
+    '<div style="background:#eff6ff;border-radius:10px;padding:10px 12px;margin-bottom:8px">' +
+    '<div style="font-size:.78rem;font-weight:700;color:#1d4ed8;margin-bottom:6px">① 원리금균등 상환 원금 <span style="font-weight:400;color:#6b7280">(매월 균등 납입)</span></div>' +
+    '<div style="display:flex;align-items:center;gap:6px">' +
+    '<input type="text" inputmode="numeric" id="pp-bal-normal" class="prop-sel" placeholder="예: 1,400" style="border-color:#3b82f6" oninput="fmtNum(this);ppCalcBal()">' +
+    '<span style="font-size:.82rem;color:#3b82f6;font-weight:700">만원</span></div></div>' +
+    '<div style="background:#f0fdf4;border-radius:10px;padding:10px 12px;margin-bottom:8px">' +
+    '<div style="font-size:.78rem;font-weight:700;color:#16a34a;margin-bottom:6px">② 유예금 <span style="font-weight:400;color:#6b7280">(이자만 매월 납입)</span></div>' +
+    '<div style="display:flex;align-items:center;gap:6px">' +
+    '<input type="text" inputmode="numeric" id="pp-bal-flex" class="prop-sel" placeholder="예: 2,100" style="border-color:#22c55e" oninput="fmtNum(this);ppCalcBal()">' +
+    '<span style="font-size:.82rem;color:#16a34a;font-weight:700">만원</span></div></div>' +
+    '<div class="prop-row"><span class="prop-lbl">금리</span>' +
+    '<select class="prop-sel" id="pp-bal-rate" onchange="ppCalcBal()">' +
+    '<option value="0.018">1.8% (넥쏘 부담DOWN)</option>' +
+    '<option value="0.023">2.3% (EV 재구매)</option>' +
+    '<option value="0.028" selected>2.8% (현대EV 부담DOWN)</option>' +
+    '<option value="0.038">3.8% (EV 일반)</option>' +
+    '<option value="0.054">5.4% (일반승용 36M)</option>' +
+    '<option value="0.056">5.6% (일반승용 60M)</option>' +
+    '</select></div>' +
+    '<div class="prop-row"><span class="prop-lbl">개월수</span>' +
+    '<select class="prop-sel" id="pp-bal-term" onchange="ppCalcBal()">' +
+    '<option value="36" selected>36개월</option>' +
+    '<option value="39">39개월 (넥쏘)</option>' +
+    '<option value="48">48개월</option><option value="60">60개월</option>' +
+    '</select></div>' +
+    '<div id="pp-bal-result" style="display:none;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-radius:12px;padding:14px 16px;margin-top:8px;text-align:center">' +
+    '</div></div>' + // pp-bal-calc
+
+    '</div>' + // pp-calc-wrap
+
+    '<button class="prop-generate" onclick="generateProposal()">📋 고객 제안서 생성</button>' +
+    '<div id="p-result"></div>' +
+    '</div>'; // prop-wrap
+
+  // 첫 차종으로 초기화
+  ppVidChange((VEHICLES.ice||[])[0]?.id||'');
+  ppFinanceChange('standard');  // 기본값 계산기 표시
+}
+
+function ppToggle(id, show){
+  const el = document.getElementById(id);
+  if(el) el.style.display = show ? '' : 'none';
+}
+
+function ppCatChange(cat){
+  const vidSel = document.getElementById('pp-vid');
+  if(!vidSel) return;
+  const list = VEHICLES[cat]||[];
+  vidSel.innerHTML = list.map(v=>`<option value="${v.id}">${v.name}${v.sub?' ('+v.sub+')':''}</option>`).join('');
+  // 베네피아 숨김 (트럭/영업용)
+  const benefiaRow = document.getElementById('pp-benefia-row');
+  if(benefiaRow) benefiaRow.style.display = (cat==='ice'||cat==='ev') ? '' : 'none';
+  if(list.length) ppVidChange(list[0].id);
+}
+
+function ppVidChange(vid){
+  if(!vid) return;
+  const v = getVehicle(vid);
+  if(!v) return;
+
+  // 생산월/재고 옵션 업데이트
+  const mSel = document.getElementById('pp-month');
+  if(mSel){
+    let opts = '<option value="">해당없음</option>';
+    if(v.genesisStock){
+      opts += `<option value="pre6-${v.genesisStock.pre6}">6월이전 생산 (${v.genesisStock.pre6} 할인)</option>`;
+      opts += `<option value="jul-${v.genesisStock.jul}">7월 생산 (${v.genesisStock.jul} 할인)</option>`;
+    } else {
+      const sf = v.summerFesta;
+      const sfKeys = sf ? Object.keys(sf) : [];
+      const sfData = sfKeys.length>0 ? sf[sfKeys[0]] : null;
+      if(sfData){
+        Object.entries(sfData).forEach(([m,amt])=>{
+          if(amt) opts += `<option value="${m}">${m} 생산 → ${amt}</option>`;
+        });
+      }
+    }
+    mSel.innerHTML = opts;
+  }
+
+  // 아이오닉 100만대
+  const ioniqRow = document.getElementById('pp-ioniq-row');
+  const ioniqLbl = document.getElementById('pp-ioniq-label');
+  if(ioniqRow){ ioniqRow.style.display = v.ioniq100k ? '' : 'none'; }
+  if(ioniqLbl && v.ioniq100k) ioniqLbl.textContent = '해당고객 (' + v.ioniq100k + ')';
+
+  // 차종 특화 조건
+  const specialRow = document.getElementById('pp-special-row');
+  const specialLbl = document.getElementById('pp-special-lbl');
+  const specialDesc = document.getElementById('pp-special-desc');
+  const specialMap = {
+    'palisade': ['전용카드 프로모', '전용카드 2000만이상+세이브오토 (50만)'],
+    'porter-lp': ['상생파트너', '1차산업/영업용 충전비 지원 (40만)'],
+    'santafe':   ['블랙패키지', '블랙사이드스텝/블랙잉크 패키지 (5만)'],
+    'avante':    ['운전결심', '운전결심+전용카드500만 (20만캐시백)'],
+    'venue':     ['운전결심', '운전결심+전용카드500만 (20만캐시백)'],
+    'kona':      ['운전결심', '운전결심+전용카드500만 (20만캐시백)'],
+    'kona-ev':   ['운전결심', '운전결심+전용카드500만 (20만캐시백)'],
+  };
+  if(specialRow && specialLbl && specialDesc){
+    const spec = specialMap[vid];
+    if(spec){ specialRow.style.display=''; specialLbl.textContent=spec[0]; specialDesc.textContent=spec[1]; }
+    else specialRow.style.display='none';
+  }
+
+  // 렌트카 수량 옵션 업데이트
+  const rentAmt = document.getElementById('pp-rentamt');
+  if(rentAmt){
+    const isGen = getActiveCat()==='genesis';
+    const opts = isGen
+      ? ['<option value="20">1대 20만</option>','<option value="40">2~3대 40만</option>','<option value="60">4~5대 60만</option>','<option value="100">6대이상 100만</option>']
+      : vid==='solati'
+        ? ['<option value="20">1대 20만</option>','<option value="100">2대이상 100만</option>']
+        : ['<option value="10">1대 10만</option>','<option value="30">2~3대 30만</option>','<option value="40">4~5대 40만</option>','<option value="50">6대이상 50만</option>'];
+    rentAmt.innerHTML = opts.join('');
+  }
+
+  // 법인 옵션 업데이트
+  const cmSel = document.getElementById('pp-cmtype');
+  if(cmSel){
+    const isGen = getActiveCat()==='genesis';
+    cmSel.innerHTML = isGen
+      ? '<option value="corp-50">법인 (50만)</option><option value="ceo-100">대표자 (100만)</option><option value="keyman-50">키맨 (50만)</option>'
+      : '<option value="corp-20">법인 (20만)</option><option value="ceo-50">대표자 (50만)</option><option value="keyman-30">키맨 (30만)</option>';
+  }
+}
+
+function getActiveCat(){
+  const s = document.getElementById('pp-cat');
+  return s ? s.value : 'ice';
+}
+function getActiveVid(){
+  const s = document.getElementById('pp-vid');
+  return s ? s.value : '';
+}
+
+/* ===== 제안서 생성 ===== */
+function resetProposal(){ renderProposal(); }
+function generateProposal(){
+  const vid = getActiveVid();
+  if(!vid){ alert('차종을 선택하세요'); return; }
+  const v = getVehicle(vid);
+  if(!v){ alert('차종 정보 오류'); return; }
+
+  // 첫 번째 숫자만 추출 (예: "300만 (3.5가솔린 450만)" → 300)
+  const parse = s => { const m=String(s||0).match(/(\d+)/); return m?parseInt(m[1]):0; };
+  const g = id => document.getElementById(id);
+  const chked = id => { const el=g(id); return el&&el.checked; };
+  const val = id => { const el=g(id); return el?el.value:''; };
+
+  const items = [];
+  let total = 0;
+
+  // 생산월/재고
+  const monthVal = val('pp-month');
+  if(monthVal){
+    if(monthVal.startsWith('pre6-') || monthVal.startsWith('jul-')){
+      const pct = monthVal.split('-')[1];
+      items.push({icon:'📦', name:'제네시스 재고 할인', val:pct+' 할인', isPct:true});
+    } else {
+      // 썸머페스타 — sfData에서 금액 찾기
+      const sf = v.summerFesta;
+      const sfKeys = sf ? Object.keys(sf) : [];
+      const sfData = sfKeys.length>0 ? sf[sfKeys[0]] : null;
+      const amt = sfData ? sfData[monthVal] : null;
+      if(amt){
+        // 메인 금액만 표시 (괄호 안 부가설명 제거), 예: "300만 (3.5가솔린 450만)" → "300만원"
+        const mainAmt = amt.replace(/\s*\([^)]*\)/g,'').trim();
+        const subNote = amt.match(/\(([^)]*)\)/)?.[1]||'';
+        items.push({icon:'🌟', name:'썸머페스타 ('+monthVal+' 생산)'+(subNote?' *'+subNote:''), val:mainAmt+'원'});
+        total+=parse(amt);
+      }
+    }
+  }
+
+  // 아이오닉 100만대
+  if(chked('pp-ioniq') && v.ioniq100k){
+    const a = parse(v.ioniq100k);
+    items.push({icon:'🎉', name:'아이오닉 100만대 기념', val:v.ioniq100k}); total+=a;
+  }
+
+  // 트레이드인
+  if(chked('pp-tradein')){
+    const tiMap={'corp-ice':'50만','corp-ev':'100만','corp-genesis':'200만','corp-truck':'100만','other-ice':'30만','other-ev':'50만','other-genesis':'100만'};
+    const tiLbl={'corp-ice':'당사 내연','corp-ev':'당사 EV','corp-genesis':'당사 제네시스/넥쏘','corp-truck':'당사 1톤화물','other-ice':'타사 내연','other-ev':'타사 EV','other-genesis':'타사 제네시스'};
+    const tv = val('pp-titype');
+    const ta = tiMap[tv]||''; const tl = tiLbl[tv]||tv;
+    if(ta){ items.push({icon:'🔄', name:'트레이드인 ('+tl+' 매각)', val:ta+'원'}); total+=parse(ta); }
+    if(chked('pp-oldcar')){ items.push({icon:'🚗', name:'노후차 트레이드인 추가', val:'20만원'}); total+=20; }
+  }
+
+  // 현장렌트사
+  if(chked('pp-rentcar')){
+    const ra = parseInt(val('pp-rentamt'))||10;
+    items.push({icon:'🏢', name:'현장렌트사 우대', val:ra+'만원'}); total+=ra;
+  }
+
+  // 베네피아
+  if(chked('pp-benefia')){ items.push({icon:'🎁', name:'베네피아 제휴', val:'20만원'}); total+=20; }
+
+  // 굿프렌드
+  if(chked('pp-gfnew')){ items.push({icon:'👥', name:'굿프렌드 (신규가망)', val:'15만원'}); total+=15; }
+  if(chked('pp-gfexist')){ items.push({icon:'🔁', name:'굿프렌드 (기출고전담)', val:'10만원'}); total+=10; }
+
+  // 현장관리법인
+  if(chked('pp-company')){
+    const cmMap={'corp-20':'20만','ceo-50':'50만','keyman-30':'30만','corp-50':'50만','ceo-100':'100만','keyman-50':'50만'};
+    const cv = val('pp-cmtype'); const ca = cmMap[cv]||'';
+    if(ca){ items.push({icon:'🏛', name:'현장관리법인 ('+cv.replace('-',')+')+')', val:ca+'원'}); total+=parse(ca); }
+  }
+
+  // 차종 특화
+  if(chked('pp-special')){
+    const specAmtMap = {palisade:50, 'porter-lp':40, santafe:5, avante:20, venue:20, kona:20, 'kona-ev':20};
+    const specNm = g('pp-special-desc');
+    const sa = specAmtMap[vid]||0;
+    if(sa){ items.push({icon:'⭐', name: specNm?specNm.textContent:'차종 특화', val:sa+'만원'}); total+=sa; }
+  }
+
+  // 금융
+  const finV = val('pp-finance');
+  const finLbl = {standard:'모빌리티 할부 (표준)',promo:'저금리 프로모션','burden-down':'부담DOWN 유예형 할부',lease:'리스',rent:'렌트',cash:'현금'}[finV]||'표준할부';
+  let finDetail = '';
+  if(finV==='standard') finDetail = v.finance||'';
+  else if(finV==='promo'||finV==='burden-down') finDetail = v.financePromo||v.finance||'';
+
+  const hasPct = items.some(i=>i.isPct);
+  const totalStr = total>0 ? total+'만원' : (hasPct?'할인율 적용':'선택 없음');
+
+  // 결과 카드 생성
+  let html = '<div class="result-card">';
+  html += '<div class="result-hdr"><div class="result-hdr-month">2026년 8월 구매 혜택 안내</div>';
+  html += '<div class="result-hdr-model">'+v.name+(v.sub?' '+v.sub:'')+'</div></div>';
+
+  if(total>0||hasPct){
+    html += '<div class="result-total"><div class="result-total-label">최대 혜택 합계</div>';
+    html += '<div class="result-total-amount">'+totalStr+'</div>';
+    html += '<div class="result-total-sub">'+( hasPct?'+ 별도 %할인 혜택 적용':'금액 할인 기준')+'</div></div>';
+  }
+
+  html += '<div class="result-breakdown">';
+  if(items.length===0){
+    html += '<div style="color:#bbb;text-align:center;padding:20px;font-size:.9rem">위에서 조건을 선택 후 생성하세요</div>';
+  } else {
+    items.forEach(i=>{
+      html += '<div class="result-item">';
+      html += '<span class="result-item-name">'+i.icon+' '+i.name+'</span>';
+      html += '<span class="result-item-amt">'+i.val+'</span>';
+      html += '</div>';
+    });
+  }
+  if(v.evBenefit){
+    html += '<div class="result-item"><span class="result-item-name">⚡ EV 구매혜택</span>';
+    html += '<span class="result-item-amt" style="color:#0369a1">'+v.evBenefit+'</span></div>';
+  }
+  html += '</div>';
+
+  if(finDetail){
+    html += '<div class="result-finance"><div class="result-finance-title">💳 금융: '+finLbl+'</div>';
+    html += '<div class="result-finance-body">'+finDetail+'</div></div>';
+  }
+
+  // 계산기 결과 포함
+  const finVNow = val('pp-finance');
+  if(finVNow==='standard'||finVNow==='promo'){
+    const pP = getNum('pp-std-principal');
+    const rR = parseFloat(document.getElementById('pp-std-rate')?.value||'0.054');
+    const nN = parseInt(document.getElementById('pp-std-term')?.value||'36');
+    if(pP>0){
+      const mr = rR/12;
+      const mly = mr===0 ? pP/nN : pP*mr*Math.pow(1+mr,nN)/(Math.pow(1+mr,nN)-1);
+      const mRnd = Math.round(mly*10)/10;
+      html += '<div style="background:linear-gradient(135deg,#065f46,#047857);color:#fff;padding:14px 18px;margin:0 0 0 0">' +
+        '<div style="font-size:.75rem;opacity:.85;margin-bottom:4px">💰 예상 월납입금 (표준형)</div>' +
+        '<div style="font-size:1.6rem;font-weight:900">' + mRnd.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '만원/월</div>' +
+        '<div style="font-size:.7rem;opacity:.75;margin-top:3px">할부원금 '+pP.toLocaleString()+'만원 / '+(rR*100).toFixed(1)+'% / '+nN+'개월</div></div>';
+    }
+  } else if(finVNow==='burden-down'){
+    const nP = getNum('pp-bal-normal');
+    const fP = getNum('pp-bal-flex');
+    const rR = parseFloat(document.getElementById('pp-bal-rate')?.value||'0.028');
+    const nN = parseInt(document.getElementById('pp-bal-term')?.value||'36');
+    if(nP>0||fP>0){
+      const mr = rR/12;
+      const nm = nP<=0?0:mr===0?nP/nN:nP*mr*Math.pow(1+mr,nN)/(Math.pow(1+mr,nN)-1);
+      const fi = fP*mr;
+      const tot = Math.round((nm+fi)*10)/10;
+      html += '<div style="background:linear-gradient(135deg,#065f46,#047857);color:#fff;padding:14px 18px">' +
+        '<div style="font-size:.75rem;opacity:.85;margin-bottom:4px">💰 예상 월납입금 (유예형)</div>' +
+        '<div style="font-size:1.6rem;font-weight:900">' + tot.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '만원/월</div>' +
+        '<div style="font-size:.7rem;opacity:.75;margin-top:3px">' +
+        '① '+Math.round(nm*10)/10+'만원 (원리금균등) + ② '+Math.round(fi*10)/10+'만원 (유예금이자)</div></div>';
+    }
+  }
+
+  html += '<div class="result-notice">※ 조건 충족 및 출고 전 타겟코드 입력 시 적용<br>※ 타겟 중복 최대 3개 / 총 DC 차가의 30% 초과 불가</div>';
+  html += '<div class="result-btn-row">';
+  html += '<button class="result-btn result-btn-print" onclick="window.print()">🖨 인쇄</button>';
+  html += '<button class="result-btn result-btn-reset" onclick="resetProposal()">🔄 다시하기</button>';
+  html += '</div></div>';
+
+  const el = g('p-result');
+  if(el){ el.innerHTML = html; el.scrollIntoView({behavior:'smooth', block:'nearest'}); }
+}
+
+/* ===== 고객 제안서 계산기 ===== */
+function ppFinanceChange(finV){
+  const wrap = document.getElementById('pp-calc-wrap');
+  const std  = document.getElementById('pp-std-calc');
+  const bal  = document.getElementById('pp-bal-calc');
+  if(!wrap) return;
+  if(finV==='standard'||finV==='promo'){
+    wrap.style.display=''; std.style.display=''; bal.style.display='none';
+  } else if(finV==='burden-down'){
+    wrap.style.display=''; std.style.display='none'; bal.style.display='';
+  } else {
+    wrap.style.display='none';
+  }
+}
+
+function ppCalcStd(){
+  const p = getNum('pp-std-principal');  // 만원
+  const annualRate = parseFloat(document.getElementById('pp-std-rate')?.value)||0.054;
+  const n = parseInt(document.getElementById('pp-std-term')?.value)||36;
+  const el = document.getElementById('pp-std-result');
+  if(!el) return;
+  if(p<=0){ el.style.display='none'; return; }
+
+  const r = annualRate/12;
+  const monthly = r===0 ? p/n : p * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+  const mRounded = Math.round(monthly*10)/10;
+  const totalInterest = Math.round((mRounded*n - p)*10)/10;
+
+  el.style.display='block';
+  el.innerHTML =
+    '<div style="font-size:.75rem;opacity:.8;margin-bottom:4px">월납입금 (표준형)</div>' +
+    '<div style="font-size:1.9rem;font-weight:900">' + mRounded.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '<span style="font-size:1rem">만원/월</span></div>' +
+    '<div style="font-size:.72rem;opacity:.75;margin-top:5px">' +
+    '할부원금 ' + p.toLocaleString() + '만원 / ' + n + '개월 / 총이자 ' + totalInterest.toLocaleString() + '만원</div>';
+}
+
+function ppCalcBal(){
+  const normalP = getNum('pp-bal-normal');  // 만원
+  const flexP   = getNum('pp-bal-flex');    // 만원
+  const annualRate = parseFloat(document.getElementById('pp-bal-rate')?.value)||0.028;
+  const n = parseInt(document.getElementById('pp-bal-term')?.value)||36;
+  const el = document.getElementById('pp-bal-result');
+  if(!el) return;
+  if(normalP<=0 && flexP<=0){ el.style.display='none'; return; }
+
+  const r = annualRate/12;
+  const normalMonthly = normalP<=0 ? 0 :
+    r===0 ? normalP/n : normalP * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+  const flexInterest = flexP * r;
+  const total = Math.round((normalMonthly + flexInterest)*10)/10;
+  const nm = Math.round(normalMonthly*10)/10;
+  const fi = Math.round(flexInterest*10)/10;
+
+  el.style.display='block';
+  el.innerHTML =
+    '<div style="font-size:.75rem;opacity:.8;margin-bottom:6px">★ 월납입금 합계 (① + ②)</div>' +
+    '<div style="font-size:1.9rem;font-weight:900">' + total.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '<span style="font-size:1rem">만원/월</span></div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px">' +
+    '<div style="background:rgba(59,130,246,.25);border-radius:8px;padding:8px;text-align:center">' +
+    '<div style="font-size:.65rem;opacity:.8">① 원리금균등</div>' +
+    '<div style="font-size:1rem;font-weight:800">' + nm.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '만원</div>' +
+    '<div style="font-size:.62rem;opacity:.65">원금 ' + normalP.toLocaleString() + '만원</div></div>' +
+    '<div style="background:rgba(34,197,94,.25);border-radius:8px;padding:8px;text-align:center">' +
+    '<div style="font-size:.65rem;opacity:.8">② 유예금 이자</div>' +
+    '<div style="font-size:1rem;font-weight:800">' + fi.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '만원</div>' +
+    '<div style="font-size:.62rem;opacity:.65">유예금 ' + flexP.toLocaleString() + '만원</div></div>' +
+    '</div>';
+}
+
+/* ===== 판촉지원금 (PIN 잠금) ===== */
+let pinBuf = '';
+const DEFAULT_PIN = '1234';
+function getPin(){ return localStorage.getItem('cm_pin')||DEFAULT_PIN; }
+
+function openIncentive(){
+  if(sessionStorage.getItem('pin_ok')==='1'){ switchTab('incentive'); return; }
+  pinBuf=''; updatePinDots();
+  document.getElementById('pinErr').textContent='';
+  document.getElementById('pinOverlay').classList.add('open');
+}
+function closePinOverlay(){ document.getElementById('pinOverlay').classList.remove('open'); }
+function pinInput(d){
+  if(d==='X'){pinBuf='';updatePinDots();return;}
+  if(pinBuf.length>=4) return;
+  pinBuf+=d; updatePinDots();
+  if(pinBuf.length===4){
+    if(pinBuf===getPin()){
+      sessionStorage.setItem('pin_ok','1');
+      closePinOverlay();
+      switchTab('incentive');
+    } else {
+      document.getElementById('pinErr').textContent='PIN이 맞지 않습니다';
+      setTimeout(()=>{pinBuf='';updatePinDots();document.getElementById('pinErr').textContent='';},800);
+    }
+  }
+}
+function pinClear(){ if(pinBuf.length>0) pinBuf=pinBuf.slice(0,-1); updatePinDots(); }
+function updatePinDots(){
+  for(let i=0;i<4;i++){
+    document.getElementById('pd'+i).classList.toggle('filled',i<pinBuf.length);
+  }
+}
+
+function renderIncentivePage(){
+  const el=document.getElementById('pg-incentive');
+  el.innerHTML=`<div style="padding:10px">
+  <div class="inc-alert">🔒 카마스터 전용 자료입니다. 고객에게 노출되지 않도록 주의하세요.</div>
+
+  <!-- 일반 판촉지원금 -->
+  ${INCENTIVE.general.map(g=>`
+  <div class="inc-section">
+    <div class="inc-title">💰 ${g.name} <span style="font-size:.7rem;background:${g.badge==='★신규'?'var(--purple)':g.badge==='강화'?'var(--green)':'#9ca3af'};color:#fff;padding:1px 6px;border-radius:6px;font-weight:700">${g.badge}</span></div>
+    <div style="display:inline-block;background:#fee2e2;color:var(--red);padding:1px 8px;border-radius:6px;font-size:.7rem;font-weight:700;margin-bottom:8px">📅 ${g.period}</div>
+    <table class="inc-table">
+      <tr><th>대상</th><th>포상</th><th>조건</th></tr>
+      ${g.rows.map(r=>`<tr><td>${r.label}</td><td class="inc-amt">${r.amt}</td><td>${r.cond}</td></tr>`).join('')}
+    </table>
+    ${g.note?`<div class="inc-note">※ ${g.note}</div>`:''}
+  </div>`).join('')}
+
+  <!-- 트럭 판촉지원금 -->
+  <div class="inc-section">
+    <div class="inc-title">🚛 상용/트럭 판촉지원금</div>
+    ${INCENTIVE.truck.map(t=>`
+    <div style="margin-bottom:14px">
+      <div style="font-weight:700;font-size:.85rem;color:#374151;margin-bottom:6px">${t.name} <span style="font-size:.72rem;background:#f3f4f6;color:#6b7280;padding:1px 5px;border-radius:4px">${t.period}</span></div>
+      <table class="inc-table">
+        <tr><th>구분</th><th>포상</th><th>적용 조건</th></tr>
+        ${t.rows.map(r=>`<tr><td>${r.label}</td><td class="inc-amt">${r.amt}</td><td>${r.cond}</td></tr>`).join('')}
+      </table>
+      ${t.note?`<div class="inc-note">※ ${t.note}</div>`:''}
+    </div>`).join('<hr style="border:none;border-top:1px dashed #e5e7eb;margin:10px 0">')}
+  </div>
+
+  <!-- 캠페인 포상 -->
+  <div class="inc-section">
+    <div class="inc-title">🏆 3분기 캠페인 포상 (7~9월)</div>
+    ${INCENTIVE.campaign.map(c=>`
+    <div style="margin-bottom:14px">
+      <div style="font-weight:700;font-size:.85rem;color:#374151;margin-bottom:4px">${c.name}</div>
+      ${c.desc?`<div style="font-size:.75rem;color:#6b7280;margin-bottom:6px;white-space:pre-line">${c.desc}</div>`:''}
+      <table class="inc-table">
+        <tr><th>구분</th><th>포상</th><th>기준</th></tr>
+        ${c.rows.map(r=>`<tr><td>${r.label}</td><td class="inc-amt">${r.amt}</td><td>${r.cond}</td></tr>`).join('')}
+      </table>
+      ${c.note?`<div class="inc-note">※ ${c.note}</div>`:''}
+    </div>`).join('<hr style="border:none;border-top:1px dashed #e5e7eb;margin:10px 0">')}
+  </div>
+
+  <!-- 전용카드 이용수수료 -->
+  <div class="inc-section">
+    <div class="inc-title">💳 현대자동차 전용카드 이용수수료 (8월)</div>
+    <div style="font-size:.75rem;color:var(--gray);margin-bottom:8px">전용카드 결제 시 카마스터/대리점에 지급되는 수수료</div>
+    <table class="inc-table">
+      <tr><th>결제 유형</th><th>수수료율</th><th>조건</th></tr>
+      ${CARD_DATA.incentive.map(r=>`<tr><td>${r.label}</td><td class="inc-amt">${r.rate}</td><td>${r.note}</td></tr>`).join('')}
+    </table>
+    <div class="inc-note" style="margin-top:8px">※ 세이브오토 신청 필수 (미신청 시 수수료 미지급)</div>
+
+    <div style="font-weight:700;font-size:.85rem;color:#374151;margin:14px 0 6px">📈 8월 추가 수수료 프로모션</div>
+    ${CARD_DATA.promos.map(p=>`
+    <div style="margin-bottom:12px">
+      <div style="font-weight:700;font-size:.82rem;color:var(--navy);margin-bottom:5px">${p.name}</div>
+      <div style="font-size:.75rem;color:var(--gray);margin-bottom:6px;white-space:pre-line">${p.cond}</div>
+      <table class="inc-table">
+        <tr><th>결제 구간</th><th>추가 수수료</th></tr>
+        ${p.tiers.map(t=>`<tr><td>${t.range}</td><td class="inc-amt">${t.bonus}</td></tr>`).join('')}
+      </table>
+      ${p.note?`<div class="inc-note">※ ${p.note}</div>`:''}
+    </div>`).join('<hr style="border:none;border-top:1px dashed #e5e7eb;margin:10px 0">')}
+  </div>
+
+  <!-- PIN 변경 -->
+  <div class="inc-section">
+    <div class="inc-title">⚙️ 설정</div>
+    <div style="font-size:.8rem;color:#374151;margin-bottom:8px">현재 PIN 변경</div>
+    <div style="display:flex;gap:8px">
+      <input type="password" inputmode="numeric" maxlength="4" placeholder="새 PIN 4자리" id="newPin" class="prop-sel" style="max-width:140px">
+      <button class="pin-change-btn" onclick="changePin()">변경</button>
+      <button class="pin-change-btn" style="background:#dc2626" onclick="lockIncentive()">잠금</button>
+    </div>
+    <div style="font-size:.7rem;color:#bbb;margin-top:6px">기본 PIN: 1234</div>
+  </div>
+</div>`;
+}
+
+function changePin(){
+  const np=document.getElementById('newPin').value;
+  if(np.length!==4||!/^\d{4}$/.test(np)){alert('4자리 숫자를 입력하세요');return;}
+  localStorage.setItem('cm_pin',np);
+  alert('PIN이 변경되었습니다.');
+  document.getElementById('newPin').value='';
+}
+function lockIncentive(){
+  sessionStorage.removeItem('pin_ok');
+  switchTab('home');
+}
+
+/* ===== TAB SWITCHING ===== */
+const TABS = [
+  {id:'home',label:'🏠 홈',nav:0},
+  {id:'help',label:'❓ 사용방법',nav:-1},
+  {id:'ice',label:'🚗 국내승용',nav:1},
+  {id:'ev',label:'⚡ EV/수소',nav:-1},
+  {id:'genesis',label:'✦ 제네시스',nav:-1},
+  {id:'truck',label:'🚛 상용/트럭',nav:-1},
+  {id:'taxi',label:'🚕 영업용',nav:-1},
+  {id:'targets',label:'🎯 타겟조건',nav:-1},
+  {id:'calc',label:'🧮 할부금계산기',nav:2},
+  {id:'proposal',label:'📝 고객 제안서',nav:3},
+  {id:'incentive',label:'🔒 판촉지원금',nav:-1},
+];
+
+/* ===== 사용방법 ===== */
+function renderHelp(){
+  const pg = document.getElementById('pg-help');
+  if(!pg) return;
+  function sec(icon, title, body){
+    return `<div class="hcard" style="margin-bottom:10px">
+      <div class="hcard-title">${icon} ${title}</div>${body}</div>`;
+  }
+  function step(n, txt){ return `<div style="display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #f3f4f6">
+    <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:var(--sky);color:#fff;border-radius:50%;font-size:.72rem;font-weight:800;flex-shrink:0">${n}</span>
+    <span style="font-size:.82rem;color:#374151;line-height:1.5">${txt}</span></div>`; }
+  function row(label, desc){ return `<div class="hrow"><span class="hveh">${label}</span><span class="hcond">${desc}</span></div>`; }
+
+  pg.innerHTML = `<div style="padding:10px">
+
+  ${sec('📱','앱 구조 안내',`
+    ${row('🏠 홈','8월 주요 강조사항 · 금리 요약 · 타겟조건 요약 · 전용카드 고객혜택')}
+    ${row('🚗 차종조건','국내승용 / EV·수소 / 제네시스 / 상용·트럭 / 영업용 — 차종별 판매조건 전체')}
+    ${row('🧮 할부금계산기','표준형 + 차량반납 유예형 할부 계산 · 금융 프로모션 요약')}
+    ${row('📝 고객 제안서','차종 선택 → 조건 체크 → 고객 혜택 합계 자동 계산 → 인쇄')}
+    ${row('🔒 판촉','PIN 입력 후 카마스터 전용 판촉지원금 · 인센티브 정보')}
+    ${row('❓ 사용방법','이 화면')}
+  `)}
+
+  ${sec('🚗','차종 조건 확인하기',`
+    ${step(1,'상단 탭에서 카테고리 선택 <b>(국내승용 / EV·수소 / 제네시스 / 상용 / 영업용)</b>')}
+    ${step(2,'차종 카드를 탭하면 아래에 상세 조건이 펼쳐집니다')}
+    ${step(3,'<b>🚚 납기 안내</b> — 생산월별 납기 + 재고 현황 (8월 1일 기준)')}
+    ${step(4,'<b>🌟 썸머페스타</b> — 생산월별 조건 표로 확인')}
+    ${step(5,'<b>💳 금융 조건</b> — 프로모션 있는 차종(EV 등)은 기본 펼침, 없으면 탭해서 확인')}
+    ${step(6,'<b>📊 부담DOWN 월납입금</b> — EV 차종만 표시 (신규/재구매별 예시)')}
+    ${step(7,'<b>🏦 제네시스 파이낸스</b> — 리스/렌트/TBC 월납입금 테이블')}
+    ${step(8,'<b>🎯 타겟조건</b> — 해당 차종에 적용 가능한 타겟 목록 + 적용 기준')}
+    <div class="nbox" style="margin-top:6px">※ 상단 🔍 검색 버튼으로 차종명 직접 검색 가능</div>
+  `)}
+
+  ${sec('📝','고객 제안서 만들기',`
+    ${step(1,'하단 <b>📝 제안서</b> 탭 이동')}
+    ${step(2,'<b>1단계</b> — 카테고리 선택 → 차종 선택 → 세부 차종 선택')}
+    ${step(3,'<b>2단계</b> — 생산월 선택 (썸머페스타 조건 자동 적용)')}
+    ${step(4,'해당 고객 조건 체크: 트레이드인 ✓ / 베네피아 ✓ / 굿프렌드 ✓ 등')}
+    ${step(5,'<b>3단계</b> — 금융 방식 선택 (모빌리티할부 / 저금리 / 부담DOWN 등)')}
+    ${step(6,'<b>📋 고객 제안서 생성</b> 버튼 → 총 혜택 합계 + 항목별 금액 표시')}
+    ${step(7,'<b>🖨 인쇄</b> 버튼으로 고객에게 보여주거나 출력 가능')}
+    <div class="nbox" style="margin-top:6px">※ 트레이드인 체크 시 당사/타사·차종 유형 추가 선택<br>※ 총 DC는 차가의 30% 초과 불가 / 타겟 최대 3개 중복</div>
+  `)}
+
+  ${sec('🧮','할부금계산기 사용법',`
+    <div style="font-size:.82rem;font-weight:700;color:var(--navy);margin:8px 0 4px">표준형 할부</div>
+    ${step(1,'차량가 · 총할인액 · 보조금 · 선수율 입력 → 자동 계산')}
+    ${step(2,'<b>또는</b> 할부원금 직접 입력 (녹색 필드) → 위 항목 무시하고 원금 기준 계산')}
+    ${step(3,'금리 · 기간 선택 → 월납입금 + 총이자 자동 표시')}
+    <div style="font-size:.82rem;font-weight:700;color:var(--navy);margin:10px 0 4px">차량반납 유예형 할부</div>
+    ${step(1,'<b>① 원리금균등 상환 원금</b> 입력 (매월 균등 납입하는 원금)')}
+    ${step(2,'<b>② 유예금</b> 입력 (이자만 매월 납입 / 별도 상환)')}
+    ${step(3,'금리 · 기간 선택 → 월납입금 합계(①+②) 자동 계산')}
+    <div class="nbox" style="margin-top:6px">※ ② 유예금을 0 입력하면 표준형과 동일<br>※ 유예금 상환시 해당 월이자 감소</div>
+  `)}
+
+  ${sec('🔒','판촉지원금 페이지 (카마스터 전용)',`
+    ${step(1,'하단 <b>🔒 판촉</b> 버튼 또는 우상단 🔒 버튼 탭')}
+    ${step(2,'PIN 4자리 입력 (기본: 1234)')}
+    ${step(3,'판촉지원금 · 인센티브 · 캠페인 정보 확인')}
+    ${step(4,'PIN 변경: 판촉 페이지 하단 ⚙️ 설정에서 변경 가능')}
+    ${step(5,'<b>잠금</b> 버튼으로 즉시 잠금 (고객 보여줄 때 사용)')}
+    <div class="nbox" style="margin-top:6px">※ PIN은 기기에 저장 / 앱 종료 후 재접속 시 다시 입력 필요</div>
+  `)}
+
+  ${sec('💡','상담 활용 팁',`
+    ${row('상담 전','홈 탭에서 이달 주요 강조사항 먼저 숙지')}
+    ${row('차종 선택 시','납기 안내 + 썸머페스타 조건 → 고객에게 즉시 안내')}
+    ${row('혜택 설명 시','📝 제안서로 총 혜택 합계 보여주기')}
+    ${row('할부 문의 시','🧮 계산기 → 원하는 금리/기간으로 바로 계산')}
+    ${row('재고 확인','납기 안내의 📦 재고 배지 확인 (8월 1일 기준)')}
+    ${row('고객 앞 화면 공유','판촉 탭은 🔒 잠금 후 보여주기')}
+  `)}
+
+  <div class="hcard" style="background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff">
+    <div style="font-size:.9rem;font-weight:800;margin-bottom:8px">📅 매월 업데이트 필요 항목</div>
+    <div style="font-size:.78rem;line-height:1.9;opacity:.9">
+      ✅ 판매조건 Excel → 차종별 썸머페스타 · 트레이드인 · 전시차 · 세이브오토<br>
+      ✅ 납기 공지 Excel → 차종별 납기 · 재고 현황<br>
+      ✅ 비즈니스플랜 PPT → 판촉지원금 · 인센티브 금액<br>
+      ✅ 금융프로모션 PPT → 차종별 금리 · 월납입금 예시<br>
+      ✅ 제네시스 파이낸스 PPT → 월납입금 테이블<br>
+      <br>
+      <b>→ 별도 제공된 「매월_업데이트_가이드.html」 파일 참조</b>
+    </div>
+  </div>
+
+  </div>`;
+}
+
+/* ===== 납입금 계산기 ===== */
+function renderCalc(){
+  const pg = document.getElementById('pg-calc');
+  if(!pg) return;
+  pg.innerHTML = `<div style="padding:10px">
+
+  <!-- 표준형 할부 계산기 -->
+  <div class="hcard">
+    <div class="hcard-title">🧮 표준형 할부 월납입금 계산기</div>
+    <div class="prop-row"><span class="prop-lbl">차량가</span>
+      <div style="display:flex;align-items:center;gap:6px;flex:1">
+        <input type="text" inputmode="numeric" id="c-price" class="prop-sel" placeholder="예: 50,000,000" value="50,000,000" oninput="fmtNum(this);calcMonthly()">
+        <span style="font-size:.8rem;color:#6b7280">원</span>
+      </div></div>
+    <div class="prop-row"><span class="prop-lbl">총 할인액</span>
+      <div style="display:flex;align-items:center;gap:6px;flex:1">
+        <input type="text" inputmode="numeric" id="c-dc" class="prop-sel" placeholder="예: 3,000,000" value="3,000,000" oninput="fmtNum(this);calcMonthly()">
+        <span style="font-size:.8rem;color:#6b7280">원</span>
+      </div></div>
+    <div class="prop-row"><span class="prop-lbl">보조금</span>
+      <div style="display:flex;align-items:center;gap:6px;flex:1">
+        <input type="text" inputmode="numeric" id="c-sub" class="prop-sel" placeholder="예: 0" value="0" oninput="fmtNum(this);calcMonthly()">
+        <span style="font-size:.8rem;color:#6b7280">원</span>
+      </div></div>
+    <div class="prop-row"><span class="prop-lbl">선수율</span>
+      <select class="prop-sel" id="c-down" onchange="calcMonthly()">
+        <option value="0.01">1%</option>
+        <option value="0.05">5%</option>
+        <option value="0.10">10%</option>
+        <option value="0.20">20%</option>
+        <option value="0.30">30%</option>
+      </select></div>
+
+    <!-- 할부원금 직접 입력 구분선 -->
+    <div style="display:flex;align-items:center;gap:8px;margin:6px 0">
+      <div style="flex:1;height:1px;background:#e5e7eb"></div>
+      <span style="font-size:.75rem;color:#9ca3af;font-weight:600">또는 할부원금 직접 입력</span>
+      <div style="flex:1;height:1px;background:#e5e7eb"></div>
+    </div>
+    <div class="prop-row" style="background:#f0fdf4;border-radius:8px;padding:8px 4px;margin:0 -4px">
+      <span class="prop-lbl" style="color:var(--green);font-weight:700">할부원금</span>
+      <div style="display:flex;align-items:center;gap:6px;flex:1">
+        <input type="text" inputmode="numeric" id="c-principal" class="prop-sel" placeholder="입력 시 위 항목 무시하고 직접 계산"
+          style="border-color:var(--green)" oninput="fmtNum(this);calcMonthly()">
+        <span style="font-size:.8rem;color:var(--green);font-weight:700">원</span>
+      </div></div>
+    <div id="c-mode-label" style="font-size:.72rem;color:#6b7280;text-align:right;margin-bottom:4px">자동계산 모드</div>
+
+    <div class="prop-row"><span class="prop-lbl">할부 금리</span>
+      <select class="prop-sel" id="c-rate" onchange="calcMonthly()">
+        <option value="0.027">2.7% (마이티 저금리 36M)</option>
+        <option value="0.028">2.8% (EV 부담DOWN)</option>
+        <option value="0.029">2.9% (마이티 저금리 60M)</option>
+        <option value="0.030">3.0% (그랜저 저금리 36M)</option>
+        <option value="0.045">4.5% (전용카드 13~18M)</option>
+        <option value="0.049">4.9% (쏘나타/EV 36M)</option>
+        <option value="0.050">5.0% (쏘나타/EV 48M)</option>
+        <option value="0.051">5.1% (쏘나타/EV 60M)</option>
+        <option value="0.054" selected>5.4% (일반승용 36M)</option>
+        <option value="0.055">5.5% (일반승용 48M)</option>
+        <option value="0.056">5.6% (일반승용 60M)</option>
+        <option value="0.057">5.7% (전용카드 20~50M)</option>
+        <option value="0.059">5.9% (전용카드 60M)</option>
+        <option value="0.065">6.5% (포터/파비스 36M)</option>
+        <option value="0.067">6.7% (포터/파비스 60M)</option>
+      </select></div>
+    <div class="prop-row"><span class="prop-lbl">할부 기간</span>
+      <select class="prop-sel" id="c-term" onchange="calcMonthly()">
+        <option value="24">24개월</option>
+        <option value="36" selected>36개월</option>
+        <option value="48">48개월</option>
+        <option value="60">60개월</option>
+        <option value="72">72개월</option>
+        <option value="84">84개월</option>
+        <option value="96">96개월</option>
+        <option value="120">120개월</option>
+      </select></div>
+    <!-- 결과 -->
+    <div id="calc-result" style="background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-radius:12px;padding:16px;margin-top:10px;text-align:center">
+      <div style="font-size:.78rem;opacity:.8;margin-bottom:4px">월 납입금</div>
+      <div id="c-monthly" style="font-size:2rem;font-weight:900">-</div>
+      <div id="c-detail" style="font-size:.73rem;opacity:.8;margin-top:6px;line-height:1.7">-</div>
+    </div>
+  </div>
+
+  <!-- 차량반납 유예형 계산기 -->
+  <div class="hcard">
+    <div class="hcard-title">🔄 차량반납 유예형 할부 계산기</div>
+    <div style="font-size:.78rem;color:var(--gray);margin-bottom:12px">EV 부담DOWN · 넥쏘 · 포터EV 등<br>두 원금을 직접 입력 → 월납입금 자동 합산</div>
+
+    <!-- 원리금균등 상환 원금 -->
+    <div style="background:#eff6ff;border-radius:10px;padding:10px 12px;margin-bottom:8px">
+      <div style="font-size:.78rem;font-weight:700;color:#1d4ed8;margin-bottom:6px">① 원리금균등 상환 원금 <span style="font-weight:400;color:#6b7280">(매월 균등 납입)</span></div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <input type="text" inputmode="numeric" id="u-normal" class="prop-sel" placeholder="예: 14,000,000" value="14,000,000"
+          style="border-color:#3b82f6" oninput="fmtNum(this);calcUyeage()">
+        <span style="font-size:.8rem;color:#3b82f6;font-weight:700">원</span>
+      </div>
+    </div>
+
+    <!-- 유예금 -->
+    <div style="background:#f0fdf4;border-radius:10px;padding:10px 12px;margin-bottom:8px">
+      <div style="font-size:.78rem;font-weight:700;color:#16a34a;margin-bottom:6px">② 유예금 <span style="font-weight:400;color:#6b7280">(유예금 — 이자만 매월 납입)</span></div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <input type="text" inputmode="numeric" id="u-flex" class="prop-sel" placeholder="예: 21,000,000" value="21,000,000"
+          style="border-color:#22c55e" oninput="fmtNum(this);calcUyeage()">
+        <span style="font-size:.8rem;color:#16a34a;font-weight:700">원</span>
+      </div>
+    </div>
+
+    <div class="prop-row"><span class="prop-lbl">할부 금리</span>
+      <select class="prop-sel" id="u-rate" onchange="calcUyeage()">
+        <option value="0.018">1.8% (넥쏘 부담Down)</option>
+        <option value="0.023">2.3% (EV 재구매)</option>
+        <option value="0.028" selected>2.8% (현대EV 부담Down)</option>
+        <option value="0.038">3.8% (EV 일반)</option>
+        <option value="0.054">5.4% (일반승용 36M)</option>
+        <option value="0.059">5.9% (일반승용 60M)</option>
+      </select></div>
+    <div class="prop-row"><span class="prop-lbl">할부 기간</span>
+      <select class="prop-sel" id="u-term" onchange="calcUyeage()">
+        <option value="36" selected>36개월</option>
+        <option value="39">39개월 (넥쏘)</option>
+        <option value="48">48개월</option>
+        <option value="60">60개월</option>
+      </select></div>
+
+    <div id="uyeage-result"></div>
+  </div>
+
+  <!-- 금융 프로모션 요약 -->
+  <div class="hcard">
+    <div class="hcard-title">💡 8월 주요 금융 프로모션 요약</div>
+    <div class="hrow"><span class="hveh">그랜저 신형</span><span class="hcond">5~6월 생산분 限 저금리: 36M 3.0% / 48M 3.5% / 60M 4.0%<br>이자절감 약 200~230만원 (캘리그래피 기준)</span></div>
+    <div class="hrow"><span class="hveh">아이오닉5/6·코나EV</span><span class="hcond">EV 부담DOWN 36M<br>신규 2.8% (월 15~20만) / 재구매 2.3% (월 10~18만)</span></div>
+    <div class="hrow"><span class="hveh">넥쏘</span><span class="hcond">넥쏘 부담DOWN 39M / 금리 1.8% / 월 약 8만원<br>(트레이드인 200만+보조금 적용 기준)</span></div>
+    <div class="hrow"><span class="hveh">포터 EV</span><span class="hcond">포터EV 부담DOWN 36M / 금리 2.8%<br>소상공인 월 5만 / 일반 월 14만원</span></div>
+    <div class="hrow"><span class="hveh">마이티</span><span class="hcond">표준 저금리 60M 2.9% / 6개월 무이자 거치 / 최대 120개월<br>구매부담Down: 60M 유예율 50%, 월 84만원</span></div>
+    <div class="hrow"><span class="hveh">파비스</span><span class="hcond">구매부담Down 60M 138만원 (표준 213만 대비 절감)<br>3개월 부담Zero 옵션 가능</span></div>
+    <div class="hrow"><span class="hveh">EV 택시</span><span class="hcond">아이오닉5/6·코나EV 택시: 36M 2.7% / 48M 2.8% / 60M 2.9%<br>이자절감 약 230~260만원</span></div>
+    <div class="hrow"><span class="hveh">제네시스</span><span class="hcond">파이낸스 렌트/리스 G80 91만~/G90 163만~/GV80 98만~<br>THE BETTER CHOICE: 외산/제네시스 보유 고객 추가 4% 혜택</span></div>
+    <div class="hrow"><span class="hveh">팰리세이드</span><span class="hcond">전용카드 2,000만이상+세이브오토 → 50만 혜택 (25만DC+25만캐시백)</span></div>
+    <div class="hrow"><span class="hveh">트레이드인 금융</span><span class="hcond">전용카드 1,000만이상+세이브오토 → 50만 혜택<br>+ 할부 금리 -0.5%p (모빌리티 4.6%, 일반 5.4%)</span></div>
+  </div>
+
+  </div>`;
+  calcMonthly();
+  calcUyeage();
+}
+
+function fmtNum(el){
+  // 커서 위치 보존하며 천단위 콤마 적용
+  const pos = el.selectionStart;
+  const raw = el.value.replace(/,/g,'').replace(/[^0-9]/g,'');
+  const formatted = raw ? parseInt(raw).toLocaleString('ko-KR') : '';
+  el.value = formatted;
+  // 콤마 추가로 길이 변할 수 있으므로 커서 끝에 위치
+  try{ el.setSelectionRange(formatted.length, formatted.length); }catch(e){}
+}
+function getNum(id){ return parseInt((document.getElementById(id)?.value||'0').replace(/,/g,'').replace(/[^0-9]/g,''))||0; }
+
+function calcMonthly(){
+  const annualRate = parseFloat(document.getElementById('c-rate')?.value)||0.054;
+  const term = parseInt(document.getElementById('c-term')?.value)||36;
+  const r = annualRate/12;
+
+  // 할부원금 직접 입력 여부 확인
+  const directPrincipal = getNum('c-principal');
+  const modeLabel = document.getElementById('c-mode-label');
+
+  let principal, down, detailExtra;
+
+  if(directPrincipal > 0){
+    // ▶ 직접 입력 모드: 할부원금 그대로 사용
+    principal = directPrincipal;
+    down = 0;
+    detailExtra = '';
+    if(modeLabel) modeLabel.innerHTML = '<span style="color:var(--green);font-weight:700">✅ 할부원금 직접 입력 모드</span>';
+  } else {
+    // ▶ 자동계산 모드: 차량가 - 할인 - 보조금 - 선수금
+    const price = getNum('c-price');
+    const dc    = getNum('c-dc');
+    const sub   = getNum('c-sub');
+    const downRate = parseFloat(document.getElementById('c-down')?.value)||0.01;
+    const netPrice = price - dc - sub;
+    if(netPrice <= 0){ document.getElementById('c-monthly').textContent='-'; return; }
+    down = Math.round(netPrice * downRate);
+    principal = netPrice - down;
+    detailExtra = `선수금 ${down.toLocaleString()}원 / `;
+    if(modeLabel) modeLabel.innerHTML = '<span style="color:#9ca3af">자동계산 모드 (할부원금 직접 입력 시 우선 적용)</span>';
+  }
+
+  if(principal <= 0){ document.getElementById('c-monthly').textContent='-'; return; }
+
+  const monthly = r===0 ? Math.round(principal/term) : Math.round(principal * r * Math.pow(1+r,term) / (Math.pow(1+r,term)-1));
+  const totalInterest = monthly*term - principal;
+
+  document.getElementById('c-monthly').textContent = monthly.toLocaleString()+'원';
+  document.getElementById('c-detail').innerHTML =
+    `할부원금 ${principal.toLocaleString()}원 / ${detailExtra}월 ${term}회<br>`+
+    `총 이자 ${totalInterest.toLocaleString()}원 / 총 납입 ${(monthly*term+down).toLocaleString()}원`;
+}
+
+function calcUyeage(){
+  const normalPrincipal = getNum('u-normal');  // ① 원리금균등 상환 원금
+  const flexPrincipal   = getNum('u-flex');    // ② 유예금
+  const annualRate = parseFloat(document.getElementById('u-rate')?.value)||0.028;
+  const term       = parseInt(document.getElementById('u-term')?.value)||36;
+  const el = document.getElementById('uyeage-result');
+  if(!el) return;
+
+  if(normalPrincipal<=0 && flexPrincipal<=0){
+    el.innerHTML='<div style="color:#bbb;text-align:center;padding:16px">금액을 입력하세요</div>';
+    return;
+  }
+
+  const r = annualRate/12;
+
+  // ① 정상할부 월납입금 — 원리금균등상환
+  const normalMonthly = normalPrincipal<=0 ? 0
+    : r===0 ? Math.round(normalPrincipal/term)
+    : Math.round(normalPrincipal * r * Math.pow(1+r,term) / (Math.pow(1+r,term)-1));
+
+  // ② 유예금 월이자 — 잔액에 대한 이자만 납입
+  const flexInterest = Math.round(flexPrincipal * r);
+
+  // ★ 월납입금 합계
+  const totalMonthly = normalMonthly + flexInterest;
+
+  const normalTotalInterest = normalMonthly*term - normalPrincipal;
+
+  el.innerHTML = `
+    <!-- 월납입금 합계 결과 -->
+    <div style="background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-radius:12px;padding:16px;margin-top:10px;margin-bottom:8px">
+      <div style="font-size:.75rem;opacity:.8;margin-bottom:6px">★ 월납입금 합계 (① + ②)</div>
+      <div style="font-size:2.2rem;font-weight:900;margin-bottom:10px">${totalMonthly.toLocaleString()}<span style="font-size:1rem">원/월</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <!-- ① 정상할부 -->
+        <div style="background:rgba(59,130,246,.25);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:.68rem;opacity:.8;margin-bottom:4px">① 정상할부</div>
+          <div style="font-size:.68rem;opacity:.7;margin-bottom:2px">(원리금균등)</div>
+          <div style="font-size:1.15rem;font-weight:900">${normalMonthly.toLocaleString()}원</div>
+          <div style="font-size:.65rem;opacity:.65;margin-top:3px">원금 ${normalPrincipal.toLocaleString()}원</div>
+        </div>
+        <!-- ② 유예금 이자 -->
+        <div style="background:rgba(34,197,94,.25);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:.68rem;opacity:.8;margin-bottom:4px">② 유예금 이자</div>
+          <div style="font-size:.68rem;opacity:.7;margin-bottom:2px">(유예금 잔액 기준 매월)</div>
+          <div style="font-size:1.15rem;font-weight:900">${flexInterest.toLocaleString()}원</div>
+          <div style="font-size:.65rem;opacity:.65;margin-top:3px">잔액 ${flexPrincipal.toLocaleString()}원 × ${(annualRate*100).toFixed(2)}%÷12</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 상세 정보 -->
+    <div style="background:#f8fafc;border-radius:10px;padding:12px 14px;font-size:.78rem;color:#374151;line-height:1.9">
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid #e5e7eb;padding-bottom:6px;margin-bottom:6px">
+        <span>① 원리금균등 상환 원금</span>
+        <b>${normalPrincipal.toLocaleString()}원</b>
+      </div>
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid #e5e7eb;padding-bottom:6px;margin-bottom:6px">
+        <span>① 총 이자 (${term}개월)</span>
+        <b>${normalTotalInterest.toLocaleString()}원</b>
+      </div>
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid #e5e7eb;padding-bottom:6px;margin-bottom:6px">
+        <span>② 유예금 잔액</span>
+        <b style="color:var(--green)">${flexPrincipal.toLocaleString()}원</b>
+      </div>
+      <div style="display:flex;justify-content:space-between">
+        <span>② 유예금 전액상환 후 월납입금</span>
+        <b style="color:var(--green)">${normalMonthly.toLocaleString()}원/월 <span style="font-size:.7rem;color:#9ca3af">(이자 절감)</span></b>
+      </div>
+    </div>
+    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;line-height:1.6">
+      ※ ② 유예금 잔액은 언제든 부분/전액 상환 가능 → 상환할수록 월이자 감소<br>
+      ※ 유예금을 0 입력 시 일반 표준형 할부와 동일
+    </div>`;
+}
+
+function switchTab(id){
+  curCat = id;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('on');
+  const catBtn = document.querySelector(`.cat-btn[data-id="${id}"]`);
+  if(catBtn) catBtn.classList.add('on');
+  const navIdx = TABS.find(t=>t.id===id)?.nav;
+  if(navIdx>=0){
+    document.querySelectorAll('.bnav-btn')[navIdx]?.classList.add('on');
+  }
+  // 특별 페이지 처리
+  if(id==='proposal') renderProposal();
+  if(id==='incentive') renderIncentivePage();
+  if(id==='calc') renderCalc();
+  if(id==='help') renderHelp();
+}
+
+/* ===== INIT ===== */
+function init(){
+  // Build cat tabs
+  const cw = document.getElementById('catWrap');
+  TABS.forEach(t=>{
+    const btn = document.createElement('button');
+    btn.className='cat-btn'+(t.id==='home'?' on':'');
+    btn.dataset.id = t.id;
+    btn.textContent = t.label;
+    btn.onclick = ()=>switchTab(t.id);
+    cw.appendChild(btn);
+  });
+
+  // Render home
+  renderHome();
+  document.getElementById('pg-home').classList.add('on');
+
+  // Render vehicle lists
+  ['ice','ev','genesis','truck','taxi'].forEach(cat=>{
+    document.getElementById('pg-'+cat).innerHTML = renderVehicleList(cat);
+  });
+
+  // Render targets
+  renderTargets();
+
+  // Set nav button active
+  document.querySelectorAll('.bnav-btn')[0].classList.add('on');
+
+  // 제안서 기본 차종 설정
+  if(VEHICLES.ice && VEHICLES.ice.length>0){
+    pState.vid = VEHICLES.ice[0].id;
+    const vl = getVariantList(pState.vid);
+    pState.variant = vl[0]||null;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
 
