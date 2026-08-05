@@ -7,7 +7,7 @@
 <!-- v2: 고객 제안서 + 판촉지원금 추가 -->
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{font-size:18px}
+html{font-size:17px}
 body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#eef0f3;color:#1a1a2e;padding-bottom:72px}
 :root{--navy:#002c5f;--blue:#0d4a8a;--sky:#00aad2;--green:#16a34a;--green-bg:#dcfce7;--amber:#d97706;--amber-bg:#fef3c7;--red:#dc2626;--red-bg:#fee2e2;--purple:#7c3aed;--gray:#6b7280;--border:#e5e7eb;--card:#fff;--shadow:0 2px 8px rgba(0,44,95,.1)}
 
@@ -331,11 +331,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 <div class="upd-bar" id="upd-bar">
   <span class="upd-bar-date">📋 최근 업데이트</span>
   <div class="upd-bar-txt" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-    <span style="color:#dc2626;font-weight:700">★ 디올뉴아반떼 판매조건 추가</span>
+    <span style="color:#dc2626;font-weight:700">★ 디올뉴 아반떼 판매정보 추가</span>
+    
+    
     <span style="color:#9ca3af">|</span>
-    <span>★ 디 올 뉴 아반떼 출시</span>
-    <span style="color:#9ca3af">|</span>
-    <span>8월 1차특별 반영</span>
+    <span>8월 1차 특별조건 반영</span>
   </div>
   <button class="upd-bar-close" onclick="document.getElementById('upd-bar').style.display='none'" title="닫기">✕</button>
 </div>
@@ -1205,6 +1205,31 @@ const PAYMENT_DATA = {
     type:'genesis', vehiclePrice:'6,828만원',
     lease60:'84만원', rent60:'103만원', tbcLease60:'79만원', summerLease60:'70만원'
   },
+  // ── 상용차 월납입금 가이드 (8월, 60M, 1~4등급) ──
+  'mighty': {
+    type:'truck',
+    product:'마이티 월 납입금 가이드',
+    note:'60M · 1~4등급 · 선수율 1% 기준',
+    mainModel:'10.3톤 샤시캡 프레스티지 슈퍼캡 극초장축 (7,094만)',
+    items:[
+      {label:'표준형 할부',    min:'106만', main:'135만', diff:null},
+      {label:'구매 부담 Down', min:'66만',  main:'84만',  diff:'△40만 / △51만 절감'},
+      {label:'표준형 저금리',  min:'99만',  main:'126만', diff:'△7만 / △9만 절감'},
+    ]
+  },
+  'pavise': {
+    type:'truck',
+    product:'파비스 월 납입금 가이드',
+    note:'60M · 1~4등급 · 선수율 10% 기준',
+    mainModel:'17.5톤 샤시캡 프레스티지맥스 극초장축+ (10,710만)',
+    items:[
+      {label:'표준형 할부',      min:'154만', main:'190만', diff:null},
+      {label:'구매 부담 Down',   min:'93만',  main:'114만', diff:'△61만 / △76만 절감'},
+      {label:'선택형 저금리',    min:'148만', main:'183만', diff:'△6만 / △7만 절감'},
+      {label:'변동금리 저금리',  min:'153만', main:'188만', diff:'△1만 / △2만 절감'},
+    ]
+  }
+
 };
 
 /* ===== 납기 데이터 (2026년 8월 기준) ===== */
@@ -1630,6 +1655,31 @@ function buildDetail(v, variant){
     `, true);
   }
 
+  // 상용차 월납입금 가이드
+  if(evPay && evPay.type==='truck'){
+    const truckRows = evPay.items.map(it=>`
+      <tr>
+        <td style="font-weight:600">${it.label}</td>
+        <td class="inc-amt" style="color:var(--navy)">${it.min}/월</td>
+        <td class="inc-amt" style="color:var(--green)">${it.main}/월</td>
+        <td style="font-size:.72rem;color:var(--green)">${it.diff||'-'}</td>
+      </tr>`).join('');
+    html += buildSection('📊 월 납입금 가이드', evPay.items[0].min+'~/월 (표준형 기준)', 'info', `
+      <div style="font-size:.75rem;color:var(--gray);margin-bottom:8px">${evPay.note}</div>
+      <div style="overflow-x:auto">
+      <table class="inc-table">
+        <tr><th>금융상품</th><th>최저가 기준</th><th>주력모델</th><th>표준형 比</th></tr>
+        ${truckRows}
+      </table></div>
+      <div style="font-size:.72rem;color:#6b7280;margin-top:6px">※ 주력모델: ${evPay.mainModel}</div>
+      <a href="https://commercial-financial-calculator.netlify.app/" target="_blank"
+         style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:var(--sky);color:#fff;padding:7px 16px;border-radius:20px;font-size:.8rem;font-weight:700;text-decoration:none">
+         🔢 월납입금 계산기 바로가기
+      </a>
+    `, false);
+  }
+
+  // 상용차 월납입금 가이드
   // 제네시스 파이낸스 월납입금 테이블
   if(v.genesisFinance){
     const gfPay = PAYMENT_DATA[v.id];
