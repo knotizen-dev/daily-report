@@ -304,8 +304,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 <div class="cat-wrap" id="catWrap"></div>
 
 <div class="upd-bar" id="upd-bar">
-  <span class="upd-bar-date">📋 최종수정: 2026-08-04</span>
-  <div class="upd-bar-txt">8월 1차특별 반영 &nbsp;— &nbsp;싼타페HEV 7월 <b>250만</b> &nbsp;/ &nbsp;팰리세이드HEV 7월 <b>50만 신규</b> &nbsp;/ &nbsp;포터LPDi 6월 <b>200만</b> &nbsp;&nbsp;(8/5 09:30~ 전산오픈, 총 4,000대 한정)</div>
+  <span class="upd-bar-date">📋 최근 업데이트</span>
+  <div class="upd-bar-txt" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <span style="color:#dc2626;font-weight:700">★ 디 올 뉴 아반떼 출시</span>
+    <span style="color:#9ca3af">|</span>
+    <span>8월 1차특별 반영</span>
+    <span style="color:#9ca3af">|</span>
+    <span>포터EV 만기주석 수정</span>
+  </div>
   <button class="upd-bar-close" onclick="document.getElementById('upd-bar').style.display='none'" title="닫기">✕</button>
 </div>
 <div id="pages">
@@ -375,6 +381,16 @@ const MONTHS = ['3월이전','4월','5월','6월','7월'];
 
 const VEHICLES = {
 ice:[
+  {id:'avante-fn', name:'디 올 뉴 아반떼', sub:'FN', hl:'26.08.05 신규출시',
+   change:{type:'new',txt:'디 올 뉴 아반떼 FN 신규 출시 (2026.08.05)'},
+   variants:['가솔린 2.0','HEV 1.6'],
+   summerFesta:{'가솔린 2.0':{},'HEV 1.6':{}},
+   tradeIn:{corp:'50만',other:'30만'},
+   finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
+   exhibitCar:'30만', saveAuto:'30만',
+   targets:['driving-plcc'],
+   notes:'※ 2026.08.05 출시 · 세제혜택 후 가격 고시 완료 후 안내 예정\n※ 가솔린 2.0 IVT / HEV 1.6 6DCT (45kW 하이브리드 모터)'},
+
   {id:'avante', name:'아반떼', variants:['일반/HEV','N'], hl:'N 3월이전 200만',
    summerFesta:{
      '일반/HEV':{},
@@ -517,7 +533,7 @@ ev:[
    ioniq100k:'100만',
    summerFesta:{'일반':{'3월이전':'150만','4월':'150만','5월':'150만','6월':'50만'}},
    tradeIn:{corp:'100만',other:'100만'},
-   financePromo:'포터EV 부담DOWN (36M 차량반납 유예형 할부)\n금리 2.8% / 최대 유예율 50%\n※ 만기시 차량반납으로 유예금 상환 불가',
+   financePromo:'포터EV 부담DOWN (36M 차량반납 유예형 할부)\n금리 2.8% / 최대 유예율 50%\n※ 만기 시 재할부 또는 현금 상환 必 (차량반납으로 유예금 등가 상환 불가)',
    finance:'36M 5.4% / 48M 5.5% / 60M 5.6%',
    evBenefit:'20만 충전크레딧 또는 홈충전기',
    exhibitCar:'20만', saveAuto:'20만/30만',
@@ -691,6 +707,28 @@ taxi:[
 const PRICE_DATA = {
 
   /* ─── 국내승용 ─── */
+  'avante-fn': {
+    '가솔린 2.0': {
+      g:[{l:'가솔린 2.0 IVT', t:[['모던',2398],['프리미엄',2771],['인스퍼레이션',3152]]}],
+      o:[['9.9인치 슬림 디스플레이',35],['컨비니언스Ⅰ',65],['현대 스마트센스Ⅰ',96],
+         ['17인치 알로이 휠&타이어Ⅰ',32],['와이드 선루프',90],
+         ['플레오스 커넥트 14.6인치',83],['현대 스마트센스Ⅱ',40],
+         ['익스테리어 디자인',140],['플래티넘Ⅰ',93],['컴포트',76],
+         ['17인치 알로이 휠&타이어Ⅱ',30],['플래티넘Ⅱ',90],
+         ['빌트인 캠 2 Plus',65],['파킹 어시스트Ⅰ',80],['파킹 어시스트Ⅱ',130],
+         ['18인치 알로이 휠&타이어',50],['Audio by BANG & OLUFSEN 사운드',110]]
+    },
+    'HEV 1.6': {
+      g:[{l:'HEV 1.6 하이브리드 6DCT (45kW)', t:[['모던',3042],['프리미엄',3361],['인스퍼레이션',3699]]}],
+      o:[['9.9인치 슬림 디스플레이',35],['컨비니언스Ⅱ',45],['현대 스마트센스Ⅰ',96],
+         ['와이드 선루프',90],['플레오스 커넥트 14.6인치',83],
+         ['현대 스마트센스Ⅱ',40],['익스테리어 디자인',140],
+         ['플래티넘Ⅰ',93],['컴포트',76],['플래티넘Ⅱ',90],
+         ['빌트인 캠 2 Plus',65],['파킹 어시스트Ⅰ',80],['파킹 어시스트Ⅱ',130],
+         ['18인치 알로이 휠&타이어',50],['Audio by BANG & OLUFSEN 사운드',110]]
+    }
+  },
+
   'avante': {
     '일반/HEV': {
       g:[
