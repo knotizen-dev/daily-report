@@ -285,9 +285,34 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 .opt-chip-pr{color:var(--sky);font-weight:800;white-space:nowrap}
 .price-foot{font-size:.7rem;color:#9ca3af;margin-top:10px;padding-top:8px;border-top:1px solid var(--border);line-height:1.6}
 .no-price-msg{padding:20px;text-align:center;color:var(--gray);font-size:.84rem}
+
+/* PASSWORD SCREEN */
+.pw-overlay{position:fixed;inset:0;background:var(--navy);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:20px}
+.pw-box{background:#fff;border-radius:16px;padding:36px 40px;width:300px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.pw-logo{font-size:2rem;margin-bottom:4px}
+.pw-title{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:4px}
+.pw-sub{font-size:.75rem;color:var(--gray);margin-bottom:24px}
+.pw-input{width:100%;border:2px solid var(--border);border-radius:10px;padding:12px;font-size:1.2rem;text-align:center;letter-spacing:8px;outline:none;font-family:inherit;color:var(--navy);font-weight:700;box-sizing:border-box}
+.pw-input:focus{border-color:var(--sky)}
+.pw-btn{width:100%;margin-top:12px;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:12px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit}
+.pw-btn:active{opacity:.85}
+.pw-err{color:#dc2626;font-size:.8rem;margin-top:8px;min-height:18px}
+.pw-badge{font-size:.72rem;color:#9ca3af;margin-top:16px}
 </style>
 </head>
 <body>
+<div class="pw-overlay" id="pw-overlay">
+  <div class="pw-box">
+    <div class="pw-logo">🚗</div>
+    <div class="pw-title">판매조건 가이드</div>
+    <div class="pw-sub">충북지역본부</div>
+    <input class="pw-input" id="pw-input" type="password" maxlength="6" placeholder="••••" 
+           oninput="pwClear()" onkeydown="if(event.key==='Enter')pwCheck()">
+    <button class="pw-btn" onclick="pwCheck()">확인</button>
+    <div class="pw-err" id="pw-err"></div>
+    <div class="pw-badge">인증된 카마스터 전용</div>
+  </div>
+</div>
 
 <header class="hdr">
   <div style="display:flex;align-items:center">
@@ -3042,6 +3067,30 @@ function init(){
 }
 
 init();
+
+// 비밀번호 보호
+(function(){
+  var K = 'bp_auth_2608';
+  if(sessionStorage.getItem(K)==='1'){
+    var o=document.getElementById('pw-overlay');
+    if(o) o.style.display='none';
+  }
+})();
+function pwCheck(){
+  var v=document.getElementById('pw-input').value;
+  if(v==='3281'){
+    sessionStorage.setItem('bp_auth_2608','1');
+    var o=document.getElementById('pw-overlay');
+    if(o){ o.style.opacity='0'; o.style.transition='opacity .3s'; setTimeout(function(){o.style.display='none';},300); }
+  } else {
+    var e=document.getElementById('pw-err');
+    e.textContent='비밀번호가 틀렸습니다';
+    document.getElementById('pw-input').value='';
+    document.getElementById('pw-input').focus();
+    setTimeout(function(){e.textContent='';},2000);
+  }
+}
+function pwClear(){ document.getElementById('pw-err').textContent=''; }
 </script>
 </body>
 </html>
