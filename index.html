@@ -7,7 +7,7 @@
 <!-- v2: 고객 제안서 + 판촉지원금 추가 -->
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{font-size:17px}
+html{font: size 17px;px}
 body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#eef0f3;color:#1a1a2e;padding-bottom:72px}
 :root{--navy:#002c5f;--blue:#0d4a8a;--sky:#00aad2;--green:#16a34a;--green-bg:#dcfce7;--amber:#d97706;--amber-bg:#fef3c7;--red:#dc2626;--red-bg:#fee2e2;--purple:#7c3aed;--gray:#6b7280;--border:#e5e7eb;--card:#fff;--shadow:0 2px 8px rgba(0,44,95,.1)}
 
@@ -219,6 +219,36 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 .result-finance-title{font-size:.75rem;color:#0369a1;font-weight:700;margin-bottom:5px}
 .result-finance-body{font-size:.8rem;color:#1e40af;font-weight:600;line-height:1.7;white-space:pre-line}
 .result-notice{background:#fef3c7;margin:0 18px 16px;border-radius:8px;padding:10px 12px;font-size:.72rem;color:#92400e;line-height:1.6}
+.result-price-box{background:#f8fafc;border-top:1px solid #e5e7eb;padding:12px 18px}
+.result-price-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0}
+.result-price-row+.result-price-row{border-top:1px dashed #e5e7eb}
+.result-price-lbl{font-size:.78rem;color:#6b7280;font-weight:500}
+.result-price-val{font-size:.85rem;font-weight:700;color:var(--navy)}
+.result-price-final{background:var(--navy);color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center}
+.result-price-final-lbl{font-size:.8rem;opacity:.85}
+.result-price-final-val{font-size:1.15rem;font-weight:900}
+.pp-trim-box{width:100%;background:#f8fafc;border-radius:8px;padding:8px 10px;margin-top:4px}
+.pp-trim-label{font-size:.72rem;color:var(--gray);font-weight:700;margin-bottom:6px}
+.pp-trim-grid{display:flex;flex-direction:column;gap:5px;width:100%}
+.pp-trim-btn{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1.5px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;font-family:inherit;text-align:left;width:100%;transition:all .15s}
+.pp-trim-btn.on{border-color:var(--sky);background:#e0f7fb}
+.pp-trim-nm{font-size:.82rem;font-weight:600;color:#374151}
+.pp-trim-pr{font-size:.85rem;font-weight:800;color:var(--navy)}
+.pp-trim-btn.on .pp-trim-nm{color:var(--sky)}
+.pp-trim-btn.on .pp-trim-pr{color:var(--sky)}
+.pp-trim-note{font-size:.68rem;color:var(--amber);font-weight:600;margin-top:6px}
+.result-section{padding:10px 18px;border-bottom:1px solid #f3f4f6}
+.result-section-title{font-size:.75rem;font-weight:800;color:var(--gray);margin-bottom:6px}
+.result-calc-box{background:linear-gradient(135deg,var(--navy),#1a4a8a);color:#fff;padding:14px 18px}
+.result-calc-row{display:flex;justify-content:space-between;font-size:.82rem;padding:3px 0;opacity:.85}
+.result-calc-total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:900;padding:8px 0 2px;border-top:1px solid rgba(255,255,255,.3);margin-top:4px}
+.result-calc-note{font-size:.68rem;opacity:.7;margin-top:4px}
+.result-closing{background:#f8fafc;padding:12px 18px;border-top:1px solid #e5e7eb;font-size:.75rem;color:#374151;line-height:1.8}
+.result-closing-main{font-weight:700;color:var(--navy);margin-bottom:4px}
+.result-closing-sub{color:var(--gray);font-size:.7rem}
+.pp-trim-row{display:flex;justify-content:space-between;padding:3px 0;font-size:.78rem}
+.pp-trim-row+.pp-trim-row{border-top:1px solid #f3f4f6}
+.pp-trim-grp{font-size:.68rem;color:var(--gray);font-weight:600;padding:4px 0 1px;margin-top:2px}
 .result-btn-row{display:flex;gap:8px;padding:0 18px 16px}
 .result-btn{flex:1;padding:11px;border-radius:10px;font-size:.82rem;font-weight:700;border:none;cursor:pointer;font-family:inherit}
 .result-btn-print{background:var(--navy);color:#fff}
@@ -298,6 +328,53 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 .pw-btn:active{opacity:.85}
 .pw-err{color:#dc2626;font-size:.8rem;margin-top:8px;min-height:18px}
 .pw-badge{font-size:.72rem;color:#9ca3af;margin-top:16px}
+
+/* ===== A4 인쇄 레이아웃 ===== */
+.p-print-hdr{display:none}
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  @page{size:A4 portrait;margin:12mm 15mm}
+
+  /* 앱 UI 전부 숨김 */
+  .hdr,.cat-wrap,.bnav,.upd-bar,.pw-overlay,
+  #pg-home,#pg-ice,#pg-ev,#pg-genesis,#pg-truck,
+  #pg-taxi,#pg-targets,#pg-calc,#pg-incentive,#pg-help,
+  .prop-wrap>.prop-step,
+  .prop-generate,.result-btn-row{display:none!important}
+
+  body{background:#fff!important;padding:0!important}
+  html{font-size:13px!important}
+  #pg-proposal{display:block!important;padding:0!important}
+  .prop-wrap{padding:0!important}
+  #p-result{margin:0!important}
+
+  /* 인쇄 전용 헤더 표시 */
+  .p-print-hdr{display:flex!important;justify-content:space-between;align-items:center;
+    padding:8px 16px;border-bottom:2px solid var(--navy);margin-bottom:6px}
+  .p-print-hdr-logo{font-size:1rem;font-weight:900;color:var(--navy)}
+  .p-print-hdr-info{font-size:.72rem;color:var(--gray);text-align:right;line-height:1.6}
+
+  /* result-card 컴팩트화 */
+  .result-card{box-shadow:none!important;border:1.5px solid #d1d5db!important;
+    border-radius:10px!important;margin:0!important;overflow:visible!important;
+    page-break-inside:avoid}
+  .result-hdr{padding:10px 16px!important}
+  .result-hdr-month{font-size:.7rem!important;margin-bottom:2px!important}
+  .result-hdr-model{font-size:1.25rem!important;margin-bottom:2px!important}
+  .result-hdr-sub{font-size:.72rem!important}
+  .result-total{padding:9px 16px!important}
+  .result-total-label{font-size:.72rem!important;margin-bottom:2px!important}
+  .result-total-amount{font-size:1.8rem!important}
+  .result-total-sub{font-size:.68rem!important;margin-top:2px!important}
+  .result-breakdown{padding:8px 14px!important}
+  .result-item{padding:5px 0!important}
+  .result-item-name{font-size:.78rem!important}
+  .result-item-amt{font-size:.85rem!important}
+  .result-finance{margin:0 14px 8px!important;padding:9px 12px!important}
+  .result-finance-title{font-size:.7rem!important;margin-bottom:3px!important}
+  .result-finance-body{font-size:.75rem!important;line-height:1.5!important}
+  .result-notice{margin:0 14px 10px!important;padding:7px 10px!important;font-size:.68rem!important}
+}
 </style>
 </head>
 <body>
@@ -2060,6 +2137,10 @@ function renderProposal(){
     '</select></div>' +
     '<div class="prop-row"><span class="prop-lbl">차종</span>' +
     '<select class="prop-sel" id="pp-vid" onchange="ppVidChange(this.value)">' + vOpts('ice') + '</select></div>' +
+    '<div id="pp-trim-row" class="prop-row" style="flex-direction:column;align-items:flex-start;gap:2px">' +
+    '<span class="prop-lbl">트림 가격</span>' +
+    '<div id="pp-trims"></div>' +
+    '</div>' +
     '<div class="prop-row"><span class="prop-lbl">생산월/재고</span>' +
     '<select class="prop-sel" id="pp-month"><option value="">해당없음</option></select></div>' +
     '</div>' + // prop-step 1
@@ -2226,6 +2307,35 @@ function ppCatChange(cat){
   if(list.length) ppVidChange(list[0].id);
 }
 
+function ppShowTrims(vid){
+  const box = document.getElementById('pp-trims');
+  if(!box) return;
+  const pd = PRICE_DATA[vid];
+  window._selTrimPrice = null; window._selTrimName = null;
+  if(!pd){ box.innerHTML='<div style="font-size:.75rem;color:var(--gray)">가격표 정보 없음</div>'; return; }
+  const vdata = pd[Object.keys(pd)[0]];
+  if(!vdata){ box.innerHTML=''; return; }
+  let h='<div class="pp-trim-label">▸ 기본가격 기준 · 트림 선택</div><div class="pp-trim-grid">';
+  let first=true;
+  vdata.g.forEach(gr=>{
+    if(gr.l) h+='<div class="pp-trim-grp" style="margin-top:4px">'+gr.l+'</div>';
+    gr.t.forEach(function(t){
+      const nm=t[0], pr=t[1];
+      if(first){ window._selTrimPrice=pr; window._selTrimName=nm; first=false; }
+      h+='<button class="pp-trim-btn'+(window._selTrimName===nm?' on':'')+'" onclick="ppSelectTrim(this,'+pr+',\''+nm.replace(/'/g,"\\'")+'\')">'+
+         '<span class="pp-trim-nm">'+nm+'</span>'+
+         '<span class="pp-trim-pr">'+pr.toLocaleString()+'만원</span></button>';
+    });
+  });
+  h+='</div><div class="pp-trim-note">※ 옵션 선택 시 추가 금액 발생</div>';
+  box.innerHTML=h;
+}
+function ppSelectTrim(btn,price,name){
+  document.querySelectorAll('.pp-trim-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  window._selTrimPrice=price; window._selTrimName=name;
+}
+
 function ppVidChange(vid){
   if(!vid) return;
   const v = getVehicle(vid);
@@ -2276,6 +2386,9 @@ function ppVidChange(vid){
     else specialRow.style.display='none';
   }
 
+  // 트림 가격 표시
+  ppShowTrims(vid);
+
   // 렌트카 수량 옵션 업데이트
   const rentAmt = document.getElementById('pp-rentamt');
   if(rentAmt){
@@ -2315,160 +2428,176 @@ function generateProposal(){
   const v = getVehicle(vid);
   if(!v){ alert('차종 정보 오류'); return; }
 
-  // 첫 번째 숫자만 추출 (예: "300만 (3.5가솔린 450만)" → 300)
   const parse = s => { const m=String(s||0).match(/(\d+)/); return m?parseInt(m[1]):0; };
   const g = id => document.getElementById(id);
   const chked = id => { const el=g(id); return el&&el.checked; };
   const val = id => { const el=g(id); return el?el.value:''; };
 
-  const items = [];
-  let total = 0;
+  // 선택 트림 가격
+  const trimPrice = window._selTrimPrice || null;
+  const trimName  = window._selTrimName  || null;
 
-  // 생산월/재고
+  // ── 생산월/재고 조건 (별도 구분) ──
+  let sfItem = null, sfAmt = 0;
   const monthVal = val('pp-month');
   if(monthVal){
-    if(monthVal.startsWith('pre6-') || monthVal.startsWith('jul-')){
+    if(monthVal.startsWith('pre6-')||monthVal.startsWith('jul-')){
       const pct = monthVal.split('-')[1];
-      items.push({icon:'📦', name:'제네시스 재고 할인', val:pct+' 할인', isPct:true});
+      sfItem = {icon:'📦', name:'제네시스 재고 할인', val:pct+' 할인', isPct:true};
     } else {
-      // 썸머페스타 — sfData에서 금액 찾기
       const sf = v.summerFesta;
       const sfKeys = sf ? Object.keys(sf) : [];
       const sfData = sfKeys.length>0 ? sf[sfKeys[0]] : null;
       const amt = sfData ? sfData[monthVal] : null;
       if(amt){
-        // 메인 금액만 표시 (괄호 안 부가설명 제거), 예: "300만 (3.5가솔린 450만)" → "300만원"
         const mainAmt = amt.replace(/\s*\([^)]*\)/g,'').trim();
         const subNote = amt.match(/\(([^)]*)\)/)?.[1]||'';
-        items.push({icon:'🌟', name:'썸머페스타 ('+monthVal+' 생산)'+(subNote?' *'+subNote:''), val:mainAmt+'원'});
-        total+=parse(amt);
+        sfAmt = parse(amt);
+        sfItem = {icon:'🌟', name:'생산월 조건 ('+monthVal+' 생산)'+(subNote?' *'+subNote:''), val:mainAmt+'원'};
       }
     }
   }
-
-  // 아이오닉 100만대
-  if(chked('pp-ioniq') && v.ioniq100k){
-    const a = parse(v.ioniq100k);
-    items.push({icon:'🎉', name:'아이오닉 100만대 기념', val:v.ioniq100k}); total+=a;
+  if(chked('pp-ioniq')&&v.ioniq100k){
+    if(!sfItem){ sfAmt=parse(v.ioniq100k); sfItem={icon:'🎉',name:'아이오닉 100만대 기념',val:v.ioniq100k}; }
   }
 
-  // 트레이드인
+  // ── 타겟 할인 항목 ──
+  const targetItems = []; let targetTotal = 0;
   if(chked('pp-tradein')){
     const tiMap={'corp-ice':'50만','corp-ev':'100만','corp-genesis':'200만','corp-truck':'100만','other-ice':'30만','other-ev':'50만','other-genesis':'100만'};
     const tiLbl={'corp-ice':'당사 내연','corp-ev':'당사 EV','corp-genesis':'당사 제네시스/넥쏘','corp-truck':'당사 1톤화물','other-ice':'타사 내연','other-ev':'타사 EV','other-genesis':'타사 제네시스'};
-    const tv = val('pp-titype');
-    const ta = tiMap[tv]||''; const tl = tiLbl[tv]||tv;
-    if(ta){ items.push({icon:'🔄', name:'트레이드인 ('+tl+' 매각)', val:ta+'원'}); total+=parse(ta); }
-    if(chked('pp-oldcar')){ items.push({icon:'🚗', name:'노후차 트레이드인 추가', val:'20만원'}); total+=20; }
+    const tv=val('pp-titype'); const ta=tiMap[tv]||''; const tl=tiLbl[tv]||tv;
+    if(ta){ targetItems.push({icon:'🔄',name:'트레이드인 ('+tl+')',val:ta+'원'}); targetTotal+=parse(ta); }
+    if(chked('pp-oldcar')){ targetItems.push({icon:'🚗',name:'노후차 추가',val:'20만원'}); targetTotal+=20; }
   }
-
-  // 현장렌트사
   if(chked('pp-rentcar')){
-    const ra = parseInt(val('pp-rentamt'))||10;
-    items.push({icon:'🏢', name:'현장렌트사 우대', val:ra+'만원'}); total+=ra;
+    const ra=parseInt(val('pp-rentamt'))||10;
+    targetItems.push({icon:'🏢',name:'현장렌트사 우대',val:ra+'만원'}); targetTotal+=ra;
   }
-
-  // 베네피아
-  if(chked('pp-benefia')){ items.push({icon:'🎁', name:'베네피아 제휴', val:'20만원'}); total+=20; }
-
-  // 굿프렌드
-  if(chked('pp-gfnew')){ items.push({icon:'👥', name:'굿프렌드 (신규가망)', val:'15만원'}); total+=15; }
-  if(chked('pp-gfexist')){ items.push({icon:'🔁', name:'굿프렌드 (기출고전담)', val:'10만원'}); total+=10; }
-
-  // 현장관리법인
+  if(chked('pp-benefia')){ targetItems.push({icon:'🎁',name:'베네피아 제휴',val:'20만원'}); targetTotal+=20; }
+  if(chked('pp-gfnew')){ targetItems.push({icon:'👥',name:'굿프렌드 (신규가망)',val:'15만원'}); targetTotal+=15; }
+  if(chked('pp-gfexist')){ targetItems.push({icon:'🔁',name:'굿프렌드 (기출고전담)',val:'10만원'}); targetTotal+=10; }
   if(chked('pp-company')){
     const cmMap={'corp-20':'20만','ceo-50':'50만','keyman-30':'30만','corp-50':'50만','ceo-100':'100만','keyman-50':'50만'};
-    const cv = val('pp-cmtype'); const ca = cmMap[cv]||'';
-    if(ca){ items.push({icon:'🏛', name:'현장관리법인 ('+cv.replace('-',')+')+')', val:ca+'원'}); total+=parse(ca); }
+    const cv=val('pp-cmtype'); const ca=cmMap[cv]||'';
+    if(ca){ targetItems.push({icon:'🏛',name:'현장관리법인',val:ca+'원'}); targetTotal+=parse(ca); }
   }
-
-  // 차종 특화
   if(chked('pp-special')){
-    const specAmtMap = {palisade:50, 'porter-lp':40, santafe:5, avante:20, venue:20, kona:20, 'kona-ev':20};
-    const specNm = g('pp-special-desc');
-    const sa = specAmtMap[vid]||0;
-    if(sa){ items.push({icon:'⭐', name: specNm?specNm.textContent:'차종 특화', val:sa+'만원'}); total+=sa; }
+    const specAmtMap={palisade:50,'porter-lp':40,santafe:5,avante:20,venue:20,kona:20,'kona-ev':20};
+    const specNm=g('pp-special-desc'); const sa=specAmtMap[vid]||0;
+    if(sa){ targetItems.push({icon:'⭐',name:specNm?specNm.textContent:'차종특화',val:sa+'만원'}); targetTotal+=sa; }
   }
+  if(v.evBenefit){ targetItems.push({icon:'⚡',name:'EV 구매혜택',val:v.evBenefit,noSum:true}); }
 
-  // 금융
+  const totalDiscount = sfAmt + targetTotal;
+  const hasPct = sfItem && sfItem.isPct;
+
+  // ── 금융 ──
   const finV = val('pp-finance');
-  const finLbl = {standard:'모빌리티 할부 (표준)',promo:'저금리 프로모션','burden-down':'부담DOWN 유예형 할부',lease:'리스',rent:'렌트',cash:'현금'}[finV]||'표준할부';
-  let finDetail = '';
-  if(finV==='standard') finDetail = v.finance||'';
-  else if(finV==='promo'||finV==='burden-down') finDetail = v.financePromo||v.finance||'';
+  const finLbl = {standard:'모빌리티 할부 (표준형)',promo:'저금리 프로모션','burden-down':'부담DOWN 유예형 할부',lease:'리스',rent:'렌트',cash:'현금'}[finV]||'표준할부';
+  let finDetail = finV==='standard'?v.finance||'':v.financePromo||v.finance||'';
 
-  const hasPct = items.some(i=>i.isPct);
-  const totalStr = total>0 ? total+'만원' : (hasPct?'할인율 적용':'선택 없음');
+  // 월납입금 계산
+  let calcHtml = '';
+  if(finV==='standard'||finV==='promo'){
+    const pP=getNum('pp-std-principal'), rR=parseFloat(document.getElementById('pp-std-rate')?.value||'0.054'), nN=parseInt(document.getElementById('pp-std-term')?.value||'36');
+    if(pP>0){
+      const mr=rR/12, mly=mr===0?pP/nN:pP*mr*Math.pow(1+mr,nN)/(Math.pow(1+mr,nN)-1);
+      calcHtml='<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:9px 12px;margin-top:8px">'+
+        '<div style="font-size:.72rem;opacity:.8;margin-bottom:3px">💰 예상 월납입금</div>'+
+        '<div style="font-size:1.2rem;font-weight:900">'+Math.round(mly*10)/10+' 만원/월</div>'+
+        '<div style="font-size:.68rem;opacity:.7;margin-top:2px">할부원금 '+pP.toLocaleString()+'만원 · '+(rR*100).toFixed(1)+'% · '+nN+'개월</div></div>';
+    }
+  } else if(finV==='burden-down'){
+    const nP=getNum('pp-bal-normal'),fP=getNum('pp-bal-flex'),rR=parseFloat(document.getElementById('pp-bal-rate')?.value||'0.028'),nN=parseInt(document.getElementById('pp-bal-term')?.value||'36');
+    if(nP>0||fP>0){
+      const mr=rR/12, nm=nP<=0?0:mr===0?nP/nN:nP*mr*Math.pow(1+mr,nN)/(Math.pow(1+mr,nN)-1), fi=fP*mr, tot=Math.round((nm+fi)*10)/10;
+      calcHtml='<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:9px 12px;margin-top:8px">'+
+        '<div style="font-size:.72rem;opacity:.8;margin-bottom:3px">💰 예상 월납입금 (유예형)</div>'+
+        '<div style="font-size:1.2rem;font-weight:900">'+tot+' 만원/월</div>'+
+        '<div style="font-size:.68rem;opacity:.7;margin-top:2px">원리금균등 '+Math.round(nm*10)/10+'만 + 유예금이자 '+Math.round(fi*10)/10+'만</div></div>';
+    }
+  }
 
-  // 결과 카드 생성
+  // ── 결과 카드 HTML ──
+  const _badgeEl = document.querySelector('.hdr-badge:last-of-type');
+  const _badgeTxt = _badgeEl ? _badgeEl.textContent.trim() : '';
+  const _today = new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+
   let html = '<div class="result-card">';
-  html += '<div class="result-hdr"><div class="result-hdr-month">2026년 8월 구매 혜택 안내</div>';
-  html += '<div class="result-hdr-model">'+v.name+(v.sub?' '+v.sub:'')+'</div></div>';
 
-  if(total>0||hasPct){
-    html += '<div class="result-total"><div class="result-total-label">최대 혜택 합계</div>';
-    html += '<div class="result-total-amount">'+totalStr+'</div>';
-    html += '<div class="result-total-sub">'+( hasPct?'+ 별도 %할인 혜택 적용':'금액 할인 기준')+'</div></div>';
-  }
+  // 인쇄 헤더
+  html += '<div class="p-print-hdr">'
+    + '<div class="p-print-hdr-logo">🚗 현대자동차 구매 혜택 제안서</div>'
+    + '<div class="p-print-hdr-info">'+(_badgeTxt||'카마스터')+'<br>'+_today+'</div>'
+    + '</div>';
 
-  html += '<div class="result-breakdown">';
-  if(items.length===0){
-    html += '<div style="color:#bbb;text-align:center;padding:20px;font-size:.9rem">위에서 조건을 선택 후 생성하세요</div>';
-  } else {
-    items.forEach(i=>{
-      html += '<div class="result-item">';
-      html += '<span class="result-item-name">'+i.icon+' '+i.name+'</span>';
-      html += '<span class="result-item-amt">'+i.val+'</span>';
-      html += '</div>';
-    });
-  }
-  if(v.evBenefit){
-    html += '<div class="result-item"><span class="result-item-name">⚡ EV 구매혜택</span>';
-    html += '<span class="result-item-amt" style="color:#0369a1">'+v.evBenefit+'</span></div>';
+  // ① 차량 헤더
+  html += '<div class="result-hdr">';
+  html += '<div class="result-hdr-month">2026년 8월 구매 혜택 안내</div>';
+  html += '<div class="result-hdr-model">'+v.name+(v.sub?' <span style="font-size:1rem;opacity:.8">'+v.sub+'</span>':'')+'</div>';
+  if(trimName && trimPrice){
+    html += '<div class="result-hdr-sub" style="font-size:.9rem;margin-top:4px;font-weight:700">'+trimName+' &nbsp;'+trimPrice.toLocaleString()+'만원 <span style="font-size:.72rem;opacity:.75">(기본가격 기준)</span></div>';
   }
   html += '</div>';
 
-  if(finDetail){
-    html += '<div class="result-finance"><div class="result-finance-title">💳 금융: '+finLbl+'</div>';
-    html += '<div class="result-finance-body">'+finDetail+'</div></div>';
+  // ② 생산월/재고 조건
+  if(sfItem){
+    html += '<div class="result-section">';
+    html += '<div class="result-section-title">🌟 생산월/재고 조건</div>';
+    html += '<div class="result-item"><span class="result-item-name">'+sfItem.icon+' '+sfItem.name+'</span><span class="result-item-amt">'+sfItem.val+'</span></div>';
+    html += '</div>';
   }
 
-  // 계산기 결과 포함
-  const finVNow = val('pp-finance');
-  if(finVNow==='standard'||finVNow==='promo'){
-    const pP = getNum('pp-std-principal');
-    const rR = parseFloat(document.getElementById('pp-std-rate')?.value||'0.054');
-    const nN = parseInt(document.getElementById('pp-std-term')?.value||'36');
-    if(pP>0){
-      const mr = rR/12;
-      const mly = mr===0 ? pP/nN : pP*mr*Math.pow(1+mr,nN)/(Math.pow(1+mr,nN)-1);
-      const mRnd = Math.round(mly*10)/10;
-      html += '<div style="background:linear-gradient(135deg,#065f46,#047857);color:#fff;padding:14px 18px;margin:0 0 0 0">' +
-        '<div style="font-size:.75rem;opacity:.85;margin-bottom:4px">💰 예상 월납입금 (표준형)</div>' +
-        '<div style="font-size:1.6rem;font-weight:900">' + mRnd.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '만원/월</div>' +
-        '<div style="font-size:.7rem;opacity:.75;margin-top:3px">할부원금 '+pP.toLocaleString()+'만원 / '+(rR*100).toFixed(1)+'% / '+nN+'개월</div></div>';
-    }
-  } else if(finVNow==='burden-down'){
-    const nP = getNum('pp-bal-normal');
-    const fP = getNum('pp-bal-flex');
-    const rR = parseFloat(document.getElementById('pp-bal-rate')?.value||'0.028');
-    const nN = parseInt(document.getElementById('pp-bal-term')?.value||'36');
-    if(nP>0||fP>0){
-      const mr = rR/12;
-      const nm = nP<=0?0:mr===0?nP/nN:nP*mr*Math.pow(1+mr,nN)/(Math.pow(1+mr,nN)-1);
-      const fi = fP*mr;
-      const tot = Math.round((nm+fi)*10)/10;
-      html += '<div style="background:linear-gradient(135deg,#065f46,#047857);color:#fff;padding:14px 18px">' +
-        '<div style="font-size:.75rem;opacity:.85;margin-bottom:4px">💰 예상 월납입금 (유예형)</div>' +
-        '<div style="font-size:1.6rem;font-weight:900">' + tot.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '만원/월</div>' +
-        '<div style="font-size:.7rem;opacity:.75;margin-top:3px">' +
-        '① '+Math.round(nm*10)/10+'만원 (원리금균등) + ② '+Math.round(fi*10)/10+'만원 (유예금이자)</div></div>';
-    }
+  // ③ 타겟 할인 내역
+  if(targetItems.length > 0){
+    html += '<div class="result-breakdown">';
+    html += '<div class="result-section-title" style="margin-bottom:4px">💰 고객 혜택 내역</div>';
+    targetItems.forEach(i=>{
+      html += '<div class="result-item"><span class="result-item-name">'+i.icon+' '+i.name+'</span>';
+      html += '<span class="result-item-amt" style="'+(i.noSum?'color:#0369a1':'')+'">'+i.val+'</span></div>';
+    });
+    html += '</div>';
   }
+
+  // ④ 가격 계산 요약
+  html += '<div class="result-calc-box">';
+  if(trimPrice){
+    html += '<div class="result-calc-row"><span>📋 기본가격 ('+trimName+')</span><span>'+trimPrice.toLocaleString()+'만원</span></div>';
+  }
+  if(sfAmt>0) html += '<div class="result-calc-row"><span style="opacity:.85">🌟 생산월/재고 할인</span><span>- '+sfAmt+'만원</span></div>';
+  if(targetTotal>0) html += '<div class="result-calc-row"><span style="opacity:.85">💰 타겟 할인 합계</span><span>- '+targetTotal+'만원</span></div>';
+  if(totalDiscount>0 && trimPrice){
+    const finalPrice = trimPrice - totalDiscount;
+    html += '<div class="result-calc-total"><span>예상 구매가</span><span>'+(finalPrice>0?finalPrice.toLocaleString()+'만원~':'조건 확인 필요')+'</span></div>';
+    html += '<div class="result-calc-note">※ 옵션 선택 시 추가 금액 발생 · 정확한 금액은 견적서 확인</div>';
+  } else if(!trimPrice && totalDiscount>0){
+    html += '<div class="result-calc-total"><span>할인 합계</span><span>- '+totalDiscount+'만원</span></div>';
+    html += '<div class="result-calc-note">※ 트림 선택 시 최종 금액 표시</div>';
+  } else if(!totalDiscount){
+    html += '<div style="font-size:.8rem;opacity:.75;padding:4px 0">기본가격에서 해당 조건 선택 시 할인 적용</div>';
+  }
+  html += '</div>';
+
+  // ⑤ 금융 혜택
+  if(finDetail || calcHtml){
+    html += '<div class="result-finance">';
+    html += '<div class="result-finance-title">💳 금융 혜택 · '+finLbl+'</div>';
+    if(finDetail) html += '<div class="result-finance-body">'+finDetail+'</div>';
+    if(calcHtml) html += calcHtml;
+    html += '</div>';
+  }
+
+  // ⑥ 마무리 문구
+  html += '<div class="result-closing">';
+  html += '<div class="result-closing-main">📋 이 제안서는 상담 내용을 간략하게 정리한 자료입니다.</div>';
+  html += '<div class="result-closing-sub">• 출력하여 고객님께 전달해드리겠습니다.<br>';
+  html += '• 자세한 내용은 별도 자료를 준비하여 안내드리겠습니다.</div>';
+  html += '</div>';
 
   html += '<div class="result-notice">※ 조건 충족 및 출고 전 타겟코드 입력 시 적용<br>※ 타겟 중복 최대 3개 / 총 DC 차가의 30% 초과 불가</div>';
   html += '<div class="result-btn-row">';
-  html += '<button class="result-btn result-btn-print" onclick="window.print()">🖨 인쇄</button>';
+  html += '<button class="result-btn result-btn-print" onclick="window.print()">🖨 인쇄 / 전송</button>';
   html += '<button class="result-btn result-btn-reset" onclick="resetProposal()">🔄 다시하기</button>';
   html += '</div></div>';
 
@@ -3108,12 +3237,6 @@ function init(){
   // Set nav button active
   document.querySelectorAll('.bnav-btn')[0].classList.add('on');
 
-  // 제안서 기본 차종 설정
-  if(VEHICLES.ice && VEHICLES.ice.length>0){
-    pState.vid = VEHICLES.ice[0].id;
-    const vl = getVariantList(pState.vid);
-    pState.variant = vl[0]||null;
-  }
 }
 
 init();
