@@ -7,7 +7,7 @@
 <!-- v2: 고객 제안서 + 판촉지원금 추가 -->
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{font: size 17px;px}
+html{font-size:18px}
 body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#eef0f3;color:#1a1a2e;padding-bottom:72px}
 :root{--navy:#002c5f;--blue:#0d4a8a;--sky:#00aad2;--green:#16a34a;--green-bg:#dcfce7;--amber:#d97706;--amber-bg:#fef3c7;--red:#dc2626;--red-bg:#fee2e2;--purple:#7c3aed;--gray:#6b7280;--border:#e5e7eb;--card:#fff;--shadow:0 2px 8px rgba(0,44,95,.1)}
 
@@ -200,7 +200,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 .prop-generate:active{opacity:.85}
 
 /* 제안서 결과 */
-.result-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,44,95,.15);margin-top:12px}
+.result-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,44,95,.15);margin-top:12px;padding-top:28px}
 .result-hdr{background:linear-gradient(135deg,var(--navy),#1a4a8a);color:#fff;padding:18px 20px;text-align:center}
 .result-hdr-month{font-size:.75rem;opacity:.8;margin-bottom:4px}
 .result-hdr-model{font-size:1.5rem;font-weight:900;margin-bottom:4px}
@@ -772,6 +772,7 @@ genesis:[
    targets:[]},
 
   {id:'gv80', name:'GV80', sub:'쿠페 포함', hl:'6월이전재고 5% / 7월재고 2%',
+   change:{type:'dn',txt:'26MY 단산: BTO~8/10 / BTS~8/12 기준, 8월생산 440대 한정'},
    genesisStock:{pre6:'5%',jul:'2%'},
    genesisPromo:'GS칼텍스 고급유 할인 프로모션',
    tradeIn:{corp:'200만',other:'100만'},
@@ -779,7 +780,8 @@ genesis:[
    genesisFinance:'파이낸스 렌트/리스 특화\n리스 84만~/월 | 렌트 94만~/월',
    exhibitCar:'50만', saveAuto:'30만/50만',
    bm:['20만','40만','50만','60만','70만','80만'],
-   targets:['tradein']},
+   targets:['tradein'],
+   notes:'※ 26MY 단산 안내\n  - BTO(~8/10일) · BTS(~8/12일) 기준 L코드 및 출고확정건 생산대응 가능\n  - 8월 생산 440대 限 → 가용재고 활용 전환출고 유도 必'},
 ],
 
 truck:[
@@ -1187,6 +1189,93 @@ const PRICE_DATA = {
   }
 };
 
+
+/* ===== 연간 자동차세 데이터 (비영업용·지방교육세 포함·신차 기준) ===== */
+// l: 파워트레인 라벨  cc: 배기량  tax: 연간 세금
+const CAR_TAX = {
+  /* ── 국내승용 ── */
+  'avante-fn':[
+    {l:'가솔린 2.0 IVT', cc:'1,999cc', tax:'약 52만원/년'},
+    {l:'HEV 1.6 하이브리드', cc:'1,598cc', tax:'약 29.1만원/년'},
+  ],
+  'avante':[
+    {l:'가솔린 1.6 IVT', cc:'1,598cc', tax:'약 29.1만원/년'},
+    {l:'HEV 1.6 하이브리드', cc:'1,598cc', tax:'약 29.1만원/년'},
+    {l:'N 2.0 T-GDi', cc:'1,998cc', tax:'약 52만원/년'},
+  ],
+  'sonata':[
+    {l:'1.6 터보 T-GDi', cc:'1,598cc', tax:'약 29.1만원/년'},
+    {l:'2.0 가솔린 IVA', cc:'1,999cc', tax:'약 52만원/년'},
+    {l:'2.0 하이브리드', cc:'1,999cc', tax:'약 52만원/년'},
+  ],
+  'grandeur-old':[
+    {l:'2.5 가솔린', cc:'2,497cc', tax:'약 64.9만원/년'},
+    {l:'LPG 3.5', cc:'3,470cc', tax:'약 90.2만원/년'},
+    {l:'2.5 하이브리드', cc:'1,598cc', tax:'약 29.1만원/년'},
+  ],
+  'grandeur-new':[
+    {l:'2.5 가솔린', cc:'2,497cc', tax:'약 64.9만원/년'},
+    {l:'LPG 3.5', cc:'3,470cc', tax:'약 90.2만원/년'},
+    {l:'2.5 하이브리드', cc:'1,598cc', tax:'약 29.1만원/년'},
+  ],
+  'venue':[
+    {l:'가솔린 1.6 IVT', cc:'1,598cc', tax:'약 29.1만원/년'},
+  ],
+  'kona':[
+    {l:'1.6 터보 가솔린', cc:'1,598cc', tax:'약 29.1만원/년'},
+    {l:'2.0 가솔린 IVT', cc:'1,999cc', tax:'약 52만원/년'},
+    {l:'1.6T 하이브리드', cc:'1,598cc', tax:'약 29.1만원/년'},
+  ],
+  'tucson':[
+    {l:'가솔린 1.6 터보', cc:'1,598cc', tax:'약 29.1만원/년'},
+    {l:'1.6T 하이브리드', cc:'1,598cc', tax:'약 29.1만원/년'},
+  ],
+  'santafe':[
+    {l:'2.5 터보 가솔린', cc:'2,497cc', tax:'약 64.9만원/년'},
+    {l:'1.6T 하이브리드', cc:'1,598cc', tax:'약 29.1만원/년'},
+  ],
+  'palisade':[
+    {l:'3.5 V6 가솔린', cc:'2,497cc', tax:'약 64.9만원/년'},
+    {l:'1.6T 하이브리드', cc:'1,598cc', tax:'약 29.1만원/년'},
+  ],
+  'staria':[
+    {l:'3.5 V6 가솔린/LPG', cc:'3,470cc', tax:'약 90.2만원/년'},
+    {l:'1.6T 하이브리드', cc:'1,598cc', tax:'약 29.1만원/년'},
+  ],
+
+  /* ── EV / 수소 ── */
+  'nexo':     [{l:'수소 연료전지 95kW', cc:'수소차', tax:'13만원/년'}],
+  'kona-ev':  [{l:'전기 모터', cc:'전기차', tax:'13만원/년'}],
+  'ioniq5':   [{l:'전기 모터', cc:'전기차', tax:'13만원/년'}],
+  'ioniq6':   [{l:'전기 모터', cc:'전기차', tax:'13만원/년'}],
+  'ioniq9':   [{l:'전기 모터', cc:'전기차', tax:'13만원/년'}],
+  'porter-ev':[{l:'전기 1톤 화물', cc:'전기차', tax:'28,500원/년'}],
+  'st1':      [{l:'전기 화물', cc:'전기차', tax:'28,500원/년'}],
+  'staria-ev':[{l:'전기 모터', cc:'전기차', tax:'13만원/년'}],
+
+  /* ── 제네시스 ── */
+  'g70':[
+    {l:'2.5T 가솔린', cc:'2,497cc', tax:'약 64.9만원/년'},
+    {l:'3.3T 가솔린', cc:'3,342cc', tax:'약 86.9만원/년'},
+  ],
+  'g80':    [{l:'2.5T 가솔린', cc:'2,497cc', tax:'약 64.9만원/년'}],
+  'g80ev':  [{l:'전기 AWD', cc:'전기차', tax:'13만원/년'}],
+  'g90':    [{l:'3.5T 가솔린', cc:'3,470cc', tax:'약 90.2만원/년'}],
+  'gv60':   [{l:'전기 RWD/AWD', cc:'전기차', tax:'13만원/년'}],
+  'gv70':   [{l:'2.5T 가솔린', cc:'2,497cc', tax:'약 64.9만원/년'}],
+  'gv70ev': [{l:'전기 AWD', cc:'전기차', tax:'13만원/년'}],
+  'gv80':   [{l:'3.5T 가솔린', cc:'3,470cc', tax:'약 90.2만원/년'}],
+
+  /* ── 상용 / 트럭 ── */
+  'porter-lp':[{l:'LPDi 1톤 화물', cc:'화물차', tax:'28,500원/년'}],
+  'mighty':   [{l:'중형트럭 2.5~5톤', cc:'화물차', tax:'34,500~79,500원/년'}],
+  'solati':   [{l:'2.5 디젤 승합', cc:'화물차(승합)', tax:'65,000~85,000원/년'}],
+
+  /* ── 영업용 ── */
+  'sonata-tx':  [{l:'LPG 2.0 (영업용)', cc:'1,999cc', tax:'약 52만원/년'}],
+  'grandeur-tx':[{l:'LPG 3.0 (영업용)', cc:'2,999cc', tax:'약 78만원/년'}],
+};
+
 /* ===== 현대자동차 전용카드 혜택 (2026년 8월) ===== */
 const CARD_DATA = {
   cards: [
@@ -1461,7 +1550,7 @@ const DELIVERY = {
   {type:'GV70 EV', d:'1m', delivery:'약 1개월', note:null, stock:null},
 ],
 'gv80':[
-  {type:'GV80 (쿠페 포함)', d:'instant', delivery:'즉시 (재고)', note:'발급가능재고 즉시 출고 가능 / BTO 사양 1주 추가', stock:'GV80 2,000대'},
+  {type:'GV80 (쿠페 포함)', d:'instant', delivery:'즉시 (재고)', note:'★26MY 단산: BTO~8/10 · BTS~8/12 기준 생산대응 가능 / 8월 생산 440대 한정 → 가용재고 전환출고 유도 必', stock:'GV80 8월생산 440대'},
 ],
 'sonata-tx':[
   {type:'쏘나타 택시 (DT23)', d:'1m', delivery:'약 1개월', note:'선적/탁송 상황에 따라 납기 변동 가능', stock:null},
@@ -1641,6 +1730,25 @@ function renderHome(){
   ※ 총 DC 금액이 차가의 30% 초과 불가
   </div>
 </div>`;
+}
+
+/* ===== 자동차세 섹션 ===== */
+function buildTaxSection(v){
+  var data = CAR_TAX[v.id];
+  if(!data || !data.length) return '';
+  var rows = '';
+  for(var i=0;i<data.length;i++){
+    var d=data[i];
+    rows += '<div class="irow">'
+      +'<span class="ilbl" style="min-width:120px">'+d.l+'</span>'
+      +'<span style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;flex:1">'
+      +'<span style="font-size:.8rem;color:#374151;background:#f3f4f6;padding:2px 8px;border-radius:10px">'+d.cc+'</span>'
+      +'<span class="ival g" style="font-size:.9rem">'+d.tax+'</span>'
+      +'</span>'
+      +'</div>';
+  }
+  rows += '<div class="nbox" style="margin-top:6px">※ 비영업용 기준 / 지방교육세 포함 / 신차 1년차 세액\n※ 지차체 30% 감면 적용 시 실납부세액 추가 감소</div>';
+  return buildSection('\uD83D\uDCB0 연간 자동차세 (비영업용 기준)', data[0].tax, 'info', rows, false);
 }
 
 /* ===== RENDER VEHICLE LIST ===== */
@@ -1875,6 +1983,9 @@ function buildDetail(v, variant){
       <div class="irow"><span class="ilbl">${k}</span><span class="ival g">${val}</span></div>
     `).join(''), false);
   }
+
+  // 자동차세
+  html += buildTaxSection(v);
 
   // Notes
   if(v.notes){
@@ -2464,6 +2575,34 @@ function getActiveVid(){
   return s ? s.value : '';
 }
 
+/* ===== 취득세 추정 함수 ===== */
+// 취득세기준표 (비영업용, 2026년 기준)
+// 일반승용 7% / 경차(1000cc이하) 4% / 화물차 5% / 승합차 5% / 영업용 4%
+function getAcqTax(vid, priceWon){
+  var light = ['casper','casper-ev'];
+  var truck = ['porter-lp','porter-ev','mighty','pavise','st1'];
+  var van   = ['solati','county'];
+  var taxi  = ['sonata-tx','grandeur-tx','ioniq5-tx','ioniq6-tx','staria-ev-tx'];
+  var ev    = ['kona-ev','ioniq5','ioniq6','ioniq9','staria-ev','nexo',
+               'g80ev','gv60','gv70ev','porter-ev','st1'];
+
+  var rate, label, evExempt = 0;
+  if(light.indexOf(vid) >= 0)     { rate=0.04; label='경차 4%'; }
+  else if(truck.indexOf(vid) >= 0){ rate=0.05; label='화물차 5%'; }
+  else if(van.indexOf(vid) >= 0)  { rate=0.05; label='승합차 5%'; }
+  else if(taxi.indexOf(vid) >= 0) { rate=0.04; label='영업용 4%'; }
+  else {
+    rate=0.07; label='일반 승용차 7%';
+    if(ev.indexOf(vid) >= 0) evExempt = 140;  // 전기/수소 최대 140만원 감면
+  }
+
+  var taxBase = Math.round(priceWon / 1.1 * 10) / 10;   // 과세표준 만원 (VAT 제외)
+  var taxAmt  = Math.round(taxBase * rate * 10) / 10;    // 취득세 만원
+  var taxNet  = evExempt > 0 ? Math.max(0, taxAmt - evExempt) : taxAmt;
+
+  return { rate:rate, label:label, taxBase:taxBase, taxAmt:taxAmt, taxNet:taxNet, evExempt:evExempt };
+}
+
 /* ===== 제안서 생성 ===== */
 function resetProposal(){ renderProposal(); }
 function generateProposal(){
@@ -2549,8 +2688,8 @@ function generateProposal(){
       const mr=rR/12, mly=mr===0?pP/nN:pP*mr*Math.pow(1+mr,nN)/(Math.pow(1+mr,nN)-1);
       calcHtml='<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:9px 12px;margin-top:8px">'+
         '<div style="font-size:.72rem;opacity:.8;margin-bottom:3px">💰 예상 월납입금</div>'+
-        '<div style="font-size:1.2rem;font-weight:900">'+Math.round(mly*10)/10+' 만원/월</div>'+
-        '<div style="font-size:.68rem;opacity:.7;margin-top:2px">할부원금 '+pP.toLocaleString()+'만원 · '+(rR*100).toFixed(1)+'% · '+nN+'개월</div></div>';
+        '<div style="font-size:1.2rem;font-weight:900">'+Math.floor(mly*10000).toLocaleString()+'원/월</div>'+
+        '<div style="font-size:.68rem;opacity:.7;margin-top:2px">할부원금 '+(pP*10000).toLocaleString()+'원 · '+(rR*100).toFixed(1)+'% · '+nN+'개월</div></div>';
     }
   } else if(finV==='burden-down'){
     const nP=getNum('pp-bal-normal'),fP=getNum('pp-bal-flex'),rR=parseFloat(document.getElementById('pp-bal-rate')?.value||'0.028'),nN=parseInt(document.getElementById('pp-bal-term')?.value||'36');
@@ -2558,8 +2697,8 @@ function generateProposal(){
       const mr=rR/12, nm=nP<=0?0:mr===0?nP/nN:nP*mr*Math.pow(1+mr,nN)/(Math.pow(1+mr,nN)-1), fi=fP*mr, tot=Math.round((nm+fi)*10)/10;
       calcHtml='<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:9px 12px;margin-top:8px">'+
         '<div style="font-size:.72rem;opacity:.8;margin-bottom:3px">💰 예상 월납입금 (유예형)</div>'+
-        '<div style="font-size:1.2rem;font-weight:900">'+tot+' 만원/월</div>'+
-        '<div style="font-size:.68rem;opacity:.7;margin-top:2px">원리금균등 '+Math.round(nm*10)/10+'만 + 유예금이자 '+Math.round(fi*10)/10+'만</div></div>';
+        '<div style="font-size:1.2rem;font-weight:900">'+Math.floor((nm+fi)*10000).toLocaleString()+'원/월</div>'+
+        '<div style="font-size:.68rem;opacity:.7;margin-top:2px">원리금균등 '+Math.floor(nm*10000).toLocaleString()+'원 + 유예금이자 '+Math.floor(fi*10000).toLocaleString()+'원</div></div>';
     }
   }
 
@@ -2623,6 +2762,25 @@ function generateProposal(){
   }
   html += '</div>';
 
+  // 취득세 추정 (트림 선택 + 할인 후 가격 확정 시)
+  if(trimPrice && !hasPct && (trimPrice - totalDiscount) > 0){
+    var _acqP = trimPrice - totalDiscount;
+    var _acq  = getAcqTax(vid, _acqP);
+    html += '<div style="background:#f0fdf4;border-left:3px solid #16a34a;padding:10px 14px;margin:0">';
+    html += '<div style="font-size:.72rem;color:#15803d;font-weight:700;margin-bottom:5px">취득세 대략 추정 (' + _acq.label + ')</div>';
+    html += '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">';
+    html += '<span style="font-size:.75rem;color:#374151">시가 약 ' + Math.round(_acq.taxBase).toLocaleString() + '만원 × ' + (_acq.rate*100).toFixed(0) + '%</span>';
+    html += '<span style="font-size:1rem;font-weight:800;color:#15803d">약 ' + Math.round(_acq.taxNet).toLocaleString() + '만원~</span>';
+    html += '</div>';
+    if(_acq.evExempt > 0){
+      html += '<div style="font-size:.68rem;color:#0369a1;margin-top:4px">⚡ 전기/수소차 취득세 감면 최대 ' + _acq.evExempt + '만원 (지자체별 상이) 포함 후 추정</div>';
+    }
+    html += '<div style="font-size:.62rem;color:#9ca3af;margin-top:5px;line-height:1.6">';
+    html += '※ 할인 후 예상 구매가 기준 ÷1.1(부가세 제외) 시가 기준 추정값<br>';
+    html += '※ 콜 옵션 미확정 상태 대략적 산출 / 실제 취득세는 최종 출고가(공장도가) 기준 다시 산출됨</div>';
+    html += '</div>';
+  }
+
   // ⑤ 금융 혜택
   if(finDetail || calcHtml){
     html += '<div class="result-finance">';
@@ -2640,6 +2798,27 @@ function generateProposal(){
   html += '</div>';
 
   html += '<div class="result-notice">※ 조건 충족 및 출고 전 타겟코드 입력 시 적용<br>※ 타겟 중복 최대 3개 / 총 DC 차가의 30% 초과 불가</div>';
+  var _pd = PRICE_DATA[vid];
+  if(_pd){
+    var _vk = Object.keys(_pd)[0];
+    var _vd = _pd[_vk];
+    if(_vd && _vd.o && _vd.o.length){
+      html += '<div style="padding:10px 14px 10px;border-top:2px dashed #e5e7eb">'; 
+      html += '<div style="font-size:.78rem;font-weight:800;color:var(--navy);margin-bottom:8px">주요 선택 옵션 사양 <span style="font-size:.65rem;font-weight:400;color:var(--gray)">(기본가 별도 추가)</span></div>';
+      html += '<div style="display:flex;flex-wrap:wrap;gap:5px">'; 
+      for(var _oi=0;_oi<_vd.o.length;_oi++){
+        var _on=_vd.o[_oi][0], _op=_vd.o[_oi][1];
+        html += '<div style="background:#f3f4f6;border-radius:14px;padding:4px 10px;font-size:.72rem;display:inline-flex;gap:5px;align-items:center">'; 
+        html += '<span style="color:#374151">'+_on+'</span>';
+        html += '<span style="color:var(--sky);font-weight:700;white-space:nowrap">+'+_op+'만</span>';
+        html += '</div>';
+      }
+      html += '</div>';
+      html += '<div style="font-size:.62rem;color:#9ca3af;margin-top:7px;line-height:1.6">※ 옵션 선택에 따라 실제 구매가 변동 / 최종 확정은 담당 카마스터와 취합 시 안내 드림</div>';
+      html += '</div>';
+    }
+  }
+
   html += '<div class="result-btn-row">';
   html += '<button class="result-btn result-btn-print" onclick="saveAsPng()">📱 PNG 저장 (카카오 전송)</button>';
   html += '<button class="result-btn result-btn-reset" onclick="resetProposal()">🔄 다시하기</button>';
@@ -2680,9 +2859,9 @@ function ppCalcStd(){
   el.style.display='block';
   el.innerHTML =
     '<div style="font-size:.75rem;opacity:.8;margin-bottom:4px">월납입금 (표준형)</div>' +
-    '<div style="font-size:1.9rem;font-weight:900">' + mRounded.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '<span style="font-size:1rem">만원/월</span></div>' +
+    '<div style="font-size:1.9rem;font-weight:900">' + Math.floor(monthly*10000).toLocaleString('ko-KR') + '<span style="font-size:1rem">원/월</span></div>' +
     '<div style="font-size:.72rem;opacity:.75;margin-top:5px">' +
-    '할부원금 ' + p.toLocaleString() + '만원 / ' + n + '개월 / 총이자 ' + totalInterest.toLocaleString() + '만원</div>';
+    '할부원금 ' + (p*10000).toLocaleString() + '원 / ' + n + '개월 / 총이자 ' + (Math.floor(monthly*10000)*n - p*10000).toLocaleString() + '원</div>';
 }
 
 function ppCalcBal(){
@@ -2705,16 +2884,16 @@ function ppCalcBal(){
   el.style.display='block';
   el.innerHTML =
     '<div style="font-size:.75rem;opacity:.8;margin-bottom:6px">★ 월납입금 합계 (① + ②)</div>' +
-    '<div style="font-size:1.9rem;font-weight:900">' + total.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '<span style="font-size:1rem">만원/월</span></div>' +
+    '<div style="font-size:1.9rem;font-weight:900">' + Math.floor(total*10000).toLocaleString('ko-KR') + '<span style="font-size:1rem">원/월</span></div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px">' +
     '<div style="background:rgba(59,130,246,.25);border-radius:8px;padding:8px;text-align:center">' +
     '<div style="font-size:.65rem;opacity:.8">① 원리금균등</div>' +
-    '<div style="font-size:1rem;font-weight:800">' + nm.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '만원</div>' +
-    '<div style="font-size:.62rem;opacity:.65">원금 ' + normalP.toLocaleString() + '만원</div></div>' +
+    '<div style="font-size:1rem;font-weight:800">' + Math.floor(nm*10000).toLocaleString('ko-KR') + '원</div>' +
+    '<div style="font-size:.62rem;opacity:.65">원금 ' + (normalP*10000).toLocaleString() + '원</div></div>' +
     '<div style="background:rgba(34,197,94,.25);border-radius:8px;padding:8px;text-align:center">' +
     '<div style="font-size:.65rem;opacity:.8">② 유예금 이자</div>' +
-    '<div style="font-size:1rem;font-weight:800">' + fi.toLocaleString('ko-KR',{maximumFractionDigits:1}) + '만원</div>' +
-    '<div style="font-size:.62rem;opacity:.65">유예금 ' + flexP.toLocaleString() + '만원</div></div>' +
+    '<div style="font-size:1rem;font-weight:800">' + Math.floor(fi*10000).toLocaleString('ko-KR') + '원</div>' +
+    '<div style="font-size:.62rem;opacity:.65">유예금 ' + (flexP*10000).toLocaleString() + '원</div></div>' +
     '</div>';
 }
 
