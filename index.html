@@ -353,7 +353,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
   .prop-generate,.result-btn-row{display:none!important}
 
   body{background:#fff!important;padding:0!important;margin:0!important}
-  html{font-size:11px!important}
+  html{font-size:14px!important}
   #pg-proposal{display:block!important;padding:0!important}
   .prop-wrap{padding:0!important}
   #p-result{margin:0!important}
@@ -419,6 +419,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
   }
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
 <div class="pw-overlay" id="pw-overlay" style="display:none">
@@ -2640,7 +2641,7 @@ function generateProposal(){
 
   html += '<div class="result-notice">※ 조건 충족 및 출고 전 타겟코드 입력 시 적용<br>※ 타겟 중복 최대 3개 / 총 DC 차가의 30% 초과 불가</div>';
   html += '<div class="result-btn-row">';
-  html += '<button class="result-btn result-btn-print" onclick="window.print()">🖨 인쇄 / 전송</button>';
+  html += '<button class="result-btn result-btn-print" onclick="saveAsPng()">📱 PNG 저장 (카카오 전송)</button>';
   html += '<button class="result-btn result-btn-reset" onclick="resetProposal()">🔄 다시하기</button>';
   html += '</div></div>';
 
@@ -3250,6 +3251,48 @@ function switchTab(id){
   if(id==='incentive') renderIncentivePage();
   if(id==='calc') renderCalc();
   if(id==='help') renderHelp();
+}
+
+/* ===== PNG 저장 (카카오톡 전송용 고화질) ===== */
+async function saveAsPng(){
+  if(typeof html2canvas==='undefined'){
+    alert('이미지 라이브러리 로딩 중입니다. 잠시 후 다시 시도하세요.'); return;
+  }
+  const resultEl=document.getElementById('p-result');
+  if(!resultEl||!resultEl.querySelector('.result-card')){
+    alert('먼저 제안서를 생성하세요'); return;
+  }
+  const card=resultEl.querySelector('.result-card');
+  const btn=document.querySelector('.result-btn-print');
+  const origTxt=btn?btn.textContent:'';
+  if(btn){btn.textContent='⏳ 생성 중...';btn.disabled=true;}
+  // 원본 스타일 저장
+  const origFs=document.documentElement.style.fontSize;
+  const origW=card.style.width;
+  const origMW=card.style.maxWidth;
+  // PNG 캡처용: 18px 기준 · 420px 고정폭
+  document.documentElement.style.fontSize='18px';
+  card.style.width='420px';
+  card.style.maxWidth='420px';
+  await new Promise(r=>setTimeout(r,150));  // 렌더링 대기
+  try{
+    const canvas=await html2canvas(card,{
+      scale:3,            // 3배 고해상도 (1260px 폭)
+      useCORS:true,
+      logging:false,
+      backgroundColor:'#ffffff'
+    });
+    const a=document.createElement('a');
+    a.download='현대자동차_구매혜택_제안서.png';
+    a.href=canvas.toDataURL('image/png');
+    a.click();
+  }finally{
+    // 원본 복원
+    document.documentElement.style.fontSize=origFs;
+    card.style.width=origW;
+    card.style.maxWidth=origMW;
+    if(btn){btn.textContent=origTxt;btn.disabled=false;}
+  }
 }
 
 /* ===== INIT ===== */
