@@ -2954,14 +2954,16 @@ function renderCatalog(){
       icon: '🚗',
       color: '#002c5f',
       url: 'https://www.hyundai.com/kr/ko/e/vehicles/catalog-price-download',
-      desc: '현대자동차 전 차종 가격표 및 카탈로그'
+      desc: '현대자동차 전 차종 가격표 및 카탈로그',
+      label: '현대브랜드 가격표/카탈로그'
     },
     {
       name: '제네시스 브랜드',
       icon: '✦',
       color: '#1a1a2e',
       url: 'https://www.genesis.com/kr/ko/support/download-center/genesis-models.html',
-      desc: '제네시스 전 모델 가격표 및 카탈로그'
+      desc: '제네시스 전 모델 가격표 및 카탈로그',
+      label: '제네시스 가격표/카탈로그'
     }
   ];
 
@@ -2976,15 +2978,10 @@ function renderCatalog(){
       </div>
       <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px">
         <button onclick="(function(){
-          navigator.clipboard.writeText('${b.url}').then(function(){
-            var t=document.createElement('div');
-            t.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#1a1a2e;color:#fff;padding:10px 20px;border-radius:24px;font-size:.85rem;font-weight:600;z-index:9999;text-align:center;line-height:1.5;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.3)';
-            t.innerHTML='🔗 링크가 복사되었습니다.<br>문자나 카톡에 붙혀넣어 발송하세요';
-            document.body.appendChild(t);
-            setTimeout(function(){t.remove()},2800);
-          }).catch(function(){
-            window.prompt('아래 링크를 복사하세요:','${b.url}');
-          });
+          var text='${b.label}\\n${b.url}';
+          function showToast(){var t=document.createElement('div');t.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#1a1a2e;color:#fff;padding:10px 20px;border-radius:24px;font-size:.85rem;font-weight:600;z-index:9999;text-align:center;line-height:1.5;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.3)';t.innerHTML='🔗 복사되었습니다!<br>문자나 카톡에 붙혀넣어 발송하세요';document.body.appendChild(t);setTimeout(function(){t.remove()},2800);}
+          function legacyCopy(){var ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;top:-9999px;left:-9999px;opacity:0';document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,99999);try{document.execCommand('copy');showToast();}catch(e){window.prompt('아래 내용을 복사하세요:',text);}ta.remove();}
+          if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(showToast).catch(legacyCopy);}else{legacyCopy();}
         })()" style="background:#00aad2;color:#fff;border:none;border-radius:12px;padding:13px 16px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;width:100%">
           📤 고객전송용 (링크 복사)
         </button>
@@ -3004,7 +3001,7 @@ function renderCatalog(){
     <div style="background:#f9fafb;border-radius:10px;padding:12px 14px;border:1px solid #e5e7eb;margin-top:4px">
       <div style="font-size:.8rem;color:#6b7280;line-height:1.8">
         <div style="font-weight:700;color:#374151;margin-bottom:4px">💡 사용 안내</div>
-        <div>📤 <b>고객전송용</b> — 링크를 복사한 뒤 문자 또는 카카오톡에 붙혀넣어 고객에게 발송하세요</div>
+        <div>📤 <b>고객전송용</b> — 버튼을 누르면 <b>문구+링크</b>가 함께 복사됩니다. 문자·카카오톡에 붙혀넣어 발송하세요</div>
         <div style="margin-top:4px">🔍 <b>직접 보기</b> — 담당자가 직접 해당 페이지에 접속하여 최신 자료를 확인하세요</div>
         <div style="margin-top:6px;color:#9ca3af;font-size:.75rem">※ 가격표·카탈로그는 현대·제네시스 공식 홈페이지 자료이며, 출시 시기에 따라 업데이트될 수 있습니다</div>
       </div>
