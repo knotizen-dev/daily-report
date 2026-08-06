@@ -2470,32 +2470,36 @@ function ppCatChange(cat){
 }
 
 function ppShowTrims(vid){
-  const box = document.getElementById('pp-trims');
+  var box = document.getElementById('pp-trims');
   if(!box) return;
-  const pd = PRICE_DATA[vid];
-  window._selTrimPrice = null; window._selTrimName = null;
+  var pd = PRICE_DATA[vid];
+  window._selTrimPrice = null; window._selTrimName = null; window._selVariant = null;
   if(!pd){ box.innerHTML='<div style="font-size:.75rem;color:var(--gray)">가격표 정보 없음</div>'; return; }
-  const vdata = pd[Object.keys(pd)[0]];
-  if(!vdata){ box.innerHTML=''; return; }
-  let h='<div class="pp-trim-label">▸ 기본가격 기준 · 트림 선택</div><div class="pp-trim-grid">';
-  let first=true;
-  vdata.g.forEach(gr=>{
-    if(gr.l) h+='<div class="pp-trim-grp" style="margin-top:4px">'+gr.l+'</div>';
-    gr.t.forEach(function(t){
-      const nm=t[0], pr=t[1];
-      if(first){ window._selTrimPrice=pr; window._selTrimName=nm; first=false; }
-      h+='<button class="pp-trim-btn'+(window._selTrimName===nm?' on':'')+'" onclick="ppSelectTrim(this,'+pr+',\''+nm.replace(/'/g,"\\'")+'\')">'+
-         '<span class="pp-trim-nm">'+nm+'</span>'+
-         '<span class="pp-trim-pr">'+pr.toLocaleString()+'만원</span></button>';
-    });
-  });
-  h+='</div><div class="pp-trim-note">※ 옵션 선택 시 추가 금액 발생</div>';
+  var h='<div class="pp-trim-label">\u25b8 기본가격 기준 \u00b7 트림 선택</div><div class="pp-trim-grid">';
+  var first=true;
+  var vkeys=Object.keys(pd);
+  for(var vi=0;vi<vkeys.length;vi++){
+    var vk=vkeys[vi], vdata=pd[vk];
+    if(!vdata||!vdata.g) continue;
+    for(var gi=0;gi<vdata.g.length;gi++){
+      var gr=vdata.g[gi];
+      if(gr.l) h+='<div class="pp-trim-grp" style="margin-top:4px">'+gr.l+'</div>';
+      for(var ti=0;ti<gr.t.length;ti++){
+        var nm=gr.t[ti][0], pr=gr.t[ti][1];
+        if(first){ window._selTrimPrice=pr; window._selTrimName=nm; window._selVariant=vk; first=false; }
+        h+='<button class="pp-trim-btn'+(window._selTrimName===nm?' on':'')+'" onclick="ppSelectTrim(this,'+pr+',\''+nm.replace(/'/g,"\\'")+'\',\''+vk.replace(/'/g,"\\'")+'\')">'+
+           '<span class="pp-trim-nm">'+nm+'</span>'+
+           '<span class="pp-trim-pr">'+pr.toLocaleString()+'\ub9cc\uc6d0</span></button>';
+      }
+    }
+  }
+  h+='</div><div class="pp-trim-note">\u203b \uc635\uc158 \uc120\ud0dd \uc2dc \ucd94\uac00 \uae08\uc561 \ubc1c\uc0dd</div>';
   box.innerHTML=h;
 }
-function ppSelectTrim(btn,price,name){
-  document.querySelectorAll('.pp-trim-btn').forEach(b=>b.classList.remove('on'));
+function ppSelectTrim(btn,price,name,variant){
+  document.querySelectorAll('.pp-trim-btn').forEach(function(b){b.classList.remove('on');});
   btn.classList.add('on');
-  window._selTrimPrice=price; window._selTrimName=name;
+  window._selTrimPrice=price; window._selTrimName=name; window._selVariant=variant||null;
 }
 
 function ppVidChange(vid){
@@ -2807,7 +2811,7 @@ function generateProposal(){
   html += '<div class="result-notice">※ 조건 충족 및 출고 전 타겟코드 입력 시 적용<br>※ 타겟 중복 최대 3개 / 총 DC 차가의 30% 초과 불가</div>';
   var _pd = PRICE_DATA[vid];
   if(_pd){
-    var _vk = Object.keys(_pd)[0];
+    var _vk = (window._selVariant && _pd[window._selVariant]) ? window._selVariant : Object.keys(_pd)[0];
     var _vd = _pd[_vk];
     if(_vd && _vd.o && _vd.o.length){
       html += '<div style="padding:10px 14px 10px;border-top:2px dashed #e5e7eb">'; 
@@ -2821,13 +2825,13 @@ function generateProposal(){
         html += '</div>';
       }
       html += '</div>';
-      html += '<div style="font-size:.62rem;color:#9ca3af;margin-top:7px;line-height:1.6">※ 옵션 선택에 따라 실제 구매가 변동 / 최종 확정은 담당 카마스터와 취합 시 안내 드림</div>';
+      html += '<div style="font-size:.62rem;color:#9ca3af;margin-top:7px;line-height:1.6">※ 옵션 선택에 따라 실제 구매가 변동 / 최종 확정은 담당 카마스터와 상담 시 안내 드림</div>';
       html += '</div>';
     }
   }
 
   html += '<div class="result-btn-row">';
-  html += '<button class="result-btn result-btn-print" onclick="saveAsPng()">📱 PNG 저장 (카카오 전송)</button>';
+  html += '<button class="result-btn result-btn-print" onclick="saveAsPng()">📱 이미지 저장(카카오/문자용)</button>';
   html += '<button class="result-btn result-btn-reset" onclick="resetProposal()">🔄 다시하기</button>';
   html += '</div></div>';
 
