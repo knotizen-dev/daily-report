@@ -1740,6 +1740,44 @@ function renderHome(){
 </div>`;
 }
 
+
+
+
+
+
+function buildAcqTaxSection(v){
+  // 차종 상세 패널용 취득세 추정 (최저 트림 기준)
+  if(typeof getAcqTax === 'undefined') return '';
+  var refPrice = 0;
+  var pd = PRICE_DATA[v.id];
+  if(pd){
+    var vd = pd[Object.keys(pd)[0]];
+    if(vd&&vd.g&&vd.g[0]&&vd.g[0].t&&vd.g[0].t[0]) refPrice = vd.g[0].t[0][1];
+  }
+  var acq = getAcqTax(v.id, refPrice);
+  var rows = '<div class="irow"><span class="ilbl">최저 트림 기준</span>'
+    +'<span style="flex:1;display:flex;align-items:center;gap:8px">'
+    +'<span style="font-size:.88rem;font-weight:800;color:var(--green)">약 '+Math.round(acq.taxNet).toLocaleString()+'만원~</span>'
+    +'<span style="font-size:.72rem;color:var(--gray)">('+acq.label+')</span>'
+    +'</span></div>';
+  if(acq.evExempt>0){
+    rows += '<div class="irow"><span class="ilbl">전기/수소 감면</span>'
+      +'<span class="ival g">최대 '+acq.evExempt+'만원 (지자체별 상이)</span></div>';
+  }
+  rows += '<div class="nbox" style="margin-top:6px">'
+    +'※ 최저 트림 가격÷1.1(VAT 제외) 기준 대략 추정<br>'
+    +'※ 옵션 확정 후 실제 취득세 재산출 / 정확한 금액은 제안서에서 트림 선택 후 확인</div>';
+  return buildSection('취득세 추정 (참고용)','약 '+Math.round(acq.taxNet).toLocaleString()+'만원~','info',rows,false);
+}
+
+function buildBondSection(v){
+  if(!CAR_TAX[v.id] || !CAR_TAX[v.id].length) return '';
+  var note = '<div class="nbox">'
+    + '공채매입은 지역별 상이하여 별도 확인 필요\n'
+    + '※ 소재지 관할 차량등록사업소 또는 담당 직원에게 확인</div>';
+  return buildSection('공채매입 (신차 등록 시)', '지역별 상이 — 별도 확인', 'none', note, false);
+}
+
 /* ===== 자동차세 섹션 ===== */
 function buildTaxSection(v){
   var data = CAR_TAX[v.id];
@@ -1992,16 +2030,23 @@ function buildDetail(v, variant){
     `).join(''), false);
   }
 
-  // 자동차세
-  html += buildTaxSection(v);
-
   // Notes
   if(v.notes){
     html += `<div style="padding:0 16px 14px"><div class="nbox">${v.notes}</div></div>`;
   }
 
   html += '</div>';  // close dpanel-conds  v2
-  if(_hasPD) html += `<div class="price-body" style="display:none">${buildPricePanel(v.id,variant)}</div>`;
+  if(_hasPD){
+    html += '<div class="price-body" style="display:none">'
+      + buildPricePanel(v.id,variant)
+      + '<div style="border-top:2px dashed #e5e7eb;margin:14px 0 6px"></div>'
+      + buildTaxSection(v)
+      + buildAcqTaxSection(v)
+      + buildBondSection(v)
+      + '</div>';
+  } else {
+    html += buildTaxSection(v) + buildAcqTaxSection(v) + buildBondSection(v);
+  }
   html += `</div>`;  // close dpanel
   return html;
 }
