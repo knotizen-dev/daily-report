@@ -316,6 +316,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 .opt-chip{background:#f3f4f6;border-radius:20px;padding:5px 11px;font-size:.77rem;display:inline-flex;align-items:center;gap:6px;line-height:1.2}
 .opt-chip-nm{color:#374151;font-weight:500}
 .opt-chip-pr{color:var(--sky);font-weight:800;white-space:nowrap}
+.opt-chip-chk{background:#f3f4f6;border-radius:20px;padding:5px 11px;font-size:.77rem;display:inline-flex;align-items:center;gap:6px;line-height:1.2;cursor:pointer;border:1.5px solid transparent;transition:all .15s}
+.opt-chip-chk:has(input:checked){background:#dbeafe;border-color:#3b82f6}
+.opt-chip-chk input{width:14px;height:14px;accent-color:#3b82f6;cursor:pointer;flex-shrink:0}
+.opt-price-total{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:.82rem;display:none}
+.opt-price-total-row{display:flex;justify-content:space-between;padding:2px 0;opacity:.85}
+.opt-price-total-row.final{font-weight:900;font-size:.95rem;opacity:1;border-top:1px solid rgba(255,255,255,.3);margin-top:4px;padding-top:4px}
 .price-foot{font-size:.7rem;color:#9ca3af;margin-top:10px;padding-top:8px;border-top:1px solid var(--border);line-height:1.6}
 .no-price-msg{padding:20px;text-align:center;color:var(--gray);font-size:.84rem}
 
@@ -2138,22 +2144,27 @@ function buildPricePanel(vid, variant){
     html += '<table class="ptbl"><tr><th>트림</th><th>기본가격</th></tr>';
     for(var ti=0;ti<gr.t.length;ti++){
       var nm=gr.t[ti][0], pr=gr.t[ti][1];
-      html += '<tr class="ptbl-trim-row" data-vid="'+vid+'" data-trim="'+nm+'" onclick="selectPriceTrim(this)">';
+      html += '<tr class="ptbl-trim-row" data-vid="'+vid+'" data-trim="'+nm+'" data-price="'+pr+'" onclick="selectPriceTrim(this)">';
       html += '<td>'+nm+'</td><td>'+pr.toLocaleString()+'만원</td></tr>';
     }
     html += '</table>';
   }
-  if(vdata.o && vdata.o.length){
+  if(vid==='staria'){
+    html = '<div style="margin-top:0;background:#fffbeb;border:1.5px solid #f59e0b;border-radius:10px;padding:12px 14px"><div style="font-size:.8rem;font-weight:700;color:#92400e;margin-bottom:8px">📋 차종이 다양하여 별도 가격표 참조요망</div><div style="font-size:.75rem;color:#78350f;margin-bottom:10px">스타리아는 승차인원(7/9/11인승), 파워트레인(가솔린/HEV), 용도별 옵션이 다양하므로 전용 가격표를 확인하세요.</div><div style="display:flex;gap:8px;flex-wrap:wrap"><a href="https://www.hyundai.com/kr/ko/e/vehicles/catalog-price-download" target="_blank" style="display:inline-block;background:#002c5f;color:#fff;padding:7px 16px;border-radius:8px;font-size:.78rem;font-weight:700;text-decoration:none">📄 현대 가격표 페이지 바로가기</a></div></div>';
+  } else if(vdata.o && vdata.o.length){
     var enc=encodeURIComponent(JSON.stringify(vdata.o));
     html += '<div class="opt-sep" id="opt-sep-'+vid+'" style="display:none">선택사양 <span id="opt-trim-lbl-'+vid+'" style="font-size:.7rem;color:#0369a1;font-weight:700"></span></div>';
     html += '<div class="opt-grid" id="opt-grid-'+vid+'" data-opts="'+enc+'" style="display:none"></div>';
+    html += '<div class="opt-price-total" id="opt-total-'+vid+'"><div class="opt-price-total-row"><span>트림 기본가</span><span id="opt-base-'+vid+'">-</span></div><div class="opt-price-total-row"><span>선택 옵션</span><span id="opt-add-'+vid+'">+0만원</span></div><div class="opt-price-total-row final"><span>예상 합계</span><span id="opt-sum-'+vid+'">-</span></div><div class="opt-price-total-row" style="opacity:.8;font-size:.75rem;border-top:1px solid rgba(255,255,255,.2);margin-top:4px;padding-top:4px"><span>취득세 추정</span><span id="opt-tax-val-'+vid+'">-</span></div></div>';
   }
+  html += '<div id="acq-dyn-'+vid+'" style="display:none;margin-top:8px;background:#f0fdf4;border-left:3px solid #16a34a;border-radius:0 8px 8px 0;padding:8px 12px;font-size:.75rem"><div style="color:#15803d;font-weight:700;margin-bottom:2px">💡 선택 구성 기준 취득세 추정</div><div id="acq-dyn-val-'+vid+'" style="font-size:.95rem;font-weight:900;color:#15803d">-</div><div style="font-size:.65rem;color:#9ca3af;margin-top:2px">트림 기본가 + 선택 옵션 합산 기준 (참고용)</div></div>';
   html += '<div class="price-foot">* 기본가격 기준 부가세 포함 정부 보조금 미적용</div>';
   return html;
 }
 
 function selectPriceTrim(row){
   var vid=row.getAttribute('data-vid'), nm=row.getAttribute('data-trim');
+  var basePrice=parseInt(row.getAttribute('data-price')||'0')||0;
   var allRows=document.getElementsByClassName('ptbl-trim-row');
   for(var i=0;i<allRows.length;i++){
     if(allRows[i].getAttribute('data-vid')===vid) allRows[i].classList.remove('ptrim-selected');
@@ -2162,6 +2173,7 @@ function selectPriceTrim(row){
   var grid=document.getElementById('opt-grid-'+vid);
   var sep=document.getElementById('opt-sep-'+vid);
   var lbl=document.getElementById('opt-trim-lbl-'+vid);
+  var tot=document.getElementById('opt-total-'+vid);
   if(!grid) return;
   var opts=[];
   try{ opts=JSON.parse(decodeURIComponent(grid.getAttribute('data-opts')||'[]')); }catch(ex){}
@@ -2169,14 +2181,35 @@ function selectPriceTrim(row){
   for(var j=0;j<opts.length;j++){
     var o=opts[j], oT=(o.length>2)?o[2]:null, show=!oT;
     if(!show){ for(var k=0;k<oT.length;k++){ if(oT[k]===nm){show=true;break;} } }
-    if(show) chips+='<div class="opt-chip"><span class="opt-chip-nm">'+o[0]+'</span><span class="opt-chip-pr">'+o[1]+'만</span></div>';
+    if(show) chips+='<label class="opt-chip-chk"><input type="checkbox" data-pr="'+o[1]+'" onchange="calcPriceOptTotal(\''+vid+'\','+basePrice+')"><span class="opt-chip-nm">'+o[0]+'</span><span class="opt-chip-pr">'+o[1]+'만</span></label>';
   }
   if(chips){
     if(sep)sep.style.display=''; if(lbl)lbl.textContent=nm+' 선택 옵션';
-    grid.style.display=''; grid.innerHTML=chips;
+    grid.style.display='flex'; grid.style.flexWrap='wrap'; grid.style.gap='5px';
+    grid.innerHTML=chips;
+    if(tot){ tot.style.display='block'; calcPriceOptTotal(vid,basePrice); }
   } else {
     if(sep)sep.style.display='none';
     grid.style.display='none'; grid.innerHTML='';
+    if(tot) tot.style.display='none';
+  }
+}
+
+function calcPriceOptTotal(vid,basePrice){
+  var grid=document.getElementById('opt-grid-'+vid);
+  if(!grid) return;
+  var add=0;
+  var chks=grid.querySelectorAll('input[type=checkbox]:checked');
+  for(var i=0;i<chks.length;i++) add+=parseInt(chks[i].getAttribute('data-pr')||'0')||0;
+  var b=document.getElementById('opt-base-'+vid);
+  var a=document.getElementById('opt-add-'+vid);
+  var s=document.getElementById('opt-sum-'+vid);
+  if(b) b.textContent=basePrice.toLocaleString()+'만원';
+  if(a) a.textContent='+'+(add>0?add.toLocaleString():'0')+'만원';
+  if(s) s.textContent=(basePrice+add).toLocaleString()+'만원';
+  if(typeof getAcqTax==='function'){
+    var taxEl=document.getElementById('opt-tax-val-'+vid);
+    if(taxEl){ var acq=getAcqTax(vid,basePrice+add); taxEl.textContent='약 '+Math.round(acq.taxNet).toLocaleString()+'만원~'+(acq.evExempt>0?' (감면포함)':''); }
   }
 }
 
@@ -2372,6 +2405,14 @@ function renderProposal(){
     '<span class="prop-lbl">트림 가격</span>' +
     '<div id="pp-trims"></div>' +
     '</div>' +
+    '<div id="pp-opts-area" style="display:none;padding:6px 0">' +
+    '<div style="font-size:.75rem;font-weight:700;color:var(--navy);margin-bottom:6px">📦 선택 옵션 <span style="font-weight:400;color:#6b7280">(체크 시 합계에 반영)</span></div>' +
+    '<div id="pp-opts-grid" style="display:flex;flex-wrap:wrap;gap:5px"></div>' +
+    '<div id="pp-opts-total" style="background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:.82rem">' +
+    '<div style="display:flex;justify-content:space-between;padding:2px 0;opacity:.85"><span>트림 기본가</span><span id="pp-base-pr">-</span></div>' +
+    '<div style="display:flex;justify-content:space-between;padding:2px 0;opacity:.85"><span>선택 옵션</span><span id="pp-opts-add">+0만원</span></div>' +
+    '<div style="display:flex;justify-content:space-between;font-weight:900;font-size:.95rem;border-top:1px solid rgba(255,255,255,.3);margin-top:4px;padding-top:4px"><span>차량 합계</span><span id="pp-total-pr">-</span></div>' +
+    '</div></div>' +
     '<div class="prop-row"><span class="prop-lbl">생산월/재고</span>' +
     '<select class="prop-sel" id="pp-month"><option value="">해당없음</option></select></div>' +
     '</div>' + // prop-step 1
@@ -2564,11 +2605,46 @@ function ppShowTrims(vid){
   }
   h+='</div><div class="pp-trim-note">\u203b \uc635\uc158 \uc120\ud0dd \uc2dc \ucd94\uac00 \uae08\uc561 \ubc1c\uc0dd</div>';
   box.innerHTML=h;
+  ppShowTrimOpts();
 }
 function ppSelectTrim(btn,price,name,variant){
   document.querySelectorAll('.pp-trim-btn').forEach(function(b){b.classList.remove('on');});
   btn.classList.add('on');
   window._selTrimPrice=price; window._selTrimName=name; window._selVariant=variant||null;
+  ppShowTrimOpts();
+}
+
+function ppShowTrimOpts(){
+  var vid=getActiveVid(), nm=window._selTrimName, vk=window._selVariant;
+  var area=document.getElementById('pp-opts-area');
+  var grid=document.getElementById('pp-opts-grid');
+  if(!area||!grid) return;
+  var pd=PRICE_DATA[vid];
+  var vdata=pd&&vk?pd[vk]:null;
+  if(!vdata&&pd) vdata=pd[Object.keys(pd)[0]];
+  var opts=(vdata&&vdata.o)?vdata.o:[];
+  var chips='';
+  for(var j=0;j<opts.length;j++){
+    var o=opts[j], oT=(o.length>2)?o[2]:null, show=!oT;
+    if(!show){ for(var k=0;k<oT.length;k++){ if(oT[k]===nm){show=true;break;} } }
+    if(show) chips+='<label class="opt-chip-chk"><input type="checkbox" data-pr="'+o[1]+'" onchange="ppCalcTrimTotal()"><span class="opt-chip-nm">'+o[0]+'</span><span class="opt-chip-pr">'+o[1]+'만</span></label>';
+  }
+  area.style.display= chips ? '' : 'none';
+  grid.innerHTML=chips;
+  ppCalcTrimTotal();
+}
+
+function ppCalcTrimTotal(){
+  var base=window._selTrimPrice||0;
+  var grid=document.getElementById('pp-opts-grid');
+  var add=0;
+  if(grid){ var chks=grid.querySelectorAll('input:checked'); for(var i=0;i<chks.length;i++) add+=parseInt(chks[i].getAttribute('data-pr')||'0')||0; }
+  var bEl=document.getElementById('pp-base-pr');
+  var aEl=document.getElementById('pp-opts-add');
+  var tEl=document.getElementById('pp-total-pr');
+  if(bEl) bEl.textContent=base.toLocaleString()+'만원';
+  if(aEl) aEl.textContent='+'+(add>0?add.toLocaleString():'0')+'만원';
+  if(tEl) tEl.textContent=(base+add).toLocaleString()+'만원';
 }
 
 function ppVidChange(vid){
@@ -2844,7 +2920,8 @@ function generateProposal(){
 
   // 취득세 추정 (트림 선택 + 할인 후 가격 확정 시)
   if(trimPrice && !hasPct && (trimPrice - totalDiscount) > 0){
-    var _acqP = trimPrice - totalDiscount;
+    var _optAdd=0; var _optGrid=document.getElementById('pp-opts-grid'); if(_optGrid){var _oc=_optGrid.querySelectorAll('input:checked');for(var _oi=0;_oi<_oc.length;_oi++)_optAdd+=parseInt(_oc[_oi].getAttribute('data-pr')||'0')||0;}
+    var _acqP = trimPrice - totalDiscount + _optAdd;
     var _acq  = getAcqTax(vid, _acqP);
     html += '<div style="background:#f0fdf4;border-left:3px solid #16a34a;padding:10px 14px;margin:0">';
     html += '<div style="font-size:.72rem;color:#15803d;font-weight:700;margin-bottom:5px">취득세 대략 추정 (' + _acq.label + ')</div>';
